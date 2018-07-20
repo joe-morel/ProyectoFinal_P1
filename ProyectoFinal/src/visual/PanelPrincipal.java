@@ -84,12 +84,30 @@ public class PanelPrincipal extends JFrame {
 		menuBar.add(mnAlmacen);
 		
 		JMenuItem mntmNuevoProducto = new JMenuItem("Añadir Producto");
+		mntmNuevoProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AnadirProducto  newProducto = new AnadirProducto();
+				newProducto.setVisible(true);
+			}
+		});
 		mnAlmacen.add(mntmNuevoProducto);
 		
 		JMenuItem mntmListaDeProductos = new JMenuItem("Lista de Productos");
+		mntmListaDeProductos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaDeProductos  newListaProducto = new ListaDeProductos();
+				newListaProducto.setVisible(true);
+			}
+		});
 		mnAlmacen.add(mntmListaDeProductos);
 		
 		JMenuItem mntmCrearKitPc = new JMenuItem("Crear Kit de PC");
+		mntmCrearKitPc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearKit  newkit = new CrearKit();
+				newkit.setVisible(true);	
+			}
+		});
 		mntmCrearKitPc.setBackground(new Color(255, 255, 255));
 		mntmCrearKitPc.setForeground(new Color(0, 0, 0));
 		mnAlmacen.add(mntmCrearKitPc);
@@ -111,6 +129,12 @@ public class PanelPrincipal extends JFrame {
 		mnClientes.add(mntmNuevoCliente);
 		
 		JMenuItem mntmListaDeClientes = new JMenuItem("Lista de Clientes");
+		mntmListaDeClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaDeClientes newclient = new ListaDeClientes();
+				newclient.setVisible(true);
+			}
+		});
 		mnClientes.add(mntmListaDeClientes);
 		
 		JMenu mnEmpleados = new JMenu("Empleados ");
@@ -130,21 +154,49 @@ public class PanelPrincipal extends JFrame {
 		mnEmpleados.add(mntmNuevoEmpleado);
 		
 		JMenuItem mntmListaDeEmpleados = new JMenuItem("Lista de Empleados");
+		mntmListaDeEmpleados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaDeEmpleados newempleado = new ListaDeEmpleados();
+				newempleado.setVisible(true);
+			}
+		});
 		mnEmpleados.add(mntmListaDeEmpleados);
 		
 		JMenu mnNewMenu = new JMenu("Cuentas por C. ");
+		mnNewMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				CuentasPorCobrar newCuenta= new CuentasPorCobrar();
+				newCuenta.setVisible(true);
+			}
+		});
+		
 		mnNewMenu.setHorizontalTextPosition(SwingConstants.CENTER);
 		mnNewMenu.setVerticalTextPosition(SwingConstants.BOTTOM);
 		mnNewMenu.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-presupuesto-48.png"));
 		menuBar.add(mnNewMenu);
 		
 		JMenu mnNewMenu_1 = new JMenu("Informes ");
+		mnNewMenu_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Informes newInformes= new Informes();
+				newInformes.setVisible(true);
+			}
+		});
 		mnNewMenu_1.setVerticalTextPosition(SwingConstants.BOTTOM);
 		mnNewMenu_1.setHorizontalTextPosition(SwingConstants.CENTER);
 		mnNewMenu_1.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-futuros-48.png"));
 		menuBar.add(mnNewMenu_1);
 		
 		JMenu mnInventario = new JMenu("Inventario ");
+		mnInventario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Inventario newInventario= new Inventario();
+				newInventario.setVisible(true);
+			}
+		});
 		mnInventario.setHorizontalTextPosition(SwingConstants.CENTER);
 		mnInventario.setVerticalTextPosition(SwingConstants.BOTTOM);
 		mnInventario.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-mostrar-propiedad-48.png"));
@@ -157,9 +209,21 @@ public class PanelPrincipal extends JFrame {
 		menuBar.add(mnNewMenu_2);
 		
 		JMenuItem mntmNuevoUsuario = new JMenuItem("Nuevo Usuario");
+		mntmNuevoUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NuevoUsuario newUsuario= new NuevoUsuario();
+				newUsuario.setVisible(true);
+			}
+		});
 		mnNewMenu_2.add(mntmNuevoUsuario);
 		
 		JMenuItem mntmAdministrarUsuarios = new JMenuItem("Administrar Usuarios");
+		mntmAdministrarUsuarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdministrarUsuarios newAdmiUsu= new AdministrarUsuarios();
+				newAdmiUsu.setVisible(true);
+			}
+		});
 		mnNewMenu_2.add(mntmAdministrarUsuarios);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -83,7 +83,7 @@ public class PanelPrincipal extends JFrame {
 		mnAlmacen.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-caja-llena-48.png"));
 		menuBar.add(mnAlmacen);
 		
-		JMenuItem mntmNuevoProducto = new JMenuItem("Añadir Producto");
+		JMenuItem mntmNuevoProducto = new JMenuItem("Anadir Producto");
 		mntmNuevoProducto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AnadirProducto  newProducto = new AnadirProducto();
@@ -202,7 +202,7 @@ public class PanelPrincipal extends JFrame {
 		mnInventario.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-mostrar-propiedad-48.png"));
 		menuBar.add(mnInventario);
 		
-		JMenu mnNewMenu_2 = new JMenu("Configuración");
+		JMenu mnNewMenu_2 = new JMenu("Configuracion");
 		mnNewMenu_2.setHorizontalTextPosition(SwingConstants.CENTER);
 		mnNewMenu_2.setVerticalTextPosition(SwingConstants.BOTTOM);
 		mnNewMenu_2.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-ajustes-48.png"));
@@ -274,4 +274,4 @@ public class PanelPrincipal extends JFrame {
 		panel_3.add(lblComputerstorerd);
 	}
 }
-
+//joemorel

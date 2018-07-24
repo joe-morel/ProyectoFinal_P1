@@ -11,6 +11,7 @@ import java.awt.SystemColor;
 import java.awt.Color;
 import java.awt.Canvas;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Panel;
 import java.awt.Label;
 import javax.swing.JLabel;
@@ -77,7 +78,8 @@ public class NuevoEmpleado extends JDialog {
 				JLabel lblNewLabel = new JLabel("");
 				lblNewLabel.setBounds(27, 0, 96, 151);
 				panel_1.add(lblNewLabel);
-				lblNewLabel.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-persona-de-sexo-masculino-96.png"));
+				Image img0 = new ImageIcon(this.getClass().getResource("/usuario-96.png")).getImage();
+				lblNewLabel.setIcon(new ImageIcon(img0));
 			}
 			
 			JLabel lblEmpleado = new JLabel("Registro de Empleados");
@@ -113,72 +115,53 @@ public class NuevoEmpleado extends JDialog {
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblNombre.setBounds(33, 215, 61, 16);
+		lblNombre.setBounds(34, 226, 61, 16);
 		contentPanel.add(lblNombre);
 		
 		JLabel lblApellidos = new JLabel("Apellidos:");
 		lblApellidos.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblApellidos.setBounds(337, 215, 158, 16);
+		lblApellidos.setBounds(338, 226, 96, 16);
 		contentPanel.add(lblApellidos);
 		
 		JLabel lblCdula = new JLabel("Teléfono:");
 		lblCdula.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblCdula.setBounds(337, 264, 72, 16);
+		lblCdula.setBounds(338, 275, 72, 16);
 		contentPanel.add(lblCdula);
 		
 		textField_1 = new JTextField();
-		textField_1.setEnabled(false);
 		textField_1.setColumns(10);
-		textField_1.setBounds(106, 210, 158, 26);
+		textField_1.setBounds(107, 221, 158, 26);
 		contentPanel.add(textField_1);
 		
 		textField_2 = new JTextField();
-		textField_2.setEnabled(false);
 		textField_2.setColumns(10);
-		textField_2.setBounds(434, 210, 158, 26);
+		textField_2.setBounds(435, 221, 158, 26);
 		contentPanel.add(textField_2);
 		
 		JLabel lblDireccin = new JLabel("Dirección:");
 		lblDireccin.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblDireccin.setBounds(33, 265, 79, 16);
+		lblDireccin.setBounds(34, 276, 79, 16);
 		contentPanel.add(lblDireccin);
 		
 		textField_3 = new JTextField();
-		textField_3.setEnabled(false);
 		textField_3.setColumns(10);
-		textField_3.setBounds(106, 260, 158, 26);
+		textField_3.setBounds(107, 271, 158, 26);
 		contentPanel.add(textField_3);
 		
 		textField_4 = new JTextField();
-		textField_4.setEnabled(false);
 		textField_4.setColumns(10);
-		textField_4.setBounds(434, 259, 158, 26);
+		textField_4.setBounds(435, 270, 158, 26);
 		contentPanel.add(textField_4);
 		
 		JLabel lblCdula_1 = new JLabel("Cédula:");
 		lblCdula_1.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblCdula_1.setBounds(33, 319, 79, 16);
+		lblCdula_1.setBounds(34, 330, 79, 16);
 		contentPanel.add(lblCdula_1);
 		
 		textField_5 = new JTextField();
-		textField_5.setEnabled(false);
 		textField_5.setColumns(10);
-		textField_5.setBounds(106, 314, 158, 26);
+		textField_5.setBounds(107, 325, 158, 26);
 		contentPanel.add(textField_5);
-		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Cr\u00E9dito", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(292, 292, 300, 145);
-		contentPanel.add(panel);
-		panel.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("Limite de Credito:");
-		lblNewLabel_1.setBounds(16, 64, 112, 16);
-		panel.add(lblNewLabel_1);
-		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(140, 59, 138, 26);
-		panel.add(spinner);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(SystemColor.window);
@@ -189,7 +172,8 @@ public class NuevoEmpleado extends JDialog {
 				JButton okButton = new JButton("Guardar");
 				okButton.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 				okButton.setBounds(118, 4, 124, 58);
-				okButton.setIcon(new ImageIcon("/Users/joemorel/Downloads/icons8-guardar-como-48.png"));
+				Image img1 = new ImageIcon(this.getClass().getResource("/guardar-48.png")).getImage();
+				okButton.setIcon(new ImageIcon(img1));
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -203,7 +187,8 @@ public class NuevoEmpleado extends JDialog {
 				});
 				cancelButton.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 				cancelButton.setBounds(378, 4, 118, 58);
-				cancelButton.setIcon(new ImageIcon("/Users/joemorel/Downloads/icons8-señal-de-salida-48.png"));
+				Image img2 = new ImageIcon(this.getClass().getResource("/salir-48.png")).getImage();
+				cancelButton.setIcon(new ImageIcon(img2));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

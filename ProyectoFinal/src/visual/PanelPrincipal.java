@@ -1,6 +1,7 @@
 package visual;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -73,14 +74,19 @@ public class PanelPrincipal extends JFrame {
 		mnFacturar.setVerticalTextPosition(SwingConstants.BOTTOM);
 		mnFacturar.setHorizontalTextPosition(SwingConstants.CENTER);
 		
-		mnFacturar.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-caja-registradora-48.png"));
+		//Codigo para agregar iconos
+		Image img0 = new ImageIcon(this.getClass().getResource("/facturar-48.png")).getImage();
+		mnFacturar.setIcon(new ImageIcon(img0));
+		//Fin de codigo para agregar iconos
 		menuBar.add(mnFacturar);
 		
 		JMenu mnAlmacen = new JMenu("Almacen ");
 		mnAlmacen.setHorizontalTextPosition(SwingConstants.CENTER);
 		mnAlmacen.setVerticalTextPosition(SwingConstants.BOTTOM);
 		mnAlmacen.setBackground(new Color(255, 255, 255));
-		mnAlmacen.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-caja-llena-48.png"));
+		//Codigo para agregar iconos
+		Image img1 = new ImageIcon(this.getClass().getResource("/caja-48.png")).getImage();
+		mnAlmacen.setIcon(new ImageIcon(img1));
 		menuBar.add(mnAlmacen);
 		
 		JMenuItem mntmNuevoProducto = new JMenuItem("Añadir Producto");
@@ -115,7 +121,10 @@ public class PanelPrincipal extends JFrame {
 		JMenu mnClientes = new JMenu("Clientes ");
 		mnClientes.setVerticalTextPosition(SwingConstants.BOTTOM);
 		mnClientes.setHorizontalTextPosition(SwingConstants.CENTER);
-		mnClientes.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-contactos-48.png"));
+		
+		//Codigo para agregar iconos
+		Image img2 = new ImageIcon(this.getClass().getResource("/clientes-48.png")).getImage();
+		mnClientes.setIcon(new ImageIcon(img2));
 		menuBar.add(mnClientes);
 		
 		JMenuItem mntmNuevoCliente = new JMenuItem("Nuevo Cliente");
@@ -140,7 +149,9 @@ public class PanelPrincipal extends JFrame {
 		JMenu mnEmpleados = new JMenu("Empleados ");
 		mnEmpleados.setHorizontalTextPosition(SwingConstants.CENTER);
 		mnEmpleados.setVerticalTextPosition(SwingConstants.BOTTOM);
-		mnEmpleados.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-tarjeta-de-empleado-48.png"));
+		//Codigo para agregar iconos
+		Image img3 = new ImageIcon(this.getClass().getResource("/empleado-48.png")).getImage();
+		mnEmpleados.setIcon(new ImageIcon(img3));
 		menuBar.add(mnEmpleados);
 		
 		JMenuItem mntmNuevoEmpleado = new JMenuItem("Nuevo Empleado");
@@ -173,7 +184,8 @@ public class PanelPrincipal extends JFrame {
 		
 		mnNewMenu.setHorizontalTextPosition(SwingConstants.CENTER);
 		mnNewMenu.setVerticalTextPosition(SwingConstants.BOTTOM);
-		mnNewMenu.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-presupuesto-48.png"));
+		Image img4 = new ImageIcon(this.getClass().getResource("/presupuesto-48.png")).getImage();
+		mnNewMenu.setIcon(new ImageIcon(img4));
 		menuBar.add(mnNewMenu);
 		
 		JMenu mnNewMenu_1 = new JMenu("Informes ");
@@ -186,7 +198,9 @@ public class PanelPrincipal extends JFrame {
 		});
 		mnNewMenu_1.setVerticalTextPosition(SwingConstants.BOTTOM);
 		mnNewMenu_1.setHorizontalTextPosition(SwingConstants.CENTER);
-		mnNewMenu_1.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-futuros-48.png"));
+		//Codigo para agregar iconos
+		Image img5 = new ImageIcon(this.getClass().getResource("/informe-48.png")).getImage();
+		mnNewMenu_1.setIcon(new ImageIcon(img5));
 		menuBar.add(mnNewMenu_1);
 		
 		JMenu mnInventario = new JMenu("Inventario ");
@@ -199,13 +213,15 @@ public class PanelPrincipal extends JFrame {
 		});
 		mnInventario.setHorizontalTextPosition(SwingConstants.CENTER);
 		mnInventario.setVerticalTextPosition(SwingConstants.BOTTOM);
-		mnInventario.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-mostrar-propiedad-48.png"));
+		Image img6 = new ImageIcon(this.getClass().getResource("/inventario-48.png")).getImage();
+		mnInventario.setIcon(new ImageIcon(img6));
 		menuBar.add(mnInventario);
 		
 		JMenu mnNewMenu_2 = new JMenu("Configuración");
 		mnNewMenu_2.setHorizontalTextPosition(SwingConstants.CENTER);
 		mnNewMenu_2.setVerticalTextPosition(SwingConstants.BOTTOM);
-		mnNewMenu_2.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-ajustes-48.png"));
+		Image img7 = new ImageIcon(this.getClass().getResource("/ajustes-48.png")).getImage();
+		mnNewMenu_2.setIcon(new ImageIcon(img7));
 		menuBar.add(mnNewMenu_2);
 		
 		JMenuItem mntmNuevoUsuario = new JMenuItem("Nuevo Usuario");
@@ -243,7 +259,8 @@ public class PanelPrincipal extends JFrame {
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("/Users/joemorel/Downloads/logoP1111_opaco.png"));
+		Image img8 = new ImageIcon(this.getClass().getResource("/logoP1111_opaco.png")).getImage();
+		lblNewLabel.setIcon(new ImageIcon(img8));
 		lblNewLabel.setBounds(260, 66, 379, 395);
 		contentPane.add(lblNewLabel);
 		

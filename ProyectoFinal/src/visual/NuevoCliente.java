@@ -11,6 +11,7 @@ import java.awt.SystemColor;
 import java.awt.Color;
 import java.awt.Canvas;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Panel;
 import java.awt.Label;
 import javax.swing.JLabel;
@@ -77,7 +78,8 @@ public class NuevoCliente extends JDialog {
 				JLabel lblNewLabel = new JLabel("");
 				lblNewLabel.setBounds(27, 0, 96, 151);
 				panel_1.add(lblNewLabel);
-				lblNewLabel.setIcon(new ImageIcon("/Users/joemorel/git/ProyectoFinal_P1/ProyectoFinal/img/icons8-persona-de-sexo-masculino-96.png"));
+				Image img = new ImageIcon(this.getClass().getResource("/usuario-96.png")).getImage();
+				lblNewLabel.setIcon(new ImageIcon(img));
 			}
 			
 			JLabel lblEmpleado = new JLabel("Registro de Clientes");
@@ -127,13 +129,12 @@ public class NuevoCliente extends JDialog {
 		contentPanel.add(lblCdula);
 		
 		textField_1 = new JTextField();
-		textField_1.setEnabled(false);
+		textField_1.setToolTipText("");
 		textField_1.setColumns(10);
 		textField_1.setBounds(106, 210, 158, 26);
 		contentPanel.add(textField_1);
 		
 		textField_2 = new JTextField();
-		textField_2.setEnabled(false);
 		textField_2.setColumns(10);
 		textField_2.setBounds(434, 210, 158, 26);
 		contentPanel.add(textField_2);
@@ -144,13 +145,11 @@ public class NuevoCliente extends JDialog {
 		contentPanel.add(lblDireccin);
 		
 		textField_3 = new JTextField();
-		textField_3.setEnabled(false);
 		textField_3.setColumns(10);
 		textField_3.setBounds(106, 260, 158, 26);
 		contentPanel.add(textField_3);
 		
 		textField_4 = new JTextField();
-		textField_4.setEnabled(false);
 		textField_4.setColumns(10);
 		textField_4.setBounds(434, 259, 158, 26);
 		contentPanel.add(textField_4);
@@ -161,7 +160,6 @@ public class NuevoCliente extends JDialog {
 		contentPanel.add(lblCdula_1);
 		
 		textField_5 = new JTextField();
-		textField_5.setEnabled(false);
 		textField_5.setColumns(10);
 		textField_5.setBounds(106, 314, 158, 26);
 		contentPanel.add(textField_5);
@@ -189,7 +187,8 @@ public class NuevoCliente extends JDialog {
 				JButton okButton = new JButton("Guardar");
 				okButton.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 				okButton.setBounds(118, 4, 124, 58);
-				okButton.setIcon(new ImageIcon("/Users/joemorel/Downloads/icons8-guardar-como-48.png"));
+				Image img0 = new ImageIcon(this.getClass().getResource("/guardar-48.png")).getImage();
+				okButton.setIcon(new ImageIcon(img0));
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -203,7 +202,8 @@ public class NuevoCliente extends JDialog {
 				});
 				cancelButton.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 				cancelButton.setBounds(378, 4, 118, 58);
-				cancelButton.setIcon(new ImageIcon("/Users/joemorel/Downloads/icons8-señal-de-salida-48.png"));
+				Image img1 = new ImageIcon(this.getClass().getResource("/salir-48.png")).getImage();
+				cancelButton.setIcon(new ImageIcon(img1));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

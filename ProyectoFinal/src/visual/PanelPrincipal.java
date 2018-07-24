@@ -254,7 +254,7 @@ public class PanelPrincipal extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(51, 153, 204));
-		panel.setBounds(-6, 0, 913, 33);
+		panel.setBounds(0, 0, 907, 33);
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		

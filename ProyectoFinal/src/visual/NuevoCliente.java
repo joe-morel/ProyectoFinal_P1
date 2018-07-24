@@ -15,12 +15,17 @@ import java.awt.Image;
 import java.awt.Panel;
 import java.awt.Label;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+
+import logical.Clientes;
+import logical.Empresa;
+
 import javax.swing.border.EtchedBorder;
 import javax.swing.JSpinner;
 import javax.swing.UIManager;
@@ -31,16 +36,16 @@ public class NuevoCliente extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField txt_nombre;
+	private JTextField txt_apellidos;
+	private JTextField txt_direccion;
+	private JTextField txt_telefono;
+	private JTextField txt_cedula;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			NuevoEmpleado dialog = new NuevoEmpleado();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -49,7 +54,7 @@ public class NuevoCliente extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+*/
 	/**
 	 * Create the dialog.
 	 */
@@ -96,6 +101,7 @@ public class NuevoCliente extends JDialog {
 			}
 			
 			textField = new JTextField();
+			textField.setEditable(false);
 			textField.setEnabled(false);
 			textField.setBounds(90, 76, 106, 26);
 			panel.add(textField);
@@ -128,41 +134,76 @@ public class NuevoCliente extends JDialog {
 		lblCdula.setBounds(337, 264, 72, 16);
 		contentPanel.add(lblCdula);
 		
+<<<<<<< HEAD
 		textField_1 = new JTextField();
 		textField_1.setToolTipText("");
 		textField_1.setColumns(10);
 		textField_1.setBounds(106, 210, 158, 26);
 		contentPanel.add(textField_1);
+=======
+		txt_nombre = new JTextField();
+		txt_nombre.setColumns(10);
+		txt_nombre.setBounds(106, 210, 158, 26);
+		contentPanel.add(txt_nombre);
+>>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
 		
+<<<<<<< HEAD
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(434, 210, 158, 26);
 		contentPanel.add(textField_2);
+=======
+		txt_apellidos = new JTextField();
+		txt_apellidos.setColumns(10);
+		txt_apellidos.setBounds(434, 210, 158, 26);
+		contentPanel.add(txt_apellidos);
+>>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
 		
 		JLabel lblDireccin = new JLabel("Dirección:");
 		lblDireccin.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblDireccin.setBounds(33, 265, 79, 16);
 		contentPanel.add(lblDireccin);
 		
+<<<<<<< HEAD
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(106, 260, 158, 26);
 		contentPanel.add(textField_3);
+=======
+		txt_direccion = new JTextField();
+		txt_direccion.setColumns(10);
+		txt_direccion.setBounds(106, 260, 158, 26);
+		contentPanel.add(txt_direccion);
+>>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
 		
+<<<<<<< HEAD
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
 		textField_4.setBounds(434, 259, 158, 26);
 		contentPanel.add(textField_4);
+=======
+		txt_telefono = new JTextField();
+		txt_telefono.setColumns(10);
+		txt_telefono.setBounds(434, 259, 158, 26);
+		contentPanel.add(txt_telefono);
+>>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
 		
 		JLabel lblCdula_1 = new JLabel("Cédula:");
 		lblCdula_1.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblCdula_1.setBounds(33, 319, 79, 16);
 		contentPanel.add(lblCdula_1);
 		
+<<<<<<< HEAD
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
 		textField_5.setBounds(106, 314, 158, 26);
 		contentPanel.add(textField_5);
+=======
+		txt_cedula = new JTextField();
+		txt_cedula.setColumns(10);
+		txt_cedula.setBounds(106, 314, 158, 26);
+		contentPanel.add(txt_cedula);
+>>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Cr\u00E9dito", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -174,9 +215,9 @@ public class NuevoCliente extends JDialog {
 		lblNewLabel_1.setBounds(16, 64, 112, 16);
 		panel.add(lblNewLabel_1);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(140, 59, 138, 26);
-		panel.add(spinner);
+		JSpinner sp_limiteCre = new JSpinner();
+		sp_limiteCre.setBounds(140, 59, 138, 26);
+		panel.add(sp_limiteCre);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(SystemColor.window);
@@ -185,6 +226,26 @@ public class NuevoCliente extends JDialog {
 			buttonPane.setLayout(null);
 			{
 				JButton okButton = new JButton("Guardar");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						if ((txt_cedula.getText() != null &&  txt_cedula.getText().isEmpty() == false) && (txt_nombre.getText() != null && 
+								txt_nombre.getText().isEmpty() == false) && (txt_direccion.getText() != null && txt_direccion.getText().isEmpty()
+								== false) && (txt_telefono.getText() != null && txt_telefono.getText().isEmpty() == false) && 
+								(txt_apellidos.getText() != null && txt_apellidos.getText().isEmpty() == false)) {
+							String nombre = txt_nombre.getText() + txt_apellidos.getText();
+							String cedula = txt_cedula.getText();
+							String direccion = txt_direccion.getText();
+							String telefono = txt_telefono.getText();
+							float limiteCredito = (float) sp_limiteCre.getValue();
+							String code = "CSC-";
+							Clientes c = new Clientes(nombre, cedula, telefono, direccion, code, limiteCredito);
+							Empresa.getinstance().AddCliente(c);
+							JOptionPane.showMessageDialog(null, "Usted a agregado un cliente");
+							}else{
+								JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos");
+							}
+					}
+				});
 				okButton.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 				okButton.setBounds(118, 4, 124, 58);
 				Image img0 = new ImageIcon(this.getClass().getResource("/guardar-48.png")).getImage();

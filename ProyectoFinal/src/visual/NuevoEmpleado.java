@@ -15,12 +15,18 @@ import java.awt.Image;
 import java.awt.Panel;
 import java.awt.Label;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+
+import logical.Clientes;
+import logical.Empleados;
+import logical.Empresa;
+
 import javax.swing.border.EtchedBorder;
 import javax.swing.JSpinner;
 import javax.swing.UIManager;
@@ -31,11 +37,11 @@ public class NuevoEmpleado extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField txt_nombre;
+	private JTextField txt_apellidos;
+	private JTextField txt_direccion;
+	private JTextField txt_telefono;
+	private JTextField txt_cedula;
 
 	/**
 	 * Launch the application.
@@ -54,8 +60,8 @@ public class NuevoEmpleado extends JDialog {
 	 * Create the dialog.
 	 */
 	public NuevoEmpleado() {
-		setAlwaysOnTop(true);
 		setResizable(false);
+		setAlwaysOnTop(true);
 		setBounds(100, 100, 640, 530);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(SystemColor.window);
@@ -88,7 +94,7 @@ public class NuevoEmpleado extends JDialog {
 			lblEmpleado.setBounds(29, 53, 203, 16);
 			panel.add(lblEmpleado);
 			{
-				JLabel lblCdigo = new JLabel("Código:");
+				JLabel lblCdigo = new JLabel("Codigo:");
 				lblCdigo.setForeground(Color.WHITE);
 				lblCdigo.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 				lblCdigo.setBounds(29, 81, 67, 16);
@@ -123,45 +129,81 @@ public class NuevoEmpleado extends JDialog {
 		lblApellidos.setBounds(338, 226, 96, 16);
 		contentPanel.add(lblApellidos);
 		
-		JLabel lblCdula = new JLabel("Teléfono:");
+		JLabel lblCdula = new JLabel("Telefono:");
 		lblCdula.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblCdula.setBounds(338, 275, 72, 16);
 		contentPanel.add(lblCdula);
 		
+<<<<<<< HEAD
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(107, 221, 158, 26);
 		contentPanel.add(textField_1);
+=======
+		txt_nombre = new JTextField();
+		txt_nombre.setEnabled(true);
+		txt_nombre.setColumns(10);
+		txt_nombre.setBounds(106, 210, 158, 26);
+		contentPanel.add(txt_nombre);
+>>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
 		
+<<<<<<< HEAD
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(435, 221, 158, 26);
 		contentPanel.add(textField_2);
+=======
+		txt_apellidos = new JTextField();
+		txt_apellidos.setColumns(10);
+		txt_apellidos.setBounds(434, 210, 158, 26);
+		contentPanel.add(txt_apellidos);
+>>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
 		
-		JLabel lblDireccin = new JLabel("Dirección:");
+		JLabel lblDireccin = new JLabel("Direccion:");
 		lblDireccin.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblDireccin.setBounds(34, 276, 79, 16);
 		contentPanel.add(lblDireccin);
 		
+<<<<<<< HEAD
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(107, 271, 158, 26);
 		contentPanel.add(textField_3);
+=======
+		txt_direccion = new JTextField();
+		txt_direccion.setColumns(10);
+		txt_direccion.setBounds(106, 260, 158, 26);
+		contentPanel.add(txt_direccion);
+>>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
 		
+<<<<<<< HEAD
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
 		textField_4.setBounds(435, 270, 158, 26);
 		contentPanel.add(textField_4);
+=======
+		txt_telefono = new JTextField();
+		txt_telefono.setColumns(10);
+		txt_telefono.setBounds(434, 259, 158, 26);
+		contentPanel.add(txt_telefono);
+>>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
 		
-		JLabel lblCdula_1 = new JLabel("Cédula:");
+		JLabel lblCdula_1 = new JLabel("Cedula:");
 		lblCdula_1.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblCdula_1.setBounds(34, 330, 79, 16);
 		contentPanel.add(lblCdula_1);
 		
+<<<<<<< HEAD
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
 		textField_5.setBounds(107, 325, 158, 26);
 		contentPanel.add(textField_5);
+=======
+		txt_cedula = new JTextField();
+		txt_cedula.setColumns(10);
+		txt_cedula.setBounds(106, 314, 158, 26);
+		contentPanel.add(txt_cedula);
+>>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(SystemColor.window);
@@ -170,6 +212,25 @@ public class NuevoEmpleado extends JDialog {
 			buttonPane.setLayout(null);
 			{
 				JButton okButton = new JButton("Guardar");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						if ((txt_cedula.getText() != null &&  txt_cedula.getText().isEmpty() == false) && (txt_nombre.getText() != null && 
+								txt_nombre.getText().isEmpty() == false) && (txt_direccion.getText() != null && txt_direccion.getText().isEmpty()
+								== false) && (txt_telefono.getText() != null && txt_telefono.getText().isEmpty() == false) && 
+								(txt_apellidos.getText() != null && txt_apellidos.getText().isEmpty() == false)) {
+							String nombre = txt_nombre.getText() + txt_apellidos.getText();
+							String cedula = txt_cedula.getText();
+							String direccion = txt_direccion.getText();
+							String telefono = txt_telefono.getText();
+							String code = "CSE-";
+							Empleados e = new Empleados(nombre, cedula, telefono, direccion, code);
+							Empresa.getinstance().AddEmpleado(e);
+							JOptionPane.showMessageDialog(null, "Usted a agregado un Empleado");
+							}else{
+								JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos");
+							}
+					}
+				});
 				okButton.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 				okButton.setBounds(118, 4, 124, 58);
 				Image img1 = new ImageIcon(this.getClass().getResource("/guardar-48.png")).getImage();

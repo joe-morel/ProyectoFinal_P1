@@ -7,16 +7,18 @@ public class Clientes {
 	private String telefono;
 	private String direccion;
 	private String code;
+	private float LimiteCredito;
 	
 	//Inicio de Construtor 
 	
-	public Clientes(String nombre, String cedula, String telefono, String direccion, String code) {
+	public Clientes(String nombre, String cedula, String telefono, String direccion, String code, float limiteCredito) {
 		super();
 		this.nombre = nombre;
 		this.cedula = cedula;
 		this.telefono = telefono;
 		this.direccion = direccion;
 		this.code = code;
+		this.LimiteCredito = limiteCredito;
 	}
 	
 	// Fin de Constructor 
@@ -51,6 +53,14 @@ public class Clientes {
 	}
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public float getLimiteCredito() {
+		return LimiteCredito;
+	}
+
+	public void setLimiteCredito(float limiteCredito) {
+		this.LimiteCredito = limiteCredito;
 	}
 	
 	//Fin de Getters and Setters

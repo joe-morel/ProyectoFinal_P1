@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ListaDeEmpleados extends JFrame {
 
@@ -141,6 +143,11 @@ public class ListaDeEmpleados extends JFrame {
 		contentPane.add(button_1);
 		
 		JButton button_2 = new JButton("Salir");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		Image img3 = new ImageIcon(this.getClass().getResource("/salir-48.png")).getImage();
 		button_2.setIcon(new ImageIcon(img3));
 		button_2.setFont(new Font("Lucida Grande", Font.BOLD, 13));

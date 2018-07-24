@@ -134,76 +134,57 @@ public class NuevoEmpleado extends JDialog {
 		lblCdula.setBounds(338, 275, 72, 16);
 		contentPanel.add(lblCdula);
 		
-<<<<<<< HEAD
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(107, 221, 158, 26);
-		contentPanel.add(textField_1);
-=======
+
+	
+
 		txt_nombre = new JTextField();
 		txt_nombre.setEnabled(true);
 		txt_nombre.setColumns(10);
-		txt_nombre.setBounds(106, 210, 158, 26);
+		txt_nombre.setBounds(106, 221, 158, 26);
 		contentPanel.add(txt_nombre);
->>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
+
 		
-<<<<<<< HEAD
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(435, 221, 158, 26);
-		contentPanel.add(textField_2);
-=======
+
 		txt_apellidos = new JTextField();
 		txt_apellidos.setColumns(10);
-		txt_apellidos.setBounds(434, 210, 158, 26);
+		txt_apellidos.setBounds(434, 221, 158, 26);
 		contentPanel.add(txt_apellidos);
->>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
+
 		
 		JLabel lblDireccin = new JLabel("Direccion:");
 		lblDireccin.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblDireccin.setBounds(34, 276, 79, 16);
 		contentPanel.add(lblDireccin);
 		
-<<<<<<< HEAD
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(107, 271, 158, 26);
-		contentPanel.add(textField_3);
-=======
+
+	
+
 		txt_direccion = new JTextField();
 		txt_direccion.setColumns(10);
-		txt_direccion.setBounds(106, 260, 158, 26);
+		txt_direccion.setBounds(106, 271, 158, 26);
 		contentPanel.add(txt_direccion);
->>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
+
 		
-<<<<<<< HEAD
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(435, 270, 158, 26);
-		contentPanel.add(textField_4);
-=======
+
 		txt_telefono = new JTextField();
 		txt_telefono.setColumns(10);
-		txt_telefono.setBounds(434, 259, 158, 26);
+		txt_telefono.setBounds(434, 270, 158, 26);
 		contentPanel.add(txt_telefono);
->>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
+
 		
 		JLabel lblCdula_1 = new JLabel("Cedula:");
 		lblCdula_1.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblCdula_1.setBounds(34, 330, 79, 16);
 		contentPanel.add(lblCdula_1);
 		
-<<<<<<< HEAD
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(107, 325, 158, 26);
-		contentPanel.add(textField_5);
-=======
+
+	
+
 		txt_cedula = new JTextField();
 		txt_cedula.setColumns(10);
-		txt_cedula.setBounds(106, 314, 158, 26);
+		txt_cedula.setBounds(106, 325, 158, 26);
 		contentPanel.add(txt_cedula);
->>>>>>> branch 'master' of https://github.com/morel06/ProyectoFinal_P1.git
+
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(SystemColor.window);

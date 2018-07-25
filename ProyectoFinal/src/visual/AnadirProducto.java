@@ -197,7 +197,7 @@ public class AnadirProducto extends JFrame {
 				panel_8.setVisible(false);
 				panel_7.setVisible(false);
 				panel_4.setVisible(false);
-				panel_5.setVisible(true);
+	//			panel_5.setVisible(true);
 				panel_3.setVisible(true);
 				
 				
@@ -217,7 +217,7 @@ public class AnadirProducto extends JFrame {
 				panel_8.setVisible(false);
 				panel_7.setVisible(false);
 				panel_4.setVisible(true);
-				panel_5.setVisible(false);
+			//	panel_5.setVisible(false);
 				panel_3.setVisible(true);
 				
 			}
@@ -236,7 +236,7 @@ public class AnadirProducto extends JFrame {
 				panel_8.setVisible(false);
 				panel_7.setVisible(true);
 				panel_4.setVisible(false);
-				panel_5.setVisible(false);
+		//		panel_5.setVisible(false);
 				panel_3.setVisible(true);
 				
 				
@@ -256,7 +256,7 @@ public class AnadirProducto extends JFrame {
 				panel_8.setVisible(true);
 				panel_7.setVisible(false);
 				panel_4.setVisible(false);
-				panel_5.setVisible(false);
+			//	panel_5.setVisible(false);
 				panel_3.setVisible(true);
 				
 			}

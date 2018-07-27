@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import logical.Clientes;
+import logical.Empleados;
 import logical.Empresa;
 
 import java.awt.Color;
@@ -177,12 +178,12 @@ public class ListaDeEmpleados extends JFrame {
 	public void CargarTabla() {
 		tablemodel.setColumnIdentifiers(columnNames);
 		fila = new Object[tablemodel.getColumnCount()];
-		for (Clientes c : Empresa.getinstance().Getclientes()) {
-			fila[0] = c.getCode();
-			fila[1] = c.getNombre();
-			fila[2] = c.getCedula();
-			fila[3] = c.getTelefono();
-			fila[4] = c.getDireccion();
+		for (Empleados e : Empresa.getinstance().GetEmpleado()) {
+			fila[0] = e.getCode();
+			fila[1] = e.getNombre();
+			fila[2] = e.getCedula();
+			fila[3] = e.getTelefono();
+			fila[4] = e.getDireccion();
 			tablemodel.addRow(fila);
 		}
 		tbtEmpleados = new JTable();

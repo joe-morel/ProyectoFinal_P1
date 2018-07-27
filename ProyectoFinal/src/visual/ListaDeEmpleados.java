@@ -5,26 +5,40 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+
+import logical.Clientes;
+import logical.Empresa;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class ListaDeEmpleados extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	JScrollPane scrollPane = new JScrollPane();
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTable tbtEmpleados;
+	private static DefaultTableModel tablemodel = new DefaultTableModel();;
+	String[] columnNames = {"Codigo", "Nombre", "Cedula", "Telefono", "Dirreccion"};
+	private static Object[] fila;
 
 	/**
 	 * Launch the application.
@@ -46,7 +60,7 @@ public class ListaDeEmpleados extends JFrame {
 	 * Create the frame.
 	 */
 	public ListaDeEmpleados() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 640, 530);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -122,10 +136,6 @@ public class ListaDeEmpleados extends JFrame {
 		textField_3.setBounds(76, 180, 98, 26);
 		panel.add(textField_3);
 		
-		JList list = new JList();
-		list.setBounds(8, 230, 624, 207);
-		contentPane.add(list);
-		
 		JButton button = new JButton("Modificar");
 		Image img1 = new ImageIcon(this.getClass().getResource("/modificar-48.png")).getImage();
 		button.setIcon(new ImageIcon(img1));
@@ -145,6 +155,8 @@ public class ListaDeEmpleados extends JFrame {
 		JButton button_2 = new JButton("Salir");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) tbtEmpleados.getModel();
+				model.setRowCount(0);
 				dispose();
 			}
 		});
@@ -154,5 +166,35 @@ public class ListaDeEmpleados extends JFrame {
 		button_2.setActionCommand("Cancel");
 		button_2.setBounds(453, 444, 118, 58);
 		contentPane.add(button_2);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 229, 604, 204);
+		contentPane.add(scrollPane);
+		CargarTabla();
+		scrollPane.setViewportView(tbtEmpleados);
+		
+	}
+	public void CargarTabla() {
+		tablemodel.setColumnIdentifiers(columnNames);
+		fila = new Object[tablemodel.getColumnCount()];
+		for (Clientes c : Empresa.getinstance().Getclientes()) {
+			fila[0] = c.getCode();
+			fila[1] = c.getNombre();
+			fila[2] = c.getCedula();
+			fila[3] = c.getTelefono();
+			fila[4] = c.getDireccion();
+			tablemodel.addRow(fila);
+		}
+		tbtEmpleados = new JTable();
+		tbtEmpleados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tbtEmpleados.setModel(tablemodel);
+		tbtEmpleados.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		
+		TableColumnModel columnModel = tbtEmpleados.getColumnModel();
+		columnModel.getColumn(0).setPreferredWidth(60);
+		columnModel.getColumn(1).setPreferredWidth(171);
+		columnModel.getColumn(2).setPreferredWidth(110);
+		columnModel.getColumn(3).setPreferredWidth(110);
+		columnModel.getColumn(4).setPreferredWidth(150);
 	}
 }

@@ -31,6 +31,7 @@ import javax.swing.JSpinner;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SpinnerNumberModel;
 
 public class NuevoCliente extends JDialog {
 
@@ -194,6 +195,7 @@ public class NuevoCliente extends JDialog {
 		panel.add(lblNewLabel_1);
 		
 		JSpinner sp_limiteCre = new JSpinner();
+		sp_limiteCre.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
 		sp_limiteCre.setBounds(140, 59, 138, 26);
 		panel.add(sp_limiteCre);
 		{
@@ -210,7 +212,7 @@ public class NuevoCliente extends JDialog {
 								txt_nombre.getText().isEmpty() == false) && (txt_direccion.getText() != null && txt_direccion.getText().isEmpty()
 								== false) && (txt_telefono.getText() != null && txt_telefono.getText().isEmpty() == false) && 
 								(txt_apellidos.getText() != null && txt_apellidos.getText().isEmpty() == false)) {
-							String nombre = txt_nombre.getText() + txt_apellidos.getText();
+							String nombre = txt_nombre.getText() +" "+ txt_apellidos.getText();
 							String cedula = txt_cedula.getText();
 							String direccion = txt_direccion.getText();
 							String telefono = txt_telefono.getText();

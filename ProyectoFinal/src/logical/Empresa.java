@@ -2,8 +2,6 @@ package logical;
 
 import java.util.ArrayList;
 
-
-
 public class Empresa {
 	
 	private static Empresa empresa=null;
@@ -41,5 +39,29 @@ public class Empresa {
 	public void AddEmpleado(Empleados emple) {
 		this.misEmpleados.add(emple);
 	}
+	public Clientes BuscarCliente(int Buscar){
+		return this.misClientes.get(Buscar);
+	}
+	///// 
+	public ArrayList<Clientes> Getclientes(){
+		return this.misClientes;
+	}
+	public ArrayList<Factura> GetFactura (){
+		return this.misFacturas;
+	}
+	public ArrayList<Empleados> GetEmpleado (){
+		return this.misEmpleados;
+	}
+	public ArrayList<Productos> GetProducto (){
+		return this.misProductos;
+	}
+	public void ModificarCliente(Clientes cli, int idex){
+		Clientes c = this.misClientes.set(idex, cli);
+	}
+	public void ModificarEmpleado(Empleados emp, int idex){
+		Empleados e = this.misEmpleados.set(idex, emp);
+	}
+	
+
 	
 }

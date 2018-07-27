@@ -1,6 +1,5 @@
 package visual;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -10,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.SystemColor;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.JList;
 import java.awt.Font;
 import java.awt.Image;
@@ -19,15 +19,32 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.table.TableColumnModel;
+
+
+import javax.swing.table.DefaultTableModel;
+
+import logical.Empresa;
+import logical.Clientes;
+
+import javax.swing.JScrollPane;
 
 public class ListaDeClientes extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable table;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	JScrollPane scrollPane = new JScrollPane();
+	private JTextField txt_nombre;
+	private JTextField txt_cedula;
+	private JTextField txt_telefono;
+	private JTable tbtClientes;
+	private static DefaultTableModel tablemodel = new DefaultTableModel();;
+	String[] columnNames = {"Codigo", "Nombre", "Cedula", "Telefono", "Dirreccion", "LimiteCredito"};
+	private static Object[] fila;
+	//private ModificarCliente MC;
 
 	/**
 	 * Launch the application.
@@ -49,8 +66,8 @@ public class ListaDeClientes extends JFrame {
 	 * Create the frame.
 	 */
 	public ListaDeClientes() {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 640, 530);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setBounds(100, 100, 640, 545);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -86,10 +103,10 @@ public class ListaDeClientes extends JFrame {
 		lblNombre.setBounds(186, 59, 61, 16);
 		panel.add(lblNombre);
 		
-		textField = new JTextField();
-		textField.setBounds(259, 54, 260, 26);
-		panel.add(textField);
-		textField.setColumns(10);
+		txt_nombre = new JTextField();
+		txt_nombre.setBounds(259, 54, 260, 26);
+		panel.add(txt_nombre);
+		txt_nombre.setColumns(10);
 		
 		JLabel lblCdula = new JLabel("Cédula:");
 		lblCdula.setForeground(Color.WHITE);
@@ -97,10 +114,10 @@ public class ListaDeClientes extends JFrame {
 		lblCdula.setBounds(186, 97, 61, 16);
 		panel.add(lblCdula);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(259, 92, 216, 26);
-		panel.add(textField_1);
+		txt_cedula = new JTextField();
+		txt_cedula.setColumns(10);
+		txt_cedula.setBounds(259, 92, 216, 26);
+		panel.add(txt_cedula);
 		
 		JLabel lblTelfono = new JLabel("Teléfono:");
 		lblTelfono.setForeground(Color.WHITE);
@@ -108,10 +125,10 @@ public class ListaDeClientes extends JFrame {
 		lblTelfono.setBounds(186, 137, 73, 16);
 		panel.add(lblTelfono);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(259, 132, 181, 26);
-		panel.add(textField_2);
+		txt_telefono = new JTextField();
+		txt_telefono.setColumns(10);
+		txt_telefono.setBounds(259, 132, 181, 26);
+		panel.add(txt_telefono);
 		
 		JLabel label = new JLabel("Código:");
 		label.setForeground(Color.WHITE);
@@ -119,21 +136,18 @@ public class ListaDeClientes extends JFrame {
 		label.setBounds(23, 185, 49, 16);
 		panel.add(label);
 		
-		textField_3 = new JTextField();
-		textField_3.setEnabled(false);
-		textField_3.setColumns(10);
-		textField_3.setBounds(76, 180, 98, 26);
-		panel.add(textField_3);
-		
-		table = new JTable();
-		table.setBounds(235, 308, 157, -69);
-		contentPane.add(table);
-		
-		JList list = new JList();
-		list.setBounds(8, 225, 624, 207);
-		contentPane.add(list);
+		JTextField txt_codigo = new JTextField();
+		txt_codigo.setEnabled(false);
+		txt_codigo.setColumns(10);
+		txt_codigo.setBounds(76, 180, 98, 26);
+		panel.add(txt_codigo);
 		
 		JButton btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			
+			}
+		});
 		Image img1 = new ImageIcon(this.getClass().getResource("/modificar-48.png")).getImage();
 		btnModificar.setIcon(new ImageIcon(img1));
 		btnModificar.setFont(new Font("Lucida Grande", Font.BOLD, 13));
@@ -144,6 +158,8 @@ public class ListaDeClientes extends JFrame {
 		JButton button = new JButton("Salir");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) tbtClientes.getModel();
+				model.setRowCount(0);
 				dispose();
 			}
 		});
@@ -162,5 +178,48 @@ public class ListaDeClientes extends JFrame {
 		btnEliminar.setActionCommand("Cancel");
 		btnEliminar.setBounds(267, 444, 118, 58);
 		contentPane.add(btnEliminar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 229, 604, 204);
+		contentPane.add(scrollPane);
+		CargarTabla();
+		
+		//tbtClientes = new JTable();
+		scrollPane.setViewportView(tbtClientes);
+		/*tbtClientes.setModel(new DefaultTableModel(
+			new Object[][] {
+				{},
+				{},
+			},
+			new String[] {
+				, "New column", "New column"
+			}
+		));*/
+	}
+	public void CargarTabla() {
+		tablemodel.setColumnIdentifiers(columnNames);
+		fila = new Object[tablemodel.getColumnCount()];
+		for (Clientes c : Empresa.getinstance().Getclientes()) {
+			fila[0] = c.getCode();
+			fila[1] = c.getNombre();
+			fila[2] = c.getCedula();
+			fila[3] = c.getTelefono();
+			fila[4] = c.getDireccion();
+			fila[5] = c.getLimiteCredito();
+			tablemodel.addRow(fila);
+		}
+		tbtClientes = new JTable();
+		scrollPane.setViewportView(tbtClientes);
+		tbtClientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tbtClientes.setModel(tablemodel);
+		tbtClientes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		
+		TableColumnModel columnModel = tbtClientes.getColumnModel();
+		columnModel.getColumn(0).setPreferredWidth(60);
+		columnModel.getColumn(1).setPreferredWidth(190);
+		columnModel.getColumn(2).setPreferredWidth(110);
+		columnModel.getColumn(3).setPreferredWidth(110);
+		columnModel.getColumn(4).setPreferredWidth(150);
+		columnModel.getColumn(5).setPreferredWidth(90);
 	}
 }

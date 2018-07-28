@@ -18,11 +18,11 @@ public class Motherboard extends Productos{
 
 	//Inicio de Constructor 
 	
-	public Motherboard(float precio, int cant, String num_serie, String marca, String modelo, String marcaProcesadores,
+	public Motherboard(float precio, float PrecioVenta, int cant, String num_serie, String marca, String modelo, String marcaProcesadores,
 			String socketProcesador, String tipoRam, int cantIDEPATA, int cantM2, int cantSataExpress, int cantSata,
 			int cantPCIex1, int cantPCIex4, int cantPCIex8, int cantPCIex16, int cantSlotsRam, boolean multiCHSUP) {
 		
-		super(precio, cant, num_serie, marca, modelo);
+		super(precio,PrecioVenta, cant, num_serie, marca, modelo);
 		this.marcaProcesadores = marcaProcesadores;
 		this.socketProcesador = socketProcesador;
 		this.tipoRam = tipoRam;

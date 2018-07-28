@@ -3,19 +3,21 @@ package logical;
 public class Productos {
 	
 	private float precio;
+	private float PrecioVenta;
 	private int cant;
 	private String num_serie;
 	private String marca;
 	private String modelo;
 	
 	//Inicio de Constructor
-	public Productos(float precio, int cant, String num_serie, String marca, String modelo) {
+	public Productos(float precio,float PrecioVenta, int cant, String num_serie, String marca, String modelo) {
 		super();
 		this.precio = precio;
 		this.cant = cant;
 		this.num_serie = num_serie;
 		this.marca = marca;
 		this.modelo = modelo;
+		this.PrecioVenta = PrecioVenta;
 	}
 	// Fin de Constructor
 	//*******************************
@@ -52,5 +54,11 @@ public class Productos {
 	}
 	//Fin de Getters and Setters
 	//*******************************
+	public float getPrecioVenta() {
+		return PrecioVenta;
+	}
+	public void setPrecioVenta(float precioVenta) {
+		PrecioVenta = precioVenta;
+	}
 	
 }

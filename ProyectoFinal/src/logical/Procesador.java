@@ -8,13 +8,13 @@ public class Procesador extends Productos {
 	private boolean Unlock;
 	
 	//Inicio de Constructor
-	public Procesador(float precio, int cant, String num_serie, String marca, String modelo, String socket,
+	public Procesador(float precio, float PrecioVenta, int cant, String num_serie, String marca, String modelo, String socket,
 			float velocidadBase, float velocidadTurbo, boolean unlock) {
-		super(precio, cant, num_serie, marca, modelo);
-		Socket = socket;
+		super(precio, PrecioVenta, cant, num_serie, marca, modelo);
+		this.Socket = socket;
 		this.velocidadBase = velocidadBase;
 		this.velocidadTurbo = velocidadTurbo;
-		Unlock = unlock;
+		this.Unlock = unlock;
 	}
 	//Fin de Constructor
 	//******************************

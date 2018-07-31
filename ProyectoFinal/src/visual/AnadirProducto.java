@@ -55,7 +55,7 @@ public class AnadirProducto extends JFrame {
 	private JPanel panel_3;
 	private JPanel panel_7;
 	private JPanel panel_8;
-	private JSpinner spinner_4;
+	private JSpinner spn_cantram;
 	
 	//float precio ;
 	//float PrecioVenta;
@@ -145,27 +145,28 @@ public class AnadirProducto extends JFrame {
 	  label_1.setBounds(19, 41, 53, 16);
 	  panel_9.add(label_1);
 	  
-	  JComboBox comboBox_2 = new JComboBox();
-	  comboBox_2.setToolTipText("");
-	  comboBox_2.setBounds(70, 37, 147, 27);
-	  panel_9.add(comboBox_2);
+	  JComboBox cbx_Socketmtb = new JComboBox();
+	  cbx_Socketmtb.setToolTipText("");
+	  cbx_Socketmtb.setBounds(70, 37, 147, 27);
+	  panel_9.add(cbx_Socketmtb);
 	  
 	  JLabel label_8 = new JLabel("Tipo de Memoria:");
 	  label_8.setBounds(294, 41, 115, 16);
 	  panel_9.add(label_8);
 	  
-	  JComboBox comboBox_3 = new JComboBox();
-	  comboBox_3.setBounds(421, 37, 147, 27);
-	  panel_9.add(comboBox_3);
+	  JComboBox cbx_tipoMemmtb = new JComboBox();
+	  cbx_tipoMemmtb.setModel(new DefaultComboBoxModel(new String[] {"<seleccionar>", "ddr-1", "ddr-2", "ddr-3", "ddr-4"}));
+	  cbx_tipoMemmtb.setBounds(421, 37, 147, 27);
+	  panel_9.add(cbx_tipoMemmtb);
 	  
 	  JLabel label_9 = new JLabel("Cant. Slots RAM:");
 	  label_9.setBounds(294, 81, 115, 16);
 	  panel_9.add(label_9);
 	  
-	  spinner_4 = new JSpinner();
-	  spinner_4.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-	  spinner_4.setBounds(421, 76, 147, 26);
-	  panel_9.add(spinner_4);
+	  spn_cantram = new JSpinner();
+	  spn_cantram.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+	  spn_cantram.setBounds(421, 76, 147, 26);
+	  panel_9.add(spn_cantram);
 	  
 	  panel_4 = new JPanel();
 	  panel_4.setBackground(new Color(255, 255, 255));
@@ -355,6 +356,11 @@ public class AnadirProducto extends JFrame {
 		panel_1.add(panel_3);
 		panel_3.setLayout(null);
 		
+		panel_8.setVisible(false);
+		panel_7.setVisible(false);
+		panel_4.setVisible(false);
+		panel_9.setVisible(false);
+		
 		rdbtnMotherboard = new JRadioButton("MotherBoard");
 		rdbtnMotherboard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -366,9 +372,7 @@ public class AnadirProducto extends JFrame {
 				panel_8.setVisible(false);
 				panel_7.setVisible(false);
 				panel_4.setVisible(false);
-				panel_9.setVisible(true);
-				panel_3.setVisible(true);
-				
+				panel_9.setVisible(true);				
 				
 				
 			}
@@ -387,9 +391,7 @@ public class AnadirProducto extends JFrame {
 				panel_8.setVisible(false);
 				panel_7.setVisible(false);
 				panel_4.setVisible(true);
-				panel_9.setVisible(false);
-				panel_3.setVisible(true);
-				
+				panel_9.setVisible(false);				
 			}
 		});
 		rdbtnProcesador.setBounds(31, 47, 111, 23);
@@ -407,8 +409,6 @@ public class AnadirProducto extends JFrame {
 				panel_7.setVisible(true);
 				panel_4.setVisible(false);
 				panel_9.setVisible(false);
-				panel_3.setVisible(true);
-				
 				
 			}
 		});
@@ -427,7 +427,6 @@ public class AnadirProducto extends JFrame {
 				panel_7.setVisible(false);
 				panel_4.setVisible(false);
 				panel_9.setVisible(false);
-				panel_3.setVisible(true);
 				
 			}
 		});
@@ -449,9 +448,9 @@ public class AnadirProducto extends JFrame {
 		checkbx_Sata.setBounds(97, 77, 60, 23);
 		panel_9.add(checkbx_Sata);
 		
-		JCheckBox checkbx_SataE = new JCheckBox("SATA Express");
-		checkbx_SataE.setBounds(163, 77, 110, 23);
-		panel_9.add(checkbx_SataE);
+		JCheckBox checkbx_IDE = new JCheckBox("IDE");
+		checkbx_IDE.setBounds(163, 77, 110, 23);
+		panel_9.add(checkbx_IDE);
 		
 		
 		JPanel panel_6 = new JPanel();
@@ -475,11 +474,17 @@ public class AnadirProducto extends JFrame {
 					int cantidad = (int) spn_Cantidad.getValue();
 					String codigo = "codigo";
 					if(rdbtnMotherboard.isSelected() == true) {
-						if((comboBox_2.getSelectedIndex() != 0) && (comboBox_3.getSelectedIndex() != 0)) {
-							//aqui//
+						if((cbx_Socketmtb.getSelectedIndex() != 0) && (cbx_tipoMemmtb.getSelectedIndex() != 0) && (spn_cantram.getValue() != "0") && ( (checkbx_Sata.isSelected()==true) || (checkbx_IDE.isSelected()==true))) {
 							
+							String socket = (String) cbx_Socketmtb.getSelectedItem();
+							//String TipoMem = (String) 
+							//cbx_Socketmtb
+							//cbx_tipoMemmtb
+							//spn_cantram
+							//checkbx_Sata
+							//checkbx_IDE
 						}else {
-							JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos del producto");
+							JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos del Motherboard");
 						}
 					}
 					if(rdbtnDisco.isSelected() == true) {

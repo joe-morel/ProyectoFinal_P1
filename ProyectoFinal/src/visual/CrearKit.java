@@ -50,6 +50,7 @@ public class CrearKit extends JFrame {
 	 * Create the frame.
 	 */
 	public CrearKit() {
+		setResizable(false);
 		setBounds(100, 100, 640, 530);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -119,10 +120,10 @@ public class CrearKit extends JFrame {
 		panel_2.setBounds(0, 170, 640, 27);
 		contentPane.add(panel_2);
 		
-		JLabel label_2 = new JLabel("Información General");
-		label_2.setForeground(new Color(255, 255, 255));
-		label_2.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-		panel_2.add(label_2);
+		JLabel lblContenido = new JLabel("Lista de componentes");
+		lblContenido.setForeground(new Color(255, 255, 255));
+		lblContenido.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		panel_2.add(lblContenido);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(18, 220, 604, 204);
@@ -158,12 +159,12 @@ public class CrearKit extends JFrame {
 		button_2.setBounds(484, 436, 118, 58);
 		contentPane.add(button_2);
 		
-		JButton button_3 = new JButton("Modificar");
+		JButton btnGuardar = new JButton("Guardar");
 		Image img4 = new ImageIcon(this.getClass().getResource("/modificar1-48.png")).getImage();
-		button_3.setIcon(new ImageIcon(img4));
-		button_3.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-		button_3.setActionCommand("OK");
-		button_3.setBounds(38, 436, 131, 58);
-		contentPane.add(button_3);
+		btnGuardar.setIcon(new ImageIcon(img4));
+		btnGuardar.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		btnGuardar.setActionCommand("OK");
+		btnGuardar.setBounds(38, 436, 131, 58);
+		contentPane.add(btnGuardar);
 	}
 }

@@ -20,12 +20,15 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.CompoundBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CrearKit extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JButton button_2;
 
 	/**
 	 * Launch the application.
@@ -47,7 +50,6 @@ public class CrearKit extends JFrame {
 	 * Create the frame.
 	 */
 	public CrearKit() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 530);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -142,7 +144,13 @@ public class CrearKit extends JFrame {
 		button_1.setBounds(344, 436, 118, 58);
 		contentPane.add(button_1);
 		
-		JButton button_2 = new JButton("Salir");
+		button_2 = new JButton("Salir");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
 		Image img3 = new ImageIcon(this.getClass().getResource("/salir-48.png")).getImage();
 		button_2.setIcon(new ImageIcon(img3));
 		button_2.setFont(new Font("Lucida Grande", Font.BOLD, 13));

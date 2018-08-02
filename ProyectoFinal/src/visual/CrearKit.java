@@ -129,13 +129,13 @@ public class CrearKit extends JFrame {
 		scrollPane.setBounds(18, 220, 604, 204);
 		contentPane.add(scrollPane);
 		
-		JButton button = new JButton("Modificar");
-		Image img1 = new ImageIcon(this.getClass().getResource("/modificar-48.png")).getImage();
-		button.setIcon(new ImageIcon(img1));
-		button.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-		button.setActionCommand("OK");
-		button.setBounds(191, 436, 131, 58);
-		contentPane.add(button);
+		JButton btnAgregar = new JButton("Añadir");
+		Image img1 = new ImageIcon(this.getClass().getResource("/Anadir-48.png")).getImage();
+		btnAgregar.setIcon(new ImageIcon(img1));
+		btnAgregar.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		btnAgregar.setActionCommand("OK");
+		btnAgregar.setBounds(191, 436, 131, 58);
+		contentPane.add(btnAgregar);
 		
 		JButton button_1 = new JButton("Eliminar");
 		Image img2 = new ImageIcon(this.getClass().getResource("/eliminar-64.png")).getImage();

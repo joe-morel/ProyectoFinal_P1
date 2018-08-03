@@ -155,4 +155,4 @@ public class ListaDeProductos extends JFrame {
 		contentPane.add(button_2);
 	}
 	}
-}
+

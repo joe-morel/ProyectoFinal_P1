@@ -7,10 +7,24 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class NuevoUsuario extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JPanel panel;
+	private JLabel lblNewLabel;
+	private JButton button;
+	private JButton button_1;
 
 	/**
 	 * Launch the application.
@@ -33,14 +47,72 @@ public class NuevoUsuario extends JFrame {
 	 */
 	public NuevoUsuario() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 523, 390);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(51, 153, 204));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		JLabel lblNuevoUsuario = new JLabel("nuevo usuario");
-		contentPane.add(lblNuevoUsuario, BorderLayout.CENTER);
+		JLabel lblUsuario = new JLabel("Nombre de Usuario:");
+		lblUsuario.setForeground(new Color(255, 255, 255));
+		lblUsuario.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		lblUsuario.setBounds(81, 134, 140, 16);
+		contentPane.add(lblUsuario);
+		
+		JLabel lblContrasea = new JLabel("Contraseña:");
+		lblContrasea.setForeground(new Color(255, 255, 255));
+		lblContrasea.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		lblContrasea.setBounds(81, 167, 83, 16);
+		contentPane.add(lblContrasea);
+		
+		JLabel lblVerificarContrasea = new JLabel("Verificar Contraseña:");
+		lblVerificarContrasea.setForeground(new Color(255, 255, 255));
+		lblVerificarContrasea.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		lblVerificarContrasea.setBounds(81, 205, 152, 16);
+		contentPane.add(lblVerificarContrasea);
+		
+		textField = new JTextField();
+		textField.setBounds(272, 129, 163, 26);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(272, 162, 163, 26);
+		contentPane.add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(272, 200, 163, 26);
+		contentPane.add(textField_2);
+		
+		panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 523, 32);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		lblNewLabel = new JLabel("Registro De Usuarios");
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 15));
+		lblNewLabel.setBounds(176, 6, 171, 16);
+		panel.add(lblNewLabel);
+		
+		button = new JButton("Guardar");
+		Image img1 = new ImageIcon(this.getClass().getResource("/guardar-48.png")).getImage();
+		button.setIcon(new ImageIcon(img1));
+		button.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		button.setActionCommand("OK");
+		button.setBounds(81, 291, 124, 58);
+		contentPane.add(button);
+		
+		button_1 = new JButton("Salir");
+		Image img2 = new ImageIcon(this.getClass().getResource("/salir-48.png")).getImage();
+		button_1.setIcon(new ImageIcon(img2));
+		button_1.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		button_1.setActionCommand("Cancel");
+		button_1.setBounds(295, 291, 118, 58);
+		contentPane.add(button_1);
 	}
 
 }

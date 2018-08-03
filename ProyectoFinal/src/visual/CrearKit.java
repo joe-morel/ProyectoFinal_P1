@@ -126,7 +126,7 @@ public class CrearKit extends JFrame {
 		panel_2.add(lblContenido);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(18, 220, 604, 204);
+		scrollPane.setBounds(12, 220, 302, 204);
 		contentPane.add(scrollPane);
 		
 		JButton btnAgregar = new JButton("Añadir");
@@ -166,5 +166,9 @@ public class CrearKit extends JFrame {
 		btnGuardar.setActionCommand("OK");
 		btnGuardar.setBounds(38, 436, 131, 58);
 		contentPane.add(btnGuardar);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(326, 220, 302, 204);
+		contentPane.add(scrollPane_1);
 	}
 }

@@ -60,7 +60,7 @@ public class NuevoEmpleado extends JDialog {
 	 * Create the dialog.
 	 */
 	public NuevoEmpleado() {
-		setResizable(false);
+		setModal(true);
 		setAlwaysOnTop(true);
 		setBounds(100, 100, 640, 530);
 		getContentPane().setLayout(new BorderLayout());

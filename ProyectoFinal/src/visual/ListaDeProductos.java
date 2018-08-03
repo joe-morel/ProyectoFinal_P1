@@ -3,6 +3,7 @@ package visual;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -15,21 +16,21 @@ import logical.Empresa;
 import logical.Productos;
 
 import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.JTextField;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.JList;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ListaDeProductos extends JFrame {
 
 	private JPanel contentPane;
-	private JTable tbtProductos;
-	private int aux=0;
-	private static DefaultTableModel tablemodel = new DefaultTableModel();;
-	private static Object[] fila;
-	String[] columnNames = {"Codigo", "Tipo de Producto", "Marca", "Modelo", "Precio de Compra", "Precio de Venta","Cantidad"};
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -51,59 +52,107 @@ public class ListaDeProductos extends JFrame {
 	 * Create the frame.
 	 */
 	public ListaDeProductos() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 354);
+		setBounds(100, 100, 640, 530);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblListaDeProductos = new JLabel("lista de productos");
-		lblListaDeProductos.setBounds(5, 5, 422, 16);
-		contentPane.add(lblListaDeProductos);
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBackground(new Color(0, 204, 153));
+		panel.setBounds(0, 0, 640, 171);
+		contentPane.add(panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBorder(new EmptyBorder(0, 0, 0, 0));
+		panel_1.setBounds(29, 10, 151, 124);
+		panel.add(panel_1);
+		
+		JLabel label = new JLabel("");
+		Image img0 = new ImageIcon(this.getClass().getResource("/usuario-96.png")).getImage();
+		label.setIcon(new ImageIcon(img0));
+		label.setBounds(27, -13, 96, 151);
+		panel_1.add(label);
+		
+		JLabel lblAlmacen = new JLabel("ALMACEN");
+		lblAlmacen.setForeground(Color.WHITE);
+		lblAlmacen.setFont(new Font("Lucida Grande", Font.BOLD, 22));
+		lblAlmacen.setBounds(261, 10, 117, 26);
+		panel.add(lblAlmacen);
+		
+		JLabel label_2 = new JLabel("Codigo:");
+		label_2.setForeground(Color.WHITE);
+		label_2.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		label_2.setBounds(29, 140, 67, 21);
+		panel.add(label_2);
+		
+		textField = new JTextField();
+		textField.setEnabled(false);
+		textField.setColumns(10);
+		textField.setBounds(87, 137, 93, 26);
+		panel.add(textField);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(236, 57, 384, 104);
+		panel.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JLabel lblTotales = new JLabel("Totales:");
+		lblTotales.setForeground(new Color(255, 0, 51));
+		lblTotales.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 20));
+		lblTotales.setBounds(43, 35, 91, 35);
+		panel_3.add(lblTotales);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(146, 36, 188, 33);
+		panel_3.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(204, 255, 204));
+		panel_2.setBounds(0, 171, 640, 27);
+		contentPane.add(panel_2);
+		
+		JLabel lblListaDeProductos = new JLabel("Lista de Productos");
+		lblListaDeProductos.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		panel_2.add(lblListaDeProductos);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(5, 67, 422, 227);
+		scrollPane.setBounds(18, 221, 604, 204);
 		contentPane.add(scrollPane);
 		
-		tbtProductos = new JTable();
-		tbtProductos.setModel(new DefaultTableModel());
+		JButton button = new JButton("Modificar");
+		Image img1 = new ImageIcon(this.getClass().getResource("/modificar-48.png")).getImage();
+		button.setIcon(new ImageIcon(img1));
+		button.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		button.setActionCommand("OK");
+		button.setBounds(68, 437, 131, 58);
+		contentPane.add(button);
 		
-		JComboBox comboBox_sel = new JComboBox();
-		comboBox_sel.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Harddrive", "Ram", "Procesador", "Motherboard", "Kit"}));
-		comboBox_sel.setBounds(171, 32, 143, 22);
-		contentPane.add(comboBox_sel);
-		CargarTabla();
-		scrollPane.setViewportView(tbtProductos);
+		JButton button_1 = new JButton("Eliminar");
+		Image img2 = new ImageIcon(this.getClass().getResource("/eliminar-64.png")).getImage();
+		button_1.setIcon(new ImageIcon(img2));
+		button_1.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		button_1.setActionCommand("Cancel");
+		button_1.setBounds(267, 437, 118, 58);
+		contentPane.add(button_1);
 		
-		
+		JButton button_2 = new JButton("Salir");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		Image img3 = new ImageIcon(this.getClass().getResource("/salir-48.png")).getImage();
+		button_2.setIcon(new ImageIcon(img3));
+		button_2.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		button_2.setActionCommand("Cancel");
+		button_2.setBounds(453, 437, 118, 58);
+		contentPane.add(button_2);
 	}
-	
-	public void CargarTabla() {
-		tablemodel.setColumnIdentifiers(columnNames);
-		fila = new Object[tablemodel.getColumnCount()];
-		for (Productos p : Empresa.getinstance().GetProducto()) {
-			fila[0] = p.getCodigo();
-			fila[1] = p.getTipoProducto();
-			fila[2] = p.getMarca();
-			fila[3] = p.getModelo();
-			fila[4] = p.getPrecio();
-			fila[5] = p.getPrecioVenta();
-			fila[6] = p.getCant();
-			tablemodel.addRow(fila);
-		}
-		tbtProductos = new JTable();
-		tbtProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tbtProductos.setModel(tablemodel);
-		tbtProductos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		
-		TableColumnModel columnModel = tbtProductos.getColumnModel();
-		columnModel.getColumn(0).setPreferredWidth(50);
-		columnModel.getColumn(1).setPreferredWidth(100);
-		columnModel.getColumn(2).setPreferredWidth(100);
-		columnModel.getColumn(3).setPreferredWidth(100);
-		columnModel.getColumn(4).setPreferredWidth(120);
-		columnModel.getColumn(5).setPreferredWidth(100);
-		columnModel.getColumn(6).setPreferredWidth(100);
 	}
 }

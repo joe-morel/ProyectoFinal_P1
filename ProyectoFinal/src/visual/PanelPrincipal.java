@@ -33,6 +33,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.sql.Date;
 
 import javax.swing.JSeparator;
 import java.awt.Dimension;
@@ -40,6 +41,8 @@ import java.awt.Dimension;
 public class PanelPrincipal extends JFrame {
 
 	private JPanel contentPane;
+	public JLabel clock;
+	public ClockThread ct;
 
 	/**
 	 * Launch the application.
@@ -61,6 +64,8 @@ public class PanelPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public PanelPrincipal() {
+		
+		
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -93,7 +98,7 @@ public class PanelPrincipal extends JFrame {
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 620);
+		setBounds(100, 100, 762, 620);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -296,19 +301,19 @@ public class PanelPrincipal extends JFrame {
 		JLabel lblPanelPrincipal = new JLabel("Panel Principal");
 		lblPanelPrincipal.setForeground(new Color(255, 255, 255));
 		lblPanelPrincipal.setFont(new Font("Lucida Grande", Font.BOLD, 22));
-		lblPanelPrincipal.setBounds(367, 0, 165, 33);
+		lblPanelPrincipal.setBounds(298, 0, 165, 33);
 		contentPane.add(lblPanelPrincipal);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(51, 153, 204));
-		panel.setBounds(0, 0, 907, 33);
+		panel.setBounds(0, 0, 762, 33);
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel = new JLabel("");
 		Image img8 = new ImageIcon(this.getClass().getResource("/logoP1111_opaco.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img8));
-		lblNewLabel.setBounds(260, 66, 379, 395);
+		lblNewLabel.setBounds(191, 66, 379, 395);
 		contentPane.add(lblNewLabel);
 		
 		Panel panel_1 = new Panel();
@@ -328,15 +333,31 @@ public class PanelPrincipal extends JFrame {
 		
 		Panel panel_3 = new Panel();
 		panel_3.setBackground(new Color(176, 196, 222));
-		panel_3.setBounds(219, 0, 326, 34);
+		panel_3.setBounds(219, 0, 300, 34);
 		panel_1.add(panel_3);
 		panel_3.setLayout(null);
 		
 		JLabel lblComputerstorerd = new JLabel("ComputerStoreRD@info.com");
 		lblComputerstorerd.setBackground(new Color(176, 196, 222));
-		lblComputerstorerd.setBounds(73, 9, 179, 16);
+		lblComputerstorerd.setBounds(60, 9, 179, 16);
 		panel_3.add(lblComputerstorerd);
+		
+		Panel panel_4 = new Panel();
+		panel_4.setLayout(null);
+		panel_4.setBackground(new Color(176, 196, 222));
+		panel_4.setBounds(519, 0, 245, 34);
+		panel_1.add(panel_4);
+		
+		clock = new JLabel("");
+		clock.setBackground(new Color(176, 196, 222));
+		clock.setBounds(24, 9, 197, 16);
+		panel_4.add(clock);
+		setLocationRelativeTo(null);
+		
+		ct = new ClockThread(this);
 	}
+	
+	
 }
 
 

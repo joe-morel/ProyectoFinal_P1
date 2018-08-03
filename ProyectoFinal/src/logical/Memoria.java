@@ -5,8 +5,8 @@ public class Memoria extends Productos {
 	private float CantGB;
 	//Inicio del Constructor 
 	
-	public Memoria(float precio, float PrecioVenta, int cant, String num_serie, String marca, String modelo, float cantGB) {
-		super(precio,PrecioVenta, cant, num_serie, marca, modelo);
+	public Memoria(float precio, float PrecioVenta, int cant, String Codigo, String marca, String modelo, String TipoProducto, float cantGB) {
+		super(precio,PrecioVenta, cant, Codigo, marca, modelo, TipoProducto);
 		this.CantGB = cantGB;
 	}
 	//Fin del Constructor

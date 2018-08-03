@@ -2,20 +2,30 @@ package logical;
 
 public class Procesador extends Productos {
 
+	
 	private String Socket;
 	private float velocidadBase;
 	private float velocidadTurbo;
 	private boolean Unlock;
 	
+	public Procesador(float precio, float PrecioVenta, int cant, String Codigo, String marca, String modelo,
+			String TipoProducto, String socket, float velocidadBase, float velocidadTurbo, boolean unlock) {
+		super( precio,PrecioVenta, cant, Codigo, marca, modelo, TipoProducto);
+		Socket = socket;
+		this.velocidadBase = velocidadBase;
+		this.velocidadTurbo = velocidadTurbo;
+		Unlock = unlock;
+	}
+	
 	//Inicio de Constructor
-	public Procesador(float precio, float PrecioVenta, int cant, String num_serie, String marca, String modelo, String socket,
+	/*public Procesador(float precio, float PrecioVenta, int cant, String num_serie, String marca, String modelo, String socket,
 			float velocidadBase, float velocidadTurbo, boolean unlock) {
 		super(precio, PrecioVenta, cant, num_serie, marca, modelo);
 		this.Socket = socket;
 		this.velocidadBase = velocidadBase;
 		this.velocidadTurbo = velocidadTurbo;
 		this.Unlock = unlock;
-	}
+	}*/
 	//Fin de Constructor
 	//******************************
 	//Inicio de Getters and Setters 

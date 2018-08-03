@@ -6,9 +6,9 @@ public class HardDrive extends Memoria {
 	private float wrSpeed;
 	private float rdSpeed;
 	//Inicio de Constructor
-	public HardDrive(float precio, float PrecioVenta, int cant, String num_serie, String marca, String modelo, float cantGB,
+	public HardDrive(float precio, float PrecioVenta, int cant, String Codigo, String marca, String modelo, String TipoProducto, float cantGB,
 			String tipoConexion, float wrSpeed, float rdSpeed) {
-		super(precio, PrecioVenta, cant, num_serie, marca, modelo, cantGB);
+		super(precio, PrecioVenta, cant, Codigo, marca, modelo, TipoProducto, cantGB);
 		this.tipoConexion = tipoConexion;
 		this.wrSpeed = wrSpeed;
 		this.rdSpeed = rdSpeed;

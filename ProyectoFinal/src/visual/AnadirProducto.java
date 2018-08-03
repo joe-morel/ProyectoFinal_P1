@@ -21,6 +21,7 @@ import javax.swing.ImageIcon;
 import javax.swing.border.TitledBorder;
 
 import logical.HardDrive;
+import logical.Motherboard;
 import logical.Procesador;
 
 import javax.swing.border.EtchedBorder;
@@ -57,12 +58,6 @@ public class AnadirProducto extends JFrame {
 	private JPanel panel_8;
 	private JSpinner spn_cantram;
 	
-	//float precio ;
-	//float PrecioVenta;
-	//String marca;
-	//String modelo;
-	//int cantidad;
-	//String codigo;
 
 	/**
 	 * Launch the application.
@@ -85,7 +80,7 @@ public class AnadirProducto extends JFrame {
 	 */
 	public AnadirProducto() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 640, 530);
+		setBounds(100, 100, 640, 561);
 		contentPane = new JPanel();
 		contentPane.setForeground(new Color(51, 153, 204));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -134,39 +129,63 @@ public class AnadirProducto extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 	  
-	  JPanel panel_9 = new JPanel();
-	  panel_9.setLayout(null);
-	  panel_9.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Detalles del Articulo", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-	  panel_9.setBackground(Color.WHITE);
-	  panel_9.setBounds(23, 198, 593, 153);
-	  panel_1.add(panel_9);
+	  JPanel panel_9_1 = new JPanel();
+	  panel_9_1.setLayout(null);
+	  panel_9_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Detalles del Articulo", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+	  panel_9_1.setBackground(Color.WHITE);
+	  panel_9_1.setBounds(23, 198, 593, 153);
+	  panel_1.add(panel_9_1);
 	  
 	  JLabel label_1 = new JLabel("Socket:");
 	  label_1.setBounds(19, 41, 53, 16);
-	  panel_9.add(label_1);
+	  panel_9_1.add(label_1);
 	  
 	  JComboBox cbx_Socketmtb = new JComboBox();
 	  cbx_Socketmtb.setToolTipText("");
 	  cbx_Socketmtb.setBounds(70, 37, 147, 27);
-	  panel_9.add(cbx_Socketmtb);
+	  panel_9_1.add(cbx_Socketmtb);
 	  
 	  JLabel label_8 = new JLabel("Tipo de Memoria:");
 	  label_8.setBounds(294, 41, 115, 16);
-	  panel_9.add(label_8);
+	  panel_9_1.add(label_8);
 	  
 	  JComboBox cbx_tipoMemmtb = new JComboBox();
 	  cbx_tipoMemmtb.setModel(new DefaultComboBoxModel(new String[] {"<seleccionar>", "ddr-1", "ddr-2", "ddr-3", "ddr-4"}));
 	  cbx_tipoMemmtb.setBounds(421, 37, 147, 27);
-	  panel_9.add(cbx_tipoMemmtb);
+	  panel_9_1.add(cbx_tipoMemmtb);
 	  
 	  JLabel label_9 = new JLabel("Cant. Slots RAM:");
 	  label_9.setBounds(294, 81, 115, 16);
-	  panel_9.add(label_9);
+	  panel_9_1.add(label_9);
 	  
 	  spn_cantram = new JSpinner();
 	  spn_cantram.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 	  spn_cantram.setBounds(421, 76, 147, 26);
-	  panel_9.add(spn_cantram);
+	  panel_9_1.add(spn_cantram);
+	  panel_9_1.setVisible(false);
+	  
+	  //JPanel panel_9 = new JPanel();
+	  panel_9_1.setBounds(23, 198, 593, 153);
+	  panel_1.add(panel_9_1);
+	  panel_9_1.setLayout(null);
+	  panel_9_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Detalles del Articulo", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+	  panel_9_1.setBackground(Color.WHITE);
+	  
+	  JLabel lblCantidadSata = new JLabel("Cantidad SATA:");
+	  lblCantidadSata.setBounds(19, 81, 115, 16);
+	  panel_9_1.add(lblCantidadSata);
+	  
+	  JSpinner spn_CantSATA = new JSpinner();
+	  spn_CantSATA.setBounds(119, 76, 97, 26);
+	  panel_9_1.add(spn_CantSATA);
+	  
+	  JSpinner spn_CantIDE = new JSpinner();
+	  spn_CantIDE.setBounds(119, 111, 97, 26);
+	  panel_9_1.add(spn_CantIDE);
+	  
+	  JLabel lblNewLabel_4 = new JLabel("Cantidd IDE");
+	  lblNewLabel_4.setBounds(19, 116, 115, 16);
+	  panel_9_1.add(lblNewLabel_4);
 	  
 	  panel_4 = new JPanel();
 	  panel_4.setBackground(new Color(255, 255, 255));
@@ -359,7 +378,6 @@ public class AnadirProducto extends JFrame {
 		panel_8.setVisible(false);
 		panel_7.setVisible(false);
 		panel_4.setVisible(false);
-		panel_9.setVisible(false);
 		
 		rdbtnMotherboard = new JRadioButton("MotherBoard");
 		rdbtnMotherboard.addActionListener(new ActionListener() {
@@ -372,7 +390,7 @@ public class AnadirProducto extends JFrame {
 				panel_8.setVisible(false);
 				panel_7.setVisible(false);
 				panel_4.setVisible(false);
-				panel_9.setVisible(true);				
+				panel_9_1.setVisible(true);				
 				
 				
 			}
@@ -391,7 +409,7 @@ public class AnadirProducto extends JFrame {
 				panel_8.setVisible(false);
 				panel_7.setVisible(false);
 				panel_4.setVisible(true);
-				panel_9.setVisible(false);				
+				panel_9_1.setVisible(false);				
 			}
 		});
 		rdbtnProcesador.setBounds(31, 47, 111, 23);
@@ -408,7 +426,7 @@ public class AnadirProducto extends JFrame {
 				panel_8.setVisible(false);
 				panel_7.setVisible(true);
 				panel_4.setVisible(false);
-				panel_9.setVisible(false);
+				panel_9_1.setVisible(false);
 				
 			}
 		});
@@ -426,31 +444,12 @@ public class AnadirProducto extends JFrame {
 				panel_8.setVisible(true);
 				panel_7.setVisible(false);
 				panel_4.setVisible(false);
-				panel_9.setVisible(false);
+				panel_9_1.setVisible(false);
 				
 			}
 		});
 		rdbtnMemoriaRam.setBounds(31, 117, 126, 23);
 		panel_3.add(rdbtnMemoriaRam);
-		
-		//JPanel panel_9 = new JPanel();
-		panel_9.setBounds(23, 198, 593, 153);
-		panel_1.add(panel_9);
-		panel_9.setLayout(null);
-		panel_9.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Detalles del Articulo", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_9.setBackground(Color.WHITE);
-		
-		JLabel label_5 = new JLabel("Tipo de Bus:");
-		label_5.setBounds(19, 81, 77, 16);
-		panel_9.add(label_5);
-		
-		JCheckBox checkbx_Sata = new JCheckBox("SATA");
-		checkbx_Sata.setBounds(97, 77, 60, 23);
-		panel_9.add(checkbx_Sata);
-		
-		JCheckBox checkbx_IDE = new JCheckBox("IDE");
-		checkbx_IDE.setBounds(163, 77, 110, 23);
-		panel_9.add(checkbx_IDE);
 		
 		
 		JPanel panel_6 = new JPanel();
@@ -474,15 +473,19 @@ public class AnadirProducto extends JFrame {
 					int cantidad = (int) spn_Cantidad.getValue();
 					String codigo = "codigo";
 					if(rdbtnMotherboard.isSelected() == true) {
-						if((cbx_Socketmtb.getSelectedIndex() != 0) && (cbx_tipoMemmtb.getSelectedIndex() != 0) && (spn_cantram.getValue() != "0") && ( (checkbx_Sata.isSelected()==true) || (checkbx_IDE.isSelected()==true))) {
+						if((cbx_Socketmtb.getSelectedIndex() != 0) && (cbx_tipoMemmtb.getSelectedIndex() != 0) && (spn_cantram.getValue() != "0") && ( (spn_CantIDE.getValue() != "0") || (spn_CantSATA.getValue() != "0"))) {
 							
 							String socket = (String) cbx_Socketmtb.getSelectedItem();
-							//String TipoMem = (String) 
-							//cbx_Socketmtb
-							//cbx_tipoMemmtb
-							//spn_cantram
-							//checkbx_Sata
-							//checkbx_IDE
+							String tipoMemmtb = (String) cbx_tipoMemmtb.getSelectedItem();
+							int cantIDE = (int) spn_CantIDE.getValue();
+							int cantram = (int) spn_cantram.getValue(); 
+							int cantSata = (int) spn_CantSATA.getValue();
+							String aux = "--";
+							int aux1 = 0;
+							boolean a = false;
+							String TipoProducto = "Motherboard";
+							Motherboard M = new Motherboard(precio, PrecioVenta, cantidad, codigo, marca, modelo, TipoProducto, aux, socket, tipoMemmtb, cantIDE, aux1, cantSata, cantram, a);
+							JOptionPane.showMessageDialog(null, "Ha registrado un Motherboard.");
 						}else {
 							JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos del Motherboard");
 						}
@@ -493,7 +496,8 @@ public class AnadirProducto extends JFrame {
 							float rdSpeed = (float) spn_ReadSpeed.getValue();
 							String tipoConexion = (String) cbx_TipoDisco.getSelectedItem();
 							float cantGB = (float) cbx_CapacidadDisco.getSelectedItem();
-							HardDrive h = new HardDrive(precio, PrecioVenta, cantidad, codigo, marca, modelo, cantGB, tipoConexion, wrSpeed, rdSpeed);
+							String TipoProducto = "HardDrive";
+							HardDrive h = new HardDrive(precio, PrecioVenta, cantidad, codigo, marca, modelo, TipoProducto, cantGB, tipoConexion, wrSpeed, rdSpeed);
 							JOptionPane.showMessageDialog(null, "Ha registrado un Disco duro.");
 						}else {
 							JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos del Disco duro.");
@@ -505,7 +509,8 @@ public class AnadirProducto extends JFrame {
 							float rdSpeed = (float) spn_ReadSpeed.getValue();
 							String tipoConexion = (String) cbx_TipoDisco.getSelectedItem();
 							float cantGB = (float) cbx_CapacidadDisco.getSelectedItem();
-							HardDrive h = new HardDrive(precio, PrecioVenta, cantidad, codigo, marca, modelo, cantGB, tipoConexion, wrSpeed, rdSpeed);
+							String TipoProducto = "Memoria Ram";
+							HardDrive h = new HardDrive(precio, PrecioVenta, cantidad, codigo, marca, modelo, TipoProducto, cantGB, tipoConexion, wrSpeed, rdSpeed);
 							JOptionPane.showMessageDialog(null, "Ha registrado una memoria RAM.");
 						}else {
 							JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos de la memoria RAM.");
@@ -522,7 +527,8 @@ public class AnadirProducto extends JFrame {
 								}else {
 									Unlock = true;
 								}
-								Procesador p = new Procesador(precio, PrecioVenta, cantidad, codigo, marca, modelo, Socket, velocidadBase, velocidadTurbo, Unlock);
+								String TipoProducto = "Procesador";
+								Procesador p = new Procesador(precio, PrecioVenta, cantidad, codigo, marca, modelo, TipoProducto, Socket, velocidadBase, velocidadTurbo, Unlock);
 								JOptionPane.showMessageDialog(null, "Ha registrado un Procesador.");
 						}else {
 							JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos del Procesador.");
@@ -538,7 +544,7 @@ public class AnadirProducto extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(137, 4, 114, 60);
+		btnNewButton.setBounds(137, 4, 135, 60);
 		panel_6.add(btnNewButton);
 		btnNewButton.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		Image img0 = new ImageIcon(this.getClass().getResource("/Anadir-48.png")).getImage();

@@ -8,9 +8,9 @@ public class Ram extends Memoria {
 	
 	
 	//Inicio del Constructor 
-	public Ram(float precio, float PrecioVenta, int cant, String num_serie, String marca, String modelo, float cantGB, String tipoDDR,
+	public Ram(float precio, float PrecioVenta, int cant, String Codigo, String marca, String modelo, String TipoProducto, float cantGB, String tipoDDR,
 			float speed, boolean multiCHSUP) {
-		super(precio, PrecioVenta, cant, num_serie, marca, modelo, cantGB);
+		super(precio, PrecioVenta, cant, Codigo, marca, modelo, TipoProducto, cantGB);
 		this.tipoDDR = tipoDDR;
 		this.speed = speed;
 		this.multiCHSUP = multiCHSUP;

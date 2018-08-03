@@ -5,7 +5,7 @@ public class Motherboard extends Productos{
 	private String marcaProcesadores;
 	private String socketProcesador;
 	private String tipoRam;
-	private int cantIDEPATA;
+	private int cantIDE;
 	private int cantM2;
 	private int cantSata;
 	private int cantSlotsRam;
@@ -13,15 +13,15 @@ public class Motherboard extends Productos{
 
 	//Inicio de Constructor 
 	
-	public Motherboard(float precio, float PrecioVenta, int cant, String num_serie, String marca, String modelo, String marcaProcesadores,
-			String socketProcesador, String tipoRam, int cantIDEPATA, int cantM2, int cantSata,
+	public Motherboard(float precio, float PrecioVenta, int cant, String Codigo, String marca, String modelo, String TipoProducto, String marcaProcesadores,
+			String socketProcesador, String tipoRam, int cantIDE, int cantM2, int cantSata,
 			int cantSlotsRam, boolean multiCHSUP) {
 		
-		super(precio,PrecioVenta, cant, num_serie, marca, modelo);
+		super(precio,PrecioVenta, cant, Codigo, marca, modelo, TipoProducto);
 		this.marcaProcesadores = marcaProcesadores;
 		this.socketProcesador = socketProcesador;
 		this.tipoRam = tipoRam;
-		this.cantIDEPATA = cantIDEPATA;
+		this.cantIDE = cantIDE;
 		this.cantM2 = cantM2;
 		this.cantSata = cantSata;
 		this.cantSlotsRam = cantSlotsRam;
@@ -55,11 +55,11 @@ public class Motherboard extends Productos{
 	}
 
 	public int getCantIDEPATA() {
-		return cantIDEPATA;
+		return cantIDE;
 	}
 
-	public void setCantIDEPATA(int cantIDEPATA) {
-		this.cantIDEPATA = cantIDEPATA;
+	public void setCantIDEPATA(int cantIDE) {
+		this.cantIDE = cantIDE;
 	}
 
 	public int getCantM2() {

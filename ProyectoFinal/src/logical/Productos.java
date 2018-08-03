@@ -5,23 +5,31 @@ public class Productos {
 	private float precio;
 	private float PrecioVenta;
 	private int cant;
-	private String num_serie;
+	private String Codigo;
 	private String marca;
 	private String modelo;
+	private String TipoProducto;
 	
 	//Inicio de Constructor
-	public Productos(float precio,float PrecioVenta, int cant, String num_serie, String marca, String modelo) {
+	public Productos(float precio,float PrecioVenta, int cant, String Codigo, String marca, String modelo, String TipoProducto) {
 		super();
 		this.precio = precio;
 		this.cant = cant;
-		this.num_serie = num_serie;
+		this.Codigo = Codigo;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.PrecioVenta = PrecioVenta;
+		this.TipoProducto = TipoProducto;
 	}
 	// Fin de Constructor
 	//*******************************
 	// Inicio de Getters and Setter 
+	public String getTipoProducto() {
+		return TipoProducto;
+	}
+	public void setTipoProducto(String TipoProducto) {
+		this.TipoProducto = TipoProducto;
+	}
 	public float getPrecio() {
 		return precio;
 	}
@@ -34,11 +42,11 @@ public class Productos {
 	public void setCant(int cant) {
 		this.cant = cant;
 	}
-	public String getNum_serie() {
-		return num_serie;
+	public String getCodigo() {
+		return Codigo;
 	}
-	public void setNum_serie(String num_serie) {
-		this.num_serie = num_serie;
+	public void setCodigo(String Codigo) {
+		this.Codigo = Codigo;
 	}
 	public String getMarca() {
 		return marca;

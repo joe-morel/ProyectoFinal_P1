@@ -7,6 +7,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import logical.ControlUser;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.ImageIcon;
@@ -24,6 +27,13 @@ import java.awt.event.ActionEvent;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 import javax.swing.JSeparator;
 import java.awt.Dimension;
 
@@ -34,7 +44,7 @@ public class PanelPrincipal extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+ public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -45,12 +55,42 @@ public class PanelPrincipal extends JFrame {
 				}
 			}
 		});
-	}
+	} 
 
 	/**
 	 * Create the frame.
 	 */
 	public PanelPrincipal() {
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				FileOutputStream empresa2;
+				ObjectOutputStream empresaWrite;
+				try {
+					empresa2 = new  FileOutputStream("empresa.dat");
+					empresaWrite = new ObjectOutputStream(empresa2);
+					empresaWrite.writeObject(ControlUser.getInstance());
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 620);
@@ -218,6 +258,13 @@ public class PanelPrincipal extends JFrame {
 		menuBar.add(mnInventario);
 		
 		JMenu mnNewMenu_2 = new JMenu("Configuración");
+		
+	//	if(!ControlUser.getLoginUser().getTipo().equalsIgnoreCase("Configuraci\u00F3n")){
+		//	mnNewMenu_2.setEnabled(false);
+	//	}
+		//if(!Control.getLoginUser().getTipo().equalsIgnoreCase("Administrador")){
+			//mnAdministracin.setEnabled(false);
+		
 		mnNewMenu_2.setHorizontalTextPosition(SwingConstants.CENTER);
 		mnNewMenu_2.setVerticalTextPosition(SwingConstants.BOTTOM);
 		Image img7 = new ImageIcon(this.getClass().getResource("/ajustes-48.png")).getImage();
@@ -291,4 +338,5 @@ public class PanelPrincipal extends JFrame {
 		panel_3.add(lblComputerstorerd);
 	}
 }
+
 

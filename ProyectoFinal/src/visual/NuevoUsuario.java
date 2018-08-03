@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import logical.ControlUser;
+import logical.User;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -16,6 +20,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class NuevoUsuario extends JFrame {
 
@@ -28,6 +34,8 @@ public class NuevoUsuario extends JFrame {
 	private JButton button;
 	private JButton button_1;
 	private JLabel lblNewLabel_1;
+	private JLabel lblTipoDeCuenta;
+	private JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -102,6 +110,16 @@ public class NuevoUsuario extends JFrame {
 		panel.add(lblNewLabel);
 		
 		button = new JButton("Guardar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				User user = new User(comboBox.getSelectedItem().toString(),textField.getText(),textField_1.getText());
+			    ControlUser.getInstance().regUser(user);
+			    
+			
+				
+			}
+		});
 		Image img1 = new ImageIcon(this.getClass().getResource("/guardar-48.png")).getImage();
 		button.setIcon(new ImageIcon(img1));
 		button.setFont(new Font("Lucida Grande", Font.BOLD, 13));
@@ -127,6 +145,16 @@ public class NuevoUsuario extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon(img3));
 		lblNewLabel_1.setBounds(227, 44, 69, 84);
 		contentPane.add(lblNewLabel_1);
+		
+		lblTipoDeCuenta = new JLabel("Tipo de Cuenta:");
+		lblTipoDeCuenta.setForeground(Color.WHITE);
+		lblTipoDeCuenta.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		lblTipoDeCuenta.setBounds(81, 238, 152, 16);
+		contentPane.add(lblTipoDeCuenta);
+		
+	     comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Administrador", "Comercial"}));
+		comboBox.setBounds(272, 238, 163, 27);
+		contentPane.add(comboBox);
 	}
-
 }

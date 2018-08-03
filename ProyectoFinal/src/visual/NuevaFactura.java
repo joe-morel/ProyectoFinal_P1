@@ -39,7 +39,6 @@ public class NuevaFactura extends JDialog {
 	private JRadioButton rbtnCredito;
 	private JTextField textField_7;
 	private JTextField textField_8;
-	private JTextField textField_9;
 	
 	
 
@@ -191,7 +190,7 @@ public class NuevaFactura extends JDialog {
 		}
 		
 		JList list = new JList();
-		list.setBounds(8, 249, 884, 262);
+		list.setBounds(6, 249, 440, 262);
 		contentPanel.add(list);
 		
 		JButton button = new JButton("Añadir");
@@ -221,7 +220,7 @@ public class NuevaFactura extends JDialog {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(UIManager.getColor("InternalFrame.paletteBackground"));
 		panel_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel_1.setBounds(450, 523, 433, 69);
+		panel_1.setBounds(452, 523, 440, 69);
 		contentPanel.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -251,27 +250,18 @@ public class NuevaFactura extends JDialog {
 		lblNewLabel_4.setBounds(293, 6, 72, 54);
 		panel_1.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_2 = new JLabel("Producto:");
+		JLabel lblNewLabel_2 = new JLabel("Lista de Productos");
 		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblNewLabel_2.setBounds(18, 217, 87, 16);
+		lblNewLabel_2.setBounds(145, 221, 147, 16);
 		contentPanel.add(lblNewLabel_2);
 		
-		textField_9 = new JTextField();
-		textField_9.setBounds(105, 212, 147, 26);
-		contentPanel.add(textField_9);
-		textField_9.setColumns(10);
+		JList list_1 = new JList();
+		list_1.setBounds(452, 249, 440, 262);
+		contentPanel.add(list_1);
 		
-		JLabel lblNewLabel_3 = new JLabel("Cantidad:");
-		lblNewLabel_3.setBounds(277, 217, 61, 16);
-		contentPanel.add(lblNewLabel_3);
-		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(350, 213, 88, 26);
-		contentPanel.add(spinner);
-		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(NuevaFactura.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-information.png")));
-		label.setBounds(450, 207, 48, 38);
-		contentPanel.add(label);
+		JLabel lblCarrito = new JLabel("Carrito");
+		lblCarrito.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		lblCarrito.setBounds(646, 221, 62, 16);
+		contentPanel.add(lblCarrito);
 	}
 }

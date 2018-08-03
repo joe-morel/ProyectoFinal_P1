@@ -14,6 +14,8 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class NuevoUsuario extends JFrame {
 
@@ -25,6 +27,7 @@ public class NuevoUsuario extends JFrame {
 	private JLabel lblNewLabel;
 	private JButton button;
 	private JButton button_1;
+	private JLabel lblNewLabel_1;
 
 	/**
 	 * Launch the application.
@@ -107,12 +110,23 @@ public class NuevoUsuario extends JFrame {
 		contentPane.add(button);
 		
 		button_1 = new JButton("Salir");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		Image img2 = new ImageIcon(this.getClass().getResource("/salir-48.png")).getImage();
 		button_1.setIcon(new ImageIcon(img2));
 		button_1.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		button_1.setActionCommand("Cancel");
 		button_1.setBounds(295, 291, 118, 58);
 		contentPane.add(button_1);
+		
+		lblNewLabel_1 = new JLabel("");
+		Image img3 = new ImageIcon(this.getClass().getResource("/cuenta.png")).getImage();
+		lblNewLabel_1.setIcon(new ImageIcon(img3));
+		lblNewLabel_1.setBounds(227, 44, 69, 84);
+		contentPane.add(lblNewLabel_1);
 	}
 
 }

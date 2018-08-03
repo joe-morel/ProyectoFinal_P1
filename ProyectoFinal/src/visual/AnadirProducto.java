@@ -20,9 +20,11 @@ import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.border.TitledBorder;
 
+import logical.Empresa;
 import logical.HardDrive;
 import logical.Motherboard;
 import logical.Procesador;
+import logical.Ram;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.SystemColor;
@@ -176,10 +178,12 @@ public class AnadirProducto extends JFrame {
 	  panel_9_1.add(lblCantidadSata);
 	  
 	  JSpinner spn_CantSATA = new JSpinner();
+	  spn_CantSATA.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 	  spn_CantSATA.setBounds(119, 76, 97, 26);
 	  panel_9_1.add(spn_CantSATA);
 	  
 	  JSpinner spn_CantIDE = new JSpinner();
+	  spn_CantIDE.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 	  spn_CantIDE.setBounds(119, 111, 97, 26);
 	  panel_9_1.add(spn_CantIDE);
 	  
@@ -208,7 +212,7 @@ public class AnadirProducto extends JFrame {
 	  panel_4.add(lblTipoDeMemoria);
 	  
 	  JSpinner spinner_3 = new JSpinner();
-	  spinner_3.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
+	  spinner_3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 	  spinner_3.setBounds(413, 36, 130, 26);
 	  panel_4.add(spinner_3);
 	  
@@ -217,7 +221,7 @@ public class AnadirProducto extends JFrame {
 	  panel_4.add(lblVelocidadTurbo);
 	  
 	  JSpinner spinner_5 = new JSpinner();
-	  spinner_5.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
+	  spinner_5.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 	  spinner_5.setBounds(413, 76, 130, 26);
 	  panel_4.add(spinner_5);
 	  
@@ -242,7 +246,7 @@ public class AnadirProducto extends JFrame {
 	  panel_8.add(label_6);
 	  
 	  JComboBox cbx_CapacidadRAM = new JComboBox();
-	  cbx_CapacidadRAM.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>"}));
+	  cbx_CapacidadRAM.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "1", "2", "3", "4"}));
 	  cbx_CapacidadRAM.setBounds(109, 37, 147, 27);
 	  panel_8.add(cbx_CapacidadRAM);
 	  
@@ -251,7 +255,7 @@ public class AnadirProducto extends JFrame {
 	  panel_8.add(label_7);
 	  
 	  JComboBox cbx_TipoCo = new JComboBox();
-	  cbx_TipoCo.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>"}));
+	  cbx_TipoCo.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "ddr3"}));
 	  cbx_TipoCo.setBounds(421, 37, 147, 27);
 	  panel_8.add(cbx_TipoCo);
 	  
@@ -260,6 +264,7 @@ public class AnadirProducto extends JFrame {
 	  panel_8.add(lblSpeed);
 	  
 	  JSpinner spn_SpeedRam = new JSpinner();
+	  spn_SpeedRam.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 	  spn_SpeedRam.setBounds(109, 76, 147, 26);
 	  panel_8.add(spn_SpeedRam);
 		
@@ -275,8 +280,8 @@ public class AnadirProducto extends JFrame {
 	  panel_7.add(lblCapacidad);
 	  
 	  JComboBox cbx_CapacidadDisco = new JComboBox();
-	  cbx_CapacidadDisco.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "ALGO"}));
-	  cbx_CapacidadDisco.setBounds(109, 37, 147, 27);
+	  cbx_CapacidadDisco.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "180", "250", "500", "1000"}));
+	  cbx_CapacidadDisco.setBounds(109, 36, 147, 27);
 	  panel_7.add(cbx_CapacidadDisco);
 	  
 	  JLabel lblTipoDeConexin = new JLabel("Tipo de Conexión:");
@@ -293,7 +298,7 @@ public class AnadirProducto extends JFrame {
 	  panel_7.add(lblReadSpeed);
 	  
 	  JSpinner spn_ReadSpeed = new JSpinner();
-	  spn_ReadSpeed.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
+	  spn_ReadSpeed.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 	  spn_ReadSpeed.setBounds(421, 76, 147, 26);
 	  panel_7.add(spn_ReadSpeed);
 	  
@@ -302,7 +307,7 @@ public class AnadirProducto extends JFrame {
 	  panel_7.add(lblVelocidadDeEscritura);
 	  
 	  JSpinner spn_WriteSpeed = new JSpinner();
-	  spn_WriteSpeed.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
+	  spn_WriteSpeed.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 	  spn_WriteSpeed.setBounds(109, 76, 147, 26);
 	  panel_7.add(spn_WriteSpeed);
 		
@@ -485,6 +490,7 @@ public class AnadirProducto extends JFrame {
 							boolean a = false;
 							String TipoProducto = "Motherboard";
 							Motherboard M = new Motherboard(precio, PrecioVenta, cantidad, codigo, marca, modelo, TipoProducto, aux, socket, tipoMemmtb, cantIDE, aux1, cantSata, cantram, a);
+							Empresa.getinstance().AddProducto(M);
 							JOptionPane.showMessageDialog(null, "Ha registrado un Motherboard.");
 						}else {
 							JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos del Motherboard");
@@ -495,9 +501,10 @@ public class AnadirProducto extends JFrame {
 							float wrSpeed = (float) spn_WriteSpeed.getValue();
 							float rdSpeed = (float) spn_ReadSpeed.getValue();
 							String tipoConexion = (String) cbx_TipoDisco.getSelectedItem();
-							float cantGB = (float) cbx_CapacidadDisco.getSelectedItem();
+							float cantGB = Float.valueOf(cbx_CapacidadDisco.getSelectedItem().toString());
 							String TipoProducto = "HardDrive";
 							HardDrive h = new HardDrive(precio, PrecioVenta, cantidad, codigo, marca, modelo, TipoProducto, cantGB, tipoConexion, wrSpeed, rdSpeed);
+							Empresa.getinstance().AddProducto(h);
 							JOptionPane.showMessageDialog(null, "Ha registrado un Disco duro.");
 						}else {
 							JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos del Disco duro.");
@@ -505,12 +512,13 @@ public class AnadirProducto extends JFrame {
 					}
 					if(rdbtnMemoriaRam.isSelected() == true) {
 						if((cbx_CapacidadDisco.getSelectedIndex() != 0) && (cbx_TipoDisco.getSelectedIndex() != 0) && (spn_ReadSpeed.getValue() != "0") && (spn_WriteSpeed.getValue() != "0")) {
-							float wrSpeed = (float) spn_WriteSpeed.getValue();
-							float rdSpeed = (float) spn_ReadSpeed.getValue();
+							float Speed = (float) spn_SpeedRam.getValue();
 							String tipoConexion = (String) cbx_TipoDisco.getSelectedItem();
-							float cantGB = (float) cbx_CapacidadDisco.getSelectedItem();
+							float cantGB = Float.valueOf(cbx_CapacidadDisco.getSelectedItem().toString());
 							String TipoProducto = "Memoria Ram";
-							HardDrive h = new HardDrive(precio, PrecioVenta, cantidad, codigo, marca, modelo, TipoProducto, cantGB, tipoConexion, wrSpeed, rdSpeed);
+							boolean aux = false;
+							Ram r = new Ram(precio, PrecioVenta, cantidad, codigo, marca, modelo, TipoProducto, cantGB, tipoConexion, Speed, aux);
+							Empresa.getinstance().AddProducto(r);
 							JOptionPane.showMessageDialog(null, "Ha registrado una memoria RAM.");
 						}else {
 							JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos de la memoria RAM.");
@@ -529,6 +537,7 @@ public class AnadirProducto extends JFrame {
 								}
 								String TipoProducto = "Procesador";
 								Procesador p = new Procesador(precio, PrecioVenta, cantidad, codigo, marca, modelo, TipoProducto, Socket, velocidadBase, velocidadTurbo, Unlock);
+								Empresa.getinstance().AddProducto(p);
 								JOptionPane.showMessageDialog(null, "Ha registrado un Procesador.");
 						}else {
 							JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos del Procesador.");

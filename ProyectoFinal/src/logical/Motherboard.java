@@ -54,7 +54,7 @@ public class Motherboard extends Productos{
 		this.tipoRam = tipoRam;
 	}
 
-	public int getCantIDEPATA() {
+	public int getCantIDE() {
 		return cantIDE;
 	}
 

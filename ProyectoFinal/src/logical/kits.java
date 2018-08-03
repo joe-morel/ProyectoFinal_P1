@@ -2,13 +2,13 @@ package logical;
 
 import java.util.ArrayList;
 
-public class kits {
+public class kits extends Productos{
 
 	private ArrayList<Productos> listaProductosAgregados;
 	private String code;
 	private float PrecioTK;
-	public kits(ArrayList<Productos> listaProductosAgregados, String code, float PrecioTK) {
-		super();
+	public kits(float precio, float PrecioVenta, int cant, String Codigo, String marca, String modelo, String TipoProducto, ArrayList<Productos> listaProductosAgregados, String code, float PrecioTK) {
+		super(precio,PrecioVenta, cant, Codigo, marca, modelo, TipoProducto);
 		this.listaProductosAgregados = listaProductosAgregados;
 		this.code = code;
 		this.PrecioTK = PrecioTK;

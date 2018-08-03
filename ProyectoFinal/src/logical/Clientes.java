@@ -1,12 +1,13 @@
 package logical;
 
+
 public class Clientes {
 	
 	private String nombre;
 	private String cedula;
 	private String telefono;
 	private String direccion;
-	private String code;
+	private static int cantClientes=0;
 	private float LimiteCredito;
 	
 	//Inicio de Construtor 
@@ -17,7 +18,7 @@ public class Clientes {
 		this.cedula = cedula;
 		this.telefono = telefono;
 		this.direccion = direccion;
-		this.code = code;
+		this.cantClientes++;
 		this.LimiteCredito = limiteCredito;
 	}
 	
@@ -48,11 +49,12 @@ public class Clientes {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public String getCode() {
-		return code;
+	public static int getCantClientes() {
+		return cantClientes;
 	}
-	public void setCode(String code) {
-		this.code = code;
+
+	public static void setCantSuplidores(int cantClientes) {
+		Clientes.cantClientes = cantClientes;
 	}
 
 	public float getLimiteCredito() {

@@ -179,7 +179,7 @@ public class ListaDeEmpleados extends JFrame {
 		tablemodel.setColumnIdentifiers(columnNames);
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Empleados e : Empresa.getinstance().GetEmpleado()) {
-			fila[0] = e.getCode();
+			fila[0] = e.getCantEmpleados();
 			fila[1] = e.getNombre();
 			fila[2] = e.getCedula();
 			fila[3] = e.getTelefono();

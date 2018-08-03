@@ -45,6 +45,7 @@ public class ListaDeClientes extends JFrame {
 	String[] columnNames = {"Codigo", "Nombre", "Cedula", "Telefono", "Dirreccion", "LimiteCredito"};
 	private static Object[] fila;
 	//private ModificarCliente MC;
+	private String identificador;
 
 	/**
 	 * Launch the application.
@@ -66,6 +67,8 @@ public class ListaDeClientes extends JFrame {
 	 * Create the frame.
 	 */
 	public ListaDeClientes() {
+		
+		this.identificador= "";
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 640, 545);
 		contentPane = new JPanel();
@@ -145,6 +148,8 @@ public class ListaDeClientes extends JFrame {
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				
 			
 			}
 		});
@@ -200,7 +205,7 @@ public class ListaDeClientes extends JFrame {
 		tablemodel.setColumnIdentifiers(columnNames);
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Clientes c : Empresa.getinstance().Getclientes()) {
-			fila[0] = c.getCode();
+			fila[0] = "CP-"+c.getCantClientes();
 			fila[1] = c.getNombre();
 			fila[2] = c.getCedula();
 			fila[3] = c.getTelefono();
@@ -222,4 +227,6 @@ public class ListaDeClientes extends JFrame {
 		columnModel.getColumn(4).setPreferredWidth(150);
 		columnModel.getColumn(5).setPreferredWidth(90);
 	}
+	
+	
 }

@@ -42,6 +42,7 @@ public class NuevoCliente extends JDialog {
 	private JTextField txt_direccion;
 	private JTextField txt_telefono;
 	private JTextField txt_cedula;
+	private JSpinner sp_limiteCre;
 
 	/**
 	 * Launch the application.
@@ -102,8 +103,10 @@ public class NuevoCliente extends JDialog {
 			}
 			
 			textField = new JTextField();
+			
+				textField.setText("CP-"+(Clientes.getCantClientes()+1));
+				
 			textField.setEditable(false);
-			textField.setEnabled(false);
 			textField.setBounds(90, 76, 106, 26);
 			panel.add(textField);
 			textField.setColumns(10);
@@ -194,7 +197,7 @@ public class NuevoCliente extends JDialog {
 		lblNewLabel_1.setBounds(16, 64, 112, 16);
 		panel.add(lblNewLabel_1);
 		
-		JSpinner sp_limiteCre = new JSpinner();
+		 sp_limiteCre = new JSpinner();
 		sp_limiteCre.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
 		sp_limiteCre.setBounds(140, 59, 138, 26);
 		panel.add(sp_limiteCre);
@@ -217,10 +220,11 @@ public class NuevoCliente extends JDialog {
 							String direccion = txt_direccion.getText();
 							String telefono = txt_telefono.getText();
 							float limiteCredito = (float) sp_limiteCre.getValue();
-							String code = "CSC-";
+							String code = "";
 							Clientes c = new Clientes(nombre, cedula, telefono, direccion, code, limiteCredito);
 							Empresa.getinstance().AddCliente(c);
-							JOptionPane.showMessageDialog(null, "Usted a agregado un cliente");
+							JOptionPane.showMessageDialog(null, "Usted a agregado un cliente",code, JOptionPane.INFORMATION_MESSAGE);
+							clean();
 							}else{
 								JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos");
 							}
@@ -249,5 +253,15 @@ public class NuevoCliente extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	private void clean() {
+		txt_nombre.setText("");
+		textField.setText("CP-"+(Clientes.getCantClientes()+1));
+		txt_direccion.setText("");
+		txt_apellidos.setText("");
+		txt_cedula.setText("");
+		txt_telefono.setText("");
+		sp_limiteCre.setValue(new Integer(0));
+		
 	}
 }

@@ -11,6 +11,8 @@ import java.awt.SystemColor;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Image;
 
@@ -41,7 +43,7 @@ public class ListaDeClientes extends JFrame {
 	private JTextField txt_nombre;
 	private JTextField txt_cedula;
 	private JTextField txt_telefono;
-	private JTable tbtClientes;
+	private JTable tbtClientes = new JTable();
 	private static DefaultTableModel tablemodel = new DefaultTableModel();;
 	String[] columnNames = {"Codigo", "Nombre", "Cedula", "Telefono", "Dirreccion", "LimiteCredito"};
 	private static Object[] fila;
@@ -141,13 +143,30 @@ public class ListaDeClientes extends JFrame {
 		label.setBounds(23, 185, 49, 16);
 		panel.add(label);
 		
+		tablemodel = new DefaultTableModel();
+		tablemodel.setColumnIdentifiers(columnNames);
+		tbtClientes.setModel(tablemodel);
+		// scrollPane.setViewportView(tbtClientes);
+		tbtClientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tbtClientes.setModel(tablemodel);
+		tbtClientes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		
+		TableColumnModel columnModel = tbtClientes.getColumnModel();
+		columnModel.getColumn(0).setPreferredWidth(60);
+		columnModel.getColumn(1).setPreferredWidth(190);
+		columnModel.getColumn(2).setPreferredWidth(110);
+		columnModel.getColumn(3).setPreferredWidth(110);
+		columnModel.getColumn(4).setPreferredWidth(150);
+		columnModel.getColumn(5).setPreferredWidth(90);
+
 		JTextField txt_codigo = new JTextField();
 		txt_codigo.setEnabled(false);
 		txt_codigo.setColumns(10);
 		txt_codigo.setBounds(76, 180, 98, 26);
 		panel.add(txt_codigo);
 		
-		JButton btnModificar = new JButton("Modificar");
+	    JButton btnModificar = new JButton("Modificar");
+	    
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int aux = Clientes.getCantClientes();
@@ -181,6 +200,16 @@ public class ListaDeClientes extends JFrame {
 		contentPane.add(button);
 		
 		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int option = JOptionPane.showConfirmDialog(null, "Esta seguro que desea eliminar al Cliente: " + Empresa.getinstance().Getclientes().get(tbtClientes.getSelectedRow()) ,"Informaci�n",JOptionPane.WARNING_MESSAGE);
+				  if(option == JOptionPane.OK_OPTION){
+				
+				Empresa.getinstance().EliminarCliente(tbtClientes.getSelectedRow());
+				CargarTabla();
+				  }
+			}
+		});
 		Image img2 = new ImageIcon(this.getClass().getResource("/eliminar-64.png")).getImage();
 	
 		btnEliminar.setIcon(new ImageIcon(img2));
@@ -190,12 +219,12 @@ public class ListaDeClientes extends JFrame {
 		contentPane.add(btnEliminar);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 229, 604, 204);
+		scrollPane.setBounds(18, 229, 604, 204);
 		contentPane.add(scrollPane);
 		CargarTabla();
 		
 		//tbtClientes = new JTable();
-		scrollPane.setViewportView(tbtClientes);
+		scrollPane.setViewportView(tbtClientes);  /*RESOLVER REPARSEEEEEE*/
 		/*tbtClientes.setModel(new DefaultTableModel(
 			new Object[][] {
 				{},
@@ -207,9 +236,9 @@ public class ListaDeClientes extends JFrame {
 		));*/
 	}
 	public void CargarTabla() {
-
 		
-		tablemodel.setColumnIdentifiers(columnNames);
+		tablemodel.setRowCount(0);   /*Copiado de Listar Suministrador ejemplo de profe en clase*/
+		// tablemodel.setColumnIdentifiers(columnNames);
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Clientes c : Empresa.getinstance().Getclientes()) {
 			fila[0] = "CP-"+c.getCantClientes();
@@ -220,20 +249,5 @@ public class ListaDeClientes extends JFrame {
 			fila[5] = c.getLimiteCredito();
 			tablemodel.addRow(fila);
 		}
-		tbtClientes = new JTable();
-		scrollPane.setViewportView(tbtClientes);
-		tbtClientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tbtClientes.setModel(tablemodel);
-		tbtClientes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		
-		TableColumnModel columnModel = tbtClientes.getColumnModel();
-		columnModel.getColumn(0).setPreferredWidth(60);
-		columnModel.getColumn(1).setPreferredWidth(190);
-		columnModel.getColumn(2).setPreferredWidth(110);
-		columnModel.getColumn(3).setPreferredWidth(110);
-		columnModel.getColumn(4).setPreferredWidth(150);
-		columnModel.getColumn(5).setPreferredWidth(90);
 	}
-	
-	
 }

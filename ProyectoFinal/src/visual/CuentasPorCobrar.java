@@ -7,10 +7,27 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CuentasPorCobrar extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
 
 	/**
 	 * Launch the application.
@@ -33,14 +50,137 @@ public class CuentasPorCobrar extends JFrame {
 	 */
 	public CuentasPorCobrar() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 640, 530);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		JLabel lblCuentaPorCobrar = new JLabel("Cuenta por cobrar");
-		contentPane.add(lblCuentaPorCobrar, BorderLayout.CENTER);
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBackground(new Color(51, 153, 204));
+		panel.setBounds(0, 0, 640, 171);
+		contentPane.add(panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBorder(new EmptyBorder(0, 0, 0, 0));
+		panel_1.setBounds(31, 10, 151, 151);
+		panel.add(panel_1);
+		
+		JLabel label = new JLabel("");
+		Image img2 = new ImageIcon(this.getClass().getResource("/grupo.png")).getImage();
+		label.setIcon(new ImageIcon(img2));
+		label.setBounds(27, 0, 96, 151);
+		panel_1.add(label);
+		
+		JLabel lblCuentasPorCobrar = new JLabel("Cuentas Por Cobrar");
+		lblCuentasPorCobrar.setForeground(Color.WHITE);
+		lblCuentasPorCobrar.setFont(new Font("Lucida Grande", Font.BOLD, 16));
+		lblCuentasPorCobrar.setBounds(194, 10, 187, 16);
+		panel.add(lblCuentasPorCobrar);
+		
+		JLabel label_2 = new JLabel("Código:");
+		label_2.setForeground(Color.WHITE);
+		label_2.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		label_2.setBounds(194, 38, 67, 21);
+		panel.add(label_2);
+		
+		textField = new JTextField();
+		textField.setText("CP-1");
+		textField.setEditable(false);
+		textField.setColumns(10);
+		textField.setBounds(255, 35, 106, 26);
+		panel.add(textField);
+		
+		JLabel lblDeudor = new JLabel("Deudor:");
+		lblDeudor.setForeground(Color.WHITE);
+		lblDeudor.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		lblDeudor.setBounds(194, 71, 67, 21);
+		panel.add(lblDeudor);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(255, 71, 130, 26);
+		panel.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Deuda Acumulada", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_2.setBounds(422, 38, 197, 85);
+		panel.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Total:");
+		lblNewLabel.setForeground(new Color(220, 20, 60));
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 22));
+		lblNewLabel.setBounds(16, 29, 70, 27);
+		panel_2.add(lblNewLabel);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(84, 29, 94, 26);
+		panel_2.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JLabel lblCdula = new JLabel("Cédula:");
+		lblCdula.setForeground(Color.WHITE);
+		lblCdula.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		lblCdula.setBounds(194, 104, 67, 21);
+		panel.add(lblCdula);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(255, 104, 130, 26);
+		panel.add(textField_4);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(Color.WHITE);
+		panel_3.setBounds(0, 170, 640, 27);
+		contentPane.add(panel_3);
+		
+		JLabel lblListaDeClientes = new JLabel("Lista de Clientes Por Cobrar");
+		lblListaDeClientes.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		panel_3.add(lblListaDeClientes);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(18, 209, 604, 204);
+		contentPane.add(scrollPane);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(51, 153, 204));
+		panel_4.setBounds(56, 423, 174, 77);
+		contentPane.add(panel_4);
+		panel_4.setLayout(null);
+		
+		JLabel label_1 = new JLabel("Monto a Saldar:");
+		label_1.setForeground(Color.WHITE);
+		label_1.setBounds(24, 5, 126, 21);
+		label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+		panel_4.add(label_1);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(20, 30, 130, 34);
+		panel_4.add(textField_3);
+		textField_3.setColumns(10);
+		
+		JButton btnCobrar = new JButton("Cobrar");
+		Image img0 = new ImageIcon(this.getClass().getResource("/efectivo3.png")).getImage();
+		btnCobrar.setIcon(new ImageIcon(img0));
+		btnCobrar.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		btnCobrar.setActionCommand("OK");
+		btnCobrar.setBounds(286, 432, 124, 58);
+		contentPane.add(btnCobrar);
+		
+		JButton button = new JButton("Salir");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		Image img1 = new ImageIcon(this.getClass().getResource("/salir-48.png")).getImage();
+		button.setIcon(new ImageIcon(img1));
+		button.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		button.setActionCommand("Cancel");
+		button.setBounds(466, 432, 118, 58);
+		contentPane.add(button);
 	}
-
 }

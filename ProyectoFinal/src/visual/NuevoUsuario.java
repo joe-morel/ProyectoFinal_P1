@@ -37,6 +37,7 @@ public class NuevoUsuario extends JFrame {
 	private JLabel lblTipoDeCuenta;
 	private JComboBox comboBox;
 
+
 	/**
 	 * Launch the application.
 	 */

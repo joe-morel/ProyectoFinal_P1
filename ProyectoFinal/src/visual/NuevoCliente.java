@@ -213,6 +213,7 @@ public class NuevoCliente extends JDialog {
 				JButton okButton = new JButton("Guardar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						
 						if ((txt_cedula.getText() != null &&  txt_cedula.getText().isEmpty() == false) && (txt_nombre.getText() != null && 
 								txt_nombre.getText().isEmpty() == false) && (txt_direccion.getText() != null && txt_direccion.getText().isEmpty()
 								== false) && (txt_telefono.getText() != null && txt_telefono.getText().isEmpty() == false) && 
@@ -225,8 +226,7 @@ public class NuevoCliente extends JDialog {
 							String code = "CP-"+(Clientes.getCantClientes()+1);
 							Clientes c = new Clientes(nombre, cedula, telefono, direccion, code, limiteCredito);
 							Empresa.getinstance().AddCliente(c);
-							
-					
+							 
 							
 							JOptionPane.showMessageDialog(null, "Usted a agregado un cliente",code, JOptionPane.INFORMATION_MESSAGE);
 							clean();

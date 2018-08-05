@@ -5,9 +5,11 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.SystemColor;
+import java.awt.Window;
 import java.awt.Color;
 import java.awt.Canvas;
 import java.awt.GridLayout;
@@ -43,11 +45,12 @@ public class NuevoCliente extends JDialog {
 	private JTextField txt_telefono;
 	private JTextField txt_cedula;
 	private JSpinner sp_limiteCre;
+	private static int aux = 0;
 
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		try {
 			NuevoEmpleado dialog = new NuevoEmpleado();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -56,7 +59,7 @@ public class NuevoCliente extends JDialog {
 			e.printStackTrace();
 		}
 	}
-*/
+
 	/**
 	 * Create the dialog.
 	 */
@@ -103,7 +106,6 @@ public class NuevoCliente extends JDialog {
 			}
 			
 			textField = new JTextField();
-			
 				textField.setText("CP-"+(Clientes.getCantClientes()+1));
 				
 			textField.setEditable(false);
@@ -211,6 +213,7 @@ public class NuevoCliente extends JDialog {
 				JButton okButton = new JButton("Guardar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						
 						if ((txt_cedula.getText() != null &&  txt_cedula.getText().isEmpty() == false) && (txt_nombre.getText() != null && 
 								txt_nombre.getText().isEmpty() == false) && (txt_direccion.getText() != null && txt_direccion.getText().isEmpty()
 								== false) && (txt_telefono.getText() != null && txt_telefono.getText().isEmpty() == false) && 
@@ -223,10 +226,13 @@ public class NuevoCliente extends JDialog {
 							String code = "CP-"+Clientes.cantClientes+1;
 							Clientes c = new Clientes(nombre, cedula, telefono, direccion, code, limiteCredito);
 							Empresa.getinstance().AddCliente(c);
+							 
+							
 							JOptionPane.showMessageDialog(null, "Usted a agregado un cliente",code, JOptionPane.INFORMATION_MESSAGE);
 							clean();
 							}else{
 								JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos");
+								
 							}
 					}
 				});
@@ -254,6 +260,47 @@ public class NuevoCliente extends JDialog {
 			}
 		}
 	}
+	
+	public void ModificarCliente(Clientes cli, int pos) {
+		txt_apellidos.setText(cli.getNombre());
+		txt_cedula.setText(cli.getCedula());
+		txt_direccion.setText(cli.getDireccion());
+		txt_nombre.setText(cli.getNombre());
+		txt_telefono.setText(cli.getTelefono());
+		textField.setText(cli.getCodigo());
+		
+		JButton okButton = new JButton("Guardar");
+		okButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if ((txt_cedula.getText() != null &&  txt_cedula.getText().isEmpty() == false) && (txt_nombre.getText() != null && 
+						txt_nombre.getText().isEmpty() == false) && (txt_direccion.getText() != null && txt_direccion.getText().isEmpty()
+						== false) && (txt_telefono.getText() != null && txt_telefono.getText().isEmpty() == false) && 
+						(txt_apellidos.getText() != null && txt_apellidos.getText().isEmpty() == false)) {
+					String nombre = txt_nombre.getText() +" "+ txt_apellidos.getText();
+					String cedula = txt_cedula.getText();
+					String direccion = txt_direccion.getText();
+					String telefono = txt_telefono.getText();
+					float limiteCredito = (float) sp_limiteCre.getValue();
+					String code = cli.getCodigo();
+					Clientes c = new Clientes(nombre, cedula, telefono, direccion, code, limiteCredito);
+					Empresa.getinstance().ModificarCliente(cli, pos);
+					JOptionPane.showMessageDialog(null, "Usted a modificado un cliente",code, JOptionPane.INFORMATION_MESSAGE);
+					clean();
+					}else{
+						JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos");
+					
+					}
+			}
+		});
+		okButton.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+		okButton.setBounds(118, 4, 124, 58);
+		Image img0 = new ImageIcon(this.getClass().getResource("/guardar-48.png")).getImage();
+		okButton.setIcon(new ImageIcon(img0));
+		okButton.setActionCommand("OK");
+		
+		
+	}
+	
 	private void clean() {
 		txt_nombre.setText("");
 		textField.setText("CP-"+(Clientes.getCantClientes()+1));
@@ -264,4 +311,7 @@ public class NuevoCliente extends JDialog {
 		sp_limiteCre.setValue(new Integer(0));
 		
 	}
+	
+	
+	
 }

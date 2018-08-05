@@ -1,10 +1,16 @@
 package logical;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Empresa {
+public class Empresa implements Serializable{
 	
-	private static Empresa empresa=null;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6248502753801597548L;
+
+	public static Empresa empresa=null;
 	
 	private ArrayList<Clientes> misClientes;
 	private ArrayList<Productos> misProductos;
@@ -73,6 +79,34 @@ public class Empresa {
 		Empleados e = this.misEmpleados.set(idex, emp);
 	}
 	
-
+  public void EliminarCliente(int idex){
+	  Clientes c = this.misClientes.remove(idex);
+  }
+  public void EliminarEmpleados(int idex){
+	  Empleados c = this.misEmpleados.remove(idex);
+  }
+  public void Cobrar(float monto, float deuda, float resto){
+	  
+	  float aux;
+	  aux = deuda-monto;
+	  
+	  if(aux==0){
+		  resto = 0;
+	  }
+	  else {
+		  deuda = aux;
+	  }
+	  
+  }
+  public void BuscarCliente(){
+	  
+	  
+  }
+  
+  public void BuscarEmpleado(){
+	  
+	  
+  }
+ 
 	
 }

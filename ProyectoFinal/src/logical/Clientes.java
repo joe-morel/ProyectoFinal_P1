@@ -1,8 +1,13 @@
 package logical;
 
+import java.io.Serializable;
 
-public class Clientes {
+public class Clientes implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private String cedula;
 	private String telefono;
@@ -13,7 +18,7 @@ public class Clientes {
 	
 	//Inicio de Construtor 
 	
-	public Clientes(String nombre, String cedula, String telefono, String direccion, String code, float limiteCredito) {
+	public Clientes(String nombre, String cedula, String telefono, String direccion, String Codigo, float limiteCredito) {
 		super();
 		this.nombre = nombre;
 		this.cedula = cedula;
@@ -28,6 +33,9 @@ public class Clientes {
 	//Inicio de Getters and Setters
 	public String getNombre() {
 		return nombre;
+	}
+	public String getCodigo() {
+		return Codigo;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

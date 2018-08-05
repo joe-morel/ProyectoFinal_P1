@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import logical.ControlUser;
+import logical.Empresa;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -29,9 +30,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Date;
 
@@ -71,11 +74,18 @@ public class PanelPrincipal extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				FileOutputStream empresa2;
+				FileOutputStream salvar;
 				ObjectOutputStream empresaWrite;
+				ObjectOutputStream salvarWrite;
 				try {
 					empresa2 = new  FileOutputStream("empresa.dat");
 					empresaWrite = new ObjectOutputStream(empresa2);
 					empresaWrite.writeObject(ControlUser.getInstance());
+					
+					salvar = new FileOutputStream("DatosSistema.dat");
+					salvarWrite = new ObjectOutputStream(salvar);
+					salvarWrite.writeObject(Empresa.getinstance());
+					
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -85,16 +95,20 @@ public class PanelPrincipal extends JFrame {
 				}
 				
 			}
+			@Override
+			public void windowOpened(WindowEvent e) {
+				
+				FileInputStream salvar;
+				ObjectInputStream salvarRead;
+				try {
+					salvar = new FileInputStream("DatosSistema.dat");
+					salvarRead = new ObjectInputStream(salvar);
+					Empresa.empresa = (Empresa) salvarRead.readObject();
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
 		});
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

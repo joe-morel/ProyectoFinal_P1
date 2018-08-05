@@ -1,10 +1,16 @@
 package logical;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Empresa {
+public class Empresa implements Serializable{
 	
-	private static Empresa empresa=null;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6248502753801597548L;
+
+	public static Empresa empresa=null;
 	
 	private ArrayList<Clientes> misClientes;
 	private ArrayList<Productos> misProductos;

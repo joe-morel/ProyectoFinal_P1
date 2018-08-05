@@ -25,6 +25,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.DefaultTableModel;
 
 import logical.Empresa;
+import logical.Productos;
 import logical.Clientes;
 
 import javax.swing.JScrollPane;
@@ -46,7 +47,8 @@ public class ListaDeClientes extends JFrame {
 	private static Object[] fila;
 	//private ModificarCliente MC;
 	private String identificador;
-
+	private NuevoCliente nuevoCliente;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -148,9 +150,12 @@ public class ListaDeClientes extends JFrame {
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
-			
+				int aux = Clientes.getCantClientes();
+				Clientes.setCantSuplidores(aux-1);
+				nuevoCliente = new NuevoCliente();
+				Empresa.getinstance().Getclientes().get(tbtClientes.getSelectedRow());
+				nuevoCliente.ModificarCliente(Empresa.getinstance().Getclientes().get(tbtClientes.getSelectedRow()), tbtClientes.getSelectedRow());
+				nuevoCliente.show();
 			}
 		});
 		Image img1 = new ImageIcon(this.getClass().getResource("/modificar-48.png")).getImage();
@@ -202,6 +207,8 @@ public class ListaDeClientes extends JFrame {
 		));*/
 	}
 	public void CargarTabla() {
+
+		
 		tablemodel.setColumnIdentifiers(columnNames);
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Clientes c : Empresa.getinstance().Getclientes()) {

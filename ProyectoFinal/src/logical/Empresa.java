@@ -28,21 +28,32 @@ public class Empresa {
 	
 	//Inicio de Metodos
 	public void AddCliente(Clientes cli) {
+		Clientes.cantClientes++;
 		this.misClientes.add(cli);
 	}
 	public void AddProducto(Productos pro) {
+		Empleados.cantEmpleados++;
 		this.misProductos.add(pro);
 	}
 	public void AddFactura(Factura fact) {
 		this.misFacturas.add(fact);
 	}
 	public void AddEmpleado(Empleados emple) {
+		
 		this.misEmpleados.add(emple);
 	}
 	public Clientes BuscarCliente(int Buscar){
 		return this.misClientes.get(Buscar);
 	}
-	///// 
+	public String BuscarClienteCodigo(int Buscar){
+		return this.misClientes.get(Buscar).getCode();
+	}
+	public Empleados BuscarEmpleado(int Buscar){
+		return this.misEmpleados.get(Buscar);
+	}
+	public String BuscarEmpleadoCodigo(int Buscar){
+		return this.misEmpleados.get(Buscar).getCode();
+	}
 	public ArrayList<Clientes> Getclientes(){
 		return this.misClientes;
 	}

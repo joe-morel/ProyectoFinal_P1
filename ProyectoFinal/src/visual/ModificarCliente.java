@@ -33,12 +33,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
 
-public class NuevoCliente extends JDialog {
+public class ModificarCliente extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	private JTextField txt_nombre;
-	private JTextField txt_apellidos;
 	private JTextField txt_direccion;
 	private JTextField txt_telefono;
 	private JTextField txt_cedula;
@@ -60,7 +59,7 @@ public class NuevoCliente extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public NuevoCliente() {
+	public ModificarCliente(Clientes c, int index) {
 		setAlwaysOnTop(true);
 		setResizable(false);
 		setBounds(100, 100, 640, 530);
@@ -89,7 +88,7 @@ public class NuevoCliente extends JDialog {
 				lblNewLabel.setIcon(new ImageIcon(img));
 			}
 			
-			JLabel lblEmpleado = new JLabel("Registro de Clientes");
+			JLabel lblEmpleado = new JLabel("Modificar Cliente");
 			lblEmpleado.setForeground(new Color(255, 255, 255));
 			lblEmpleado.setFont(new Font("Lucida Grande", Font.BOLD, 16));
 			lblEmpleado.setBounds(29, 53, 187, 16);
@@ -103,8 +102,9 @@ public class NuevoCliente extends JDialog {
 			}
 			
 			textField = new JTextField();
+			textField.setEnabled(false);
 			
-				textField.setText("CP-"+(Clientes.getCantClientes()+1));
+				textField.setText((Empresa.getinstance().BuscarClienteCodigo(index)));
 				
 			textField.setEditable(false);
 			textField.setBounds(90, 76, 106, 26);
@@ -128,11 +128,6 @@ public class NuevoCliente extends JDialog {
 		lblNombre.setBounds(33, 215, 61, 16);
 		contentPanel.add(lblNombre);
 		
-		JLabel lblApellidos = new JLabel("Apellidos:");
-		lblApellidos.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblApellidos.setBounds(337, 215, 95, 16);
-		contentPanel.add(lblApellidos);
-		
 		JLabel lblCdula = new JLabel("Telefono:");
 		lblCdula.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblCdula.setBounds(337, 264, 72, 16);
@@ -144,15 +139,8 @@ public class NuevoCliente extends JDialog {
 
 		txt_nombre = new JTextField();
 		txt_nombre.setColumns(10);
-		txt_nombre.setBounds(106, 210, 158, 26);
+		txt_nombre.setBounds(106, 210, 303, 26);
 		contentPanel.add(txt_nombre);
-
-	
-
-		txt_apellidos = new JTextField();
-		txt_apellidos.setColumns(10);
-		txt_apellidos.setBounds(434, 210, 158, 26);
-		contentPanel.add(txt_apellidos);
 
 		JLabel lblDireccin = new JLabel("Dirección:");
 		lblDireccin.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
@@ -177,11 +165,10 @@ public class NuevoCliente extends JDialog {
 		lblCdula_1.setBounds(33, 319, 79, 16);
 		contentPanel.add(lblCdula_1);
 		
-
-	
-
+		
 
 		txt_cedula = new JTextField();
+		txt_cedula.setEditable(false);
 		txt_cedula.setColumns(10);
 		txt_cedula.setBounds(106, 314, 158, 26);
 		contentPanel.add(txt_cedula);
@@ -196,6 +183,8 @@ public class NuevoCliente extends JDialog {
 		JLabel lblNewLabel_1 = new JLabel("Limite de Credito:");
 		lblNewLabel_1.setBounds(16, 64, 112, 16);
 		panel.add(lblNewLabel_1);
+		
+		cargardatos(c);
 		
 		 sp_limiteCre = new JSpinner();
 		sp_limiteCre.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
@@ -213,18 +202,17 @@ public class NuevoCliente extends JDialog {
 					public void actionPerformed(ActionEvent arg0) {
 						if ((txt_cedula.getText() != null &&  txt_cedula.getText().isEmpty() == false) && (txt_nombre.getText() != null && 
 								txt_nombre.getText().isEmpty() == false) && (txt_direccion.getText() != null && txt_direccion.getText().isEmpty()
-								== false) && (txt_telefono.getText() != null && txt_telefono.getText().isEmpty() == false) && 
-								(txt_apellidos.getText() != null && txt_apellidos.getText().isEmpty() == false)) {
-							String nombre = txt_nombre.getText() +" "+ txt_apellidos.getText();
+								== false) && (txt_telefono.getText() != null && txt_telefono.getText().isEmpty() == false) ) {
+							String nombre = txt_nombre.getText();
 							String cedula = txt_cedula.getText();
 							String direccion = txt_direccion.getText();
 							String telefono = txt_telefono.getText();
 							float limiteCredito = (float) sp_limiteCre.getValue();
-							String code = "CP-"+Clientes.cantClientes+1;
+							String code = Empresa.getinstance().BuscarClienteCodigo(index);
 							Clientes c = new Clientes(nombre, cedula, telefono, direccion, code, limiteCredito);
-							Empresa.getinstance().AddCliente(c);
+							Empresa.getinstance().ModificarCliente(c, index);;
 							JOptionPane.showMessageDialog(null, "Usted a agregado un cliente",code, JOptionPane.INFORMATION_MESSAGE);
-							clean();
+							dispose();
 							}else{
 								JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos");
 							}
@@ -254,14 +242,12 @@ public class NuevoCliente extends JDialog {
 			}
 		}
 	}
-	private void clean() {
-		txt_nombre.setText("");
-		textField.setText("CP-"+(Clientes.getCantClientes()+1));
-		txt_direccion.setText("");
-		txt_apellidos.setText("");
-		txt_cedula.setText("");
-		txt_telefono.setText("");
-		sp_limiteCre.setValue(new Integer(0));
-		
+
+	private void cargardatos(Clientes c) {
+		txt_nombre.setText(c.getNombre());
+		txt_cedula.setText(c.getCedula());
+		txt_direccion.setText(c.getDireccion());
+		txt_telefono.setText(c.getTelefono());
+		//sp_limiteCre.setValue((Float)c.getLimiteCredito());
 	}
 }

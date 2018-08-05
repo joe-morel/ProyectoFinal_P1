@@ -6,7 +6,8 @@ public class Empleados {
 	private String cedula;
 	private String telefono;
 	private String direccion;
-	private static int cantEmpleados;
+	public static int cantEmpleados;
+	private String code;
 	
 	// Inicio de Constructor
 	
@@ -16,7 +17,7 @@ public class Empleados {
 		this.cedula = cedula;
 		this.telefono = telefono;
 		this.direccion = direccion;
-		this.cantEmpleados++;
+		this.code = code;
 	}
 	//Fin de Constructor
 	//*******************************
@@ -59,6 +60,12 @@ public class Empleados {
 
 	public static void setCantEmpleados(int cantEmpleados) {
 		Empleados.cantEmpleados = cantEmpleados;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	
 	//Fin de Getters and Setter 

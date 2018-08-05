@@ -200,11 +200,11 @@ public class NuevoEmpleado extends JDialog {
 								txt_nombre.getText().isEmpty() == false) && (txt_direccion.getText() != null && txt_direccion.getText().isEmpty()
 								== false) && (txt_telefono.getText() != null && txt_telefono.getText().isEmpty() == false) && 
 								(txt_apellidos.getText() != null && txt_apellidos.getText().isEmpty() == false)) {
-							String nombre = txt_nombre.getText() + txt_apellidos.getText();
+							String nombre = txt_nombre.getText() +" " + txt_apellidos.getText();
 							String cedula = txt_cedula.getText();
 							String direccion = txt_direccion.getText();
 							String telefono = txt_telefono.getText();
-							String code = "";
+							String code = "EP-"+Empleados.cantEmpleados+1;
 							Empleados e = new Empleados(nombre, cedula, telefono, direccion, code);
 							Empresa.getinstance().AddEmpleado(e);
 							JOptionPane.showMessageDialog(null, "Usted a agregado un Empleado",code, JOptionPane.INFORMATION_MESSAGE);

@@ -15,6 +15,7 @@ import javax.swing.border.EtchedBorder;
 public class Informes extends JFrame {
 
 	private JPanel contentPane;
+	
 
 	/**
 	 * Launch the application.

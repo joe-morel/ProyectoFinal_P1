@@ -21,7 +21,7 @@ public class Factura implements Serializable{
 		super();
 		this.listaProductosVendidos = listaProductosVendidos;
 		this.cliente = cliente;
-	//	PrecioTotal = precioTotal;
+	PrecioTotal = precioTotal;
 		this.code = code;
 		this.tuProducto = tuProducto;
 	}

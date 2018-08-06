@@ -162,7 +162,12 @@ public void setCuentasPorCobrar(Factura cuentasPorCobrar) {
 	this.cuentasPorCobrar.add(cuentasPorCobrar);
 }
 
+public void EliminarCuentasPorCobrar(int idex){
+	  Factura c = this.cuentasPorCobrar.remove(idex);
+}
 
- 
+public Factura BuscarCuentasPorCobrar(int Buscar){
+	return this.cuentasPorCobrar.get(Buscar);
+}
 	
 }

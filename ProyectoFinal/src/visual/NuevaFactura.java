@@ -76,6 +76,7 @@ public class NuevaFactura extends JDialog {
 	private static Factura tt = null;
 	private float total = 0;
 	private JComboBox cbxClientes;
+	private int a=0,b=0,c=0,d=0;
 
 
 	/**
@@ -388,6 +389,49 @@ public class NuevaFactura extends JDialog {
 		contentPanel.add(button);
 		
 		JButton button_1 = new JButton("Eliminar");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+				
+				Empresa.getinstance().EditProductos(productos.get(tableFactura.getSelectedRow()).getModelo(), 
+						Empresa.getinstance().BuscarProductoModelo(productos.get(tableFactura.getSelectedRow()).getModelo()).getCant()+productos.get(tableFactura.getSelectedRow()).getCant());
+				
+				if(productos.get(tableFactura.getSelectedRow()) instanceof HardDrive) {
+					productos.remove((tableFactura.getSelectedRow()));
+					loadFactura();
+					CargarTablaHardDrive();
+				}else if(productos.get(tableFactura.getSelectedRow()) instanceof Motherboard){
+					productos.remove((tableFactura.getSelectedRow()));
+					loadFactura();
+					CargarTablaMotherboard();
+				}else if(productos.get(tableFactura.getSelectedRow()) instanceof Procesador) {
+					productos.remove((tableFactura.getSelectedRow()));
+					loadFactura();
+					CargarTablaProcesador();
+				}else if(productos.get(tableFactura.getSelectedRow()) instanceof Ram) {
+					productos.remove((tableFactura.getSelectedRow()));
+					loadFactura();
+					CargarTablaRam();
+				}
+				a=0;
+				b=0;
+				c=0;
+				d=0;
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		});
 		Image img2 = new ImageIcon(this.getClass().getResource("/eliminar-64.png")).getImage();
 		button_1.setIcon(new ImageIcon(img2));
 		button_1.setFont(new Font("Lucida Grande", Font.BOLD, 13));

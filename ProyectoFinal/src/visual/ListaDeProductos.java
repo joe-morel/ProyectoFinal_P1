@@ -257,7 +257,7 @@ public class ListaDeProductos extends JFrame {
 					columnNames.add("Cantidad IDE");
 					columnNames.add("Cantidad Sata");
 					CargarTablaMotherboard();
-				}else if ((cbxTipo.getSelectedItem().toString()) == "Kit") {
+				}else if ((cbxTipo.getSelectedItem().toString()) == "Kits") {
 					DefaultTableModel model = (DefaultTableModel) tbt_productos.getModel();
 					model.setColumnCount(0);
 					model.setRowCount(0);

@@ -57,6 +57,26 @@ public class Empresa implements Serializable{
 	public Clientes BuscarCliente(int Buscar){
 		return this.misClientes.get(Buscar);
 	}
+	public Productos BuscarProducto(int Buscar){
+		return this.misProductos.get(Buscar);
+	}
+	public Productos BuscarProductoModelo(String modelo){
+		for (Productos p : misProductos) {
+			if(modelo == p.getModelo()) {
+				return p;
+			}
+		}
+		return null;
+	}
+	public void EditProductos(String modelo, int cant){
+		int i = 0;
+		for (Productos p : misProductos) {
+			if(modelo == p.getModelo()) {
+				misProductos.get(i).setCant(cant);
+			}
+			i++;
+		}
+	}
 	public String BuscarClienteCodigo(int Buscar){
 		return this.misClientes.get(Buscar).getCode();
 	}

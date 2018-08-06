@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Image;
 
@@ -50,24 +52,17 @@ public class CrearKit extends JFrame {
 	private JComboBox cbxTipo =  new JComboBox();
 	private JTable tbt_productos;
 	private static DefaultTableModel tablemodel = new DefaultTableModel();;
+	private static DefaultTableModel tablemodel1 = new DefaultTableModel();;
 	private ArrayList<String> columnNames = new ArrayList<String>();
 	private static Object[] fila;
+	private JTable tbt_kits;
+	private ArrayList<Productos>productos = new ArrayList<Productos>();
+	private String[] columnNames1 = {"Marca", "Modelo", "Precio venta", "Cantidad"};
+	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CrearKit frame = new CrearKit();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -92,7 +87,7 @@ public class CrearKit extends JFrame {
 		panel.add(panel_1);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("/Users/joemorel/Downloads/icons8-estación-de-trabajo-96.png"));
+		label.setIcon(new ImageIcon("/Users/joemorel/Downloads/icons8-estacioÌ�n-de-trabajo-96.png"));
 		label.setBounds(26, 29, 104, 96);
 		panel_1.add(label);
 		
@@ -108,7 +103,7 @@ public class CrearKit extends JFrame {
 		lblNewLabel.setBounds(187, 54, 151, 16);
 		panel.add(lblNewLabel);
 		
-		JLabel lblCdigo = new JLabel("Código:");
+		JLabel lblCdigo = new JLabel("CÃ³digo:");
 		lblCdigo.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblCdigo.setForeground(Color.WHITE);
 		lblCdigo.setBounds(187, 120, 57, 29);
@@ -235,21 +230,44 @@ public class CrearKit extends JFrame {
 		
 		//fin de tabla
 		
-		JButton btnAgregar = new JButton("Añadir");
+		JButton btnAgregar = new JButton("AÃ±adir");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Pro
+				//tbt_productos.getSelectedRow();
+				String modelo = (String)tbt_productos.getValueAt(tbt_productos.getSelectedRow(), tbt_productos.getSelectedColumn());
+				Productos p2 = Empresa.getinstance().BuscarProductoModelo(modelo);
 				
-
-				
-				
-				
-				
-				
-				
-				
-				
-			
-				
+				int cant = p2.getCant();
+				System.out.println(cant);
+				if (p2 != null) {
+					if (p2 instanceof Procesador) {
+						Procesador p = new Procesador((((Procesador)p2).getPrecio()), (((Procesador)p2).getPrecioVenta()), (((Procesador)p2).getCant()), (((Procesador)p2).getCodigo()), (((Procesador)p2).getMarca()), (((Procesador)p2).getModelo()), (((Procesador)p2).getTipoProducto()), (((Procesador)p2).getSocket()), (((Procesador)p2).getVelocidadBase()), (((Procesador)p2).getVelocidadTurbo()), (((Procesador)p2).isUnlock()));
+						p.setCant(1);
+						Empresa.getinstance().EditProductos(modelo, cant-1);
+						System.out.println(cant);
+						productos.add(p);
+						CargarTablaProcesador();
+					}else if(p2 instanceof Motherboard) {
+						Motherboard m = new Motherboard(p2.getPrecio(), p2.getPrecio(), p2.getCant(), p2.getCodigo(), p2.getMarca(), p2.getModelo(), p2.getTipoProducto(), ((Motherboard) p2).getMarcaProcesadores(), ((Motherboard) p2).getSocketProcesador(), ((Motherboard) p2).getTipoRam(), ((Motherboard) p2).getCantIDE(), ((Motherboard) p2).getCantM2(), ((Motherboard) p2).getCantSata(), ((Motherboard) p2).getCantSlotsRam(), ((Motherboard) p2).isMultiCHSUP());
+						m.setCant(1);
+						Empresa.getinstance().EditProductos(modelo, cant-1);
+						productos.add(m);
+						CargarTablaMotherboard();
+					}else if(p2 instanceof HardDrive) {
+						p2.setCant(1);
+						Empresa.getinstance().EditProductos(modelo, cant-1);
+					}else if(p2 instanceof Ram) {
+						String[] options = {"1", "2", "3", "4"};
+						int seleccion = JOptionPane.showOptionDialog(null, "Es necesario que seleccione una opcion", "Titulo", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+						Empresa.getinstance().EditProductos(modelo, cant-(seleccion+1));
+						p2.setCant(seleccion+1);
+					}
+					
+					cargarKits();
+				} else {
+					JOptionPane.showConfirmDialog(null, "debe seleccionar el modelo");
+				}
 			}
 		});
 		Image img1 = new ImageIcon(this.getClass().getResource("/Anadir-48.png")).getImage();
@@ -292,9 +310,13 @@ public class CrearKit extends JFrame {
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(326, 220, 302, 204);
 		contentPane.add(scrollPane_1);
+		
+		tbt_kits = new JTable();
+		scrollPane_1.setViewportView(tbt_kits);
 	}
 	
 	public void CargarTablaProcesador() {
+		tablemodel.setRowCount(0);
 		tablemodel.setColumnIdentifiers(columnNames.toArray());
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Productos p : Empresa.getinstance().GetProducto()) {
@@ -336,6 +358,7 @@ public class CrearKit extends JFrame {
 	}
 	
 	public void CargarTablaRam() {
+		tablemodel.setRowCount(0);
 		tablemodel.setColumnIdentifiers(columnNames.toArray());
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Productos p : Empresa.getinstance().GetProducto()) {
@@ -364,6 +387,7 @@ public class CrearKit extends JFrame {
 	
 	
 	public void CargarTablaHardDrive() {
+		tablemodel.setRowCount(0);
 		tablemodel.setColumnIdentifiers(columnNames.toArray());
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Productos p : Empresa.getinstance().GetProducto()) {
@@ -403,6 +427,7 @@ public class CrearKit extends JFrame {
 	
 	
 	public void CargarTablaMotherboard() {
+		tablemodel.setRowCount(0);
 		tablemodel.setColumnIdentifiers(columnNames.toArray());
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Productos p : Empresa.getinstance().GetProducto()) {
@@ -436,11 +461,54 @@ public class CrearKit extends JFrame {
 	}
 	
 	
-		
-		
-		
-		
-		
+	
+	
+	public void cargarKits() {
+		tablemodel1.setRowCount(0);
+		tablemodel1.setColumnIdentifiers(columnNames1);
+		fila = new Object[tablemodel1.getColumnCount()];
+		for (Productos p : productos) {
+			if(p instanceof Procesador) {
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				tablemodel1.addRow(fila);
+			}
+			
+			if(p instanceof Motherboard) {
+				
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				tablemodel1.addRow(fila);
+
+			}
+			if(p instanceof HardDrive) {
+				
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				tablemodel1.addRow(fila);
+
+			}
+			if(p instanceof Ram) {
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				tablemodel1.addRow(fila);
+			}
+			
+		}
+		tbt_kits.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tbt_kits.setModel(tablemodel1);
+		tbt_kits.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		TableColumnModel columnModel = tbt_kits.getColumnModel();
+		}
+	
 	}
 	
 	

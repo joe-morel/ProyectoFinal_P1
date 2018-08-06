@@ -61,7 +61,7 @@ public class ListaDeEmpleados extends JFrame {
 	 * Create the frame.
 	 */
 	public ListaDeEmpleados() {
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 640, 530);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -138,6 +138,12 @@ public class ListaDeEmpleados extends JFrame {
 		panel.add(textField_3);
 		
 		JButton button = new JButton("Modificar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModificarEmpleado me = new ModificarEmpleado(Empresa.getinstance().BuscarEmpleado(tbtEmpleados.getSelectedRow()), tbtEmpleados.getSelectedRow());
+				me.show();
+			}
+		});
 		Image img1 = new ImageIcon(this.getClass().getResource("/modificar-48.png")).getImage();
 		button.setIcon(new ImageIcon(img1));
 		button.setFont(new Font("Lucida Grande", Font.BOLD, 13));
@@ -179,7 +185,7 @@ public class ListaDeEmpleados extends JFrame {
 		tablemodel.setColumnIdentifiers(columnNames);
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Empleados e : Empresa.getinstance().GetEmpleado()) {
-			fila[0] = e.getCantEmpleados();
+			fila[0] = e.getCode();
 			fila[1] = e.getNombre();
 			fila[2] = e.getCedula();
 			fila[3] = e.getTelefono();

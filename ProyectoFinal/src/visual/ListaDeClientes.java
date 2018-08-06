@@ -53,7 +53,7 @@ public class ListaDeClientes extends JFrame {
 	
 	/**
 	 * Launch the application.
-	 */
+	 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -65,7 +65,7 @@ public class ListaDeClientes extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
@@ -169,12 +169,13 @@ public class ListaDeClientes extends JFrame {
 	    
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int aux = Clientes.getCantClientes();
-				Clientes.setCantSuplidores(aux-1);
-				nuevoCliente = new NuevoCliente();
-				Empresa.getinstance().Getclientes().get(tbtClientes.getSelectedRow());
-				nuevoCliente.ModificarCliente(Empresa.getinstance().Getclientes().get(tbtClientes.getSelectedRow()), tbtClientes.getSelectedRow());
-				nuevoCliente.show();
+				//tbtClientes.getSelectedColumn();
+				//int index = tbtClientes.getSelectedRow();
+				ModificarCliente mc = new ModificarCliente(Empresa.getinstance().BuscarCliente(tbtClientes.getSelectedRow()), tbtClientes.getSelectedRow());
+				mc.show();
+				CargarTabla();
+				//DefaultTableModel model = (DefaultTableModel) tbtClientes.getModel();
+				//model.setRowCount(0);
 			}
 		});
 		Image img1 = new ImageIcon(this.getClass().getResource("/modificar-48.png")).getImage();
@@ -241,7 +242,7 @@ public class ListaDeClientes extends JFrame {
 		// tablemodel.setColumnIdentifiers(columnNames);
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Clientes c : Empresa.getinstance().Getclientes()) {
-			fila[0] = "CP-"+c.getCantClientes();
+			fila[0] = c.getCode();
 			fila[1] = c.getNombre();
 			fila[2] = c.getCedula();
 			fila[3] = c.getTelefono();

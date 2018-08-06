@@ -12,9 +12,9 @@ public class Clientes implements Serializable{
 	private String cedula;
 	private String telefono;
 	private String direccion;
-	private String Codigo;
-	private static int cantClientes=0;
+	public static int cantClientes=0;
 	private float LimiteCredito;
+	private String code;
 	
 	//Inicio de Construtor 
 	
@@ -24,9 +24,8 @@ public class Clientes implements Serializable{
 		this.cedula = cedula;
 		this.telefono = telefono;
 		this.direccion = direccion;
-		this.Codigo = Codigo;
-		this.cantClientes++;
 		this.LimiteCredito = limiteCredito;
+		this.code = code;
 	}
 	
 	// Fin de Constructor 
@@ -73,6 +72,14 @@ public class Clientes implements Serializable{
 
 	public void setLimiteCredito(float limiteCredito) {
 		this.LimiteCredito = limiteCredito;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 	
 	//Fin de Getters and Setters

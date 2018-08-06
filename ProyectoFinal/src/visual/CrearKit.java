@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import logical.Empresa;
+import logical.Factura;
 import logical.HardDrive;
 import logical.Motherboard;
 import logical.Procesador;
@@ -235,6 +236,23 @@ public class CrearKit extends JFrame {
 		//fin de tabla
 		
 		JButton btnAgregar = new JButton("Añadir");
+		btnAgregar.setEnabled(false);
+		btnAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+			
+				
+			}
+		});
 		Image img1 = new ImageIcon(this.getClass().getResource("/Anadir-48.png")).getImage();
 		btnAgregar.setIcon(new ImageIcon(img1));
 		btnAgregar.setFont(new Font("Lucida Grande", Font.BOLD, 13));
@@ -419,6 +437,12 @@ public class CrearKit extends JFrame {
 	}
 	
 	
+		
+		
+		
+		
+		
+	}
 	
 	
-}
+	

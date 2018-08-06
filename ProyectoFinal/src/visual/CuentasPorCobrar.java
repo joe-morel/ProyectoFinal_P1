@@ -7,11 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,6 +27,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 
@@ -35,10 +40,11 @@ public class CuentasPorCobrar extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	JScrollPane scrollPane = new JScrollPane();
 	private JTable tableDeudores = new  JTable();
-	private static DefaultTableModel tablemodel = new DefaultTableModel();;
+	private DefaultTableModel tablemodel = new DefaultTableModel();
 	String[] columnNames = {"Codigo", "Nombre", "Cedula", "Telefono", "Dirreccion", "LimiteCredito"};
-	private static Object[] fila;
+	private Object[] fila;
 	/**
 	 * Launch the application.
 	 */
@@ -115,6 +121,8 @@ public class CuentasPorCobrar extends JFrame {
 		panel_2.add(lblNewLabel);
 		
 		textField_2 = new JTextField();
+		textField_2.setEnabled(false);
+		textField_2.setEditable(false);
 		textField_2.setBounds(84, 29, 94, 26);
 		panel_2.add(textField_2);
 		textField_2.setColumns(10);
@@ -139,11 +147,21 @@ public class CuentasPorCobrar extends JFrame {
 		lblListaDeClientes.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		panel_3.add(lblListaDeClientes);
 		
-		JScrollPane scrollPane = new JScrollPane();
+	 scrollPane = new JScrollPane();
 		scrollPane.setBounds(18, 209, 604, 204);
 		contentPane.add(scrollPane);
 		
 		tableDeudores = new JTable();
+		tablemodel = new DefaultTableModel();
+		tablemodel.setColumnIdentifiers(columnNames);
+		tableDeudores.setEnabled(true);
+		tableDeudores.setRowSelectionAllowed(false);
+		tableDeudores.setCellSelectionEnabled(true);
+		tableDeudores.setModel(tablemodel);
+		// scrollPane.setViewportView(tbtClientes);
+		tableDeudores.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		// tbtClientes.setModel(tablemodel);
+		tableDeudores.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		scrollPane.setViewportView(tableDeudores);
 		
 		JPanel panel_4 = new JPanel();
@@ -153,17 +171,30 @@ public class CuentasPorCobrar extends JFrame {
 		panel_4.setLayout(null);
 		
 		JLabel label_1 = new JLabel("Monto a Saldar:");
+		label_1.setEnabled(false);
 		label_1.setForeground(Color.WHITE);
-		label_1.setBounds(24, 5, 126, 21);
+		label_1.setBounds(20, 6, 126, 21);
 		label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		panel_4.add(label_1);
 		
 		textField_3 = new JTextField();
+		textField_3.setEnabled(false);
 		textField_3.setBounds(20, 30, 130, 34);
 		panel_4.add(textField_3);
 		textField_3.setColumns(10);
 		
 		JButton btnCobrar = new JButton("Cobrar");
+		btnCobrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Empresa.getinstance().AddFactura(Empresa.getinstance().BuscarCuentasPorCobrar(tableDeudores.getSelectedRow()));
+				Empresa.getinstance().EliminarCuentasPorCobrar(tableDeudores.getSelectedRow());
+				CargarTabla();
+				  
+				JOptionPane.showMessageDialog(null, "Facturacion realizada con exito!","555", JOptionPane.INFORMATION_MESSAGE);
+				
+			}
+		});
 		Image img0 = new ImageIcon(this.getClass().getResource("/efectivo3.png")).getImage();
 		btnCobrar.setIcon(new ImageIcon(img0));
 		btnCobrar.setFont(new Font("Lucida Grande", Font.BOLD, 13));
@@ -184,22 +215,37 @@ public class CuentasPorCobrar extends JFrame {
 		button.setBounds(466, 432, 118, 58);
 		contentPane.add(button);
 	
+		
+		scrollPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			//	Clientes c = Empresa.getinstance().BuscarCliente(tableDeudores.getSelectedRow());
+			//	txt_nombre.setText(c.getNombre());
+			//	txt_cedula.setText(c.getCedula());
+			//	txt_codigo.setText(Empresa.getinstance().BuscarClienteCodigo(tbtClientes.getSelectedRow()));
+			//	txt_telefono.setText(c.getTelefono());
+			}
+		});
+		
+		scrollPane.setBounds(18, 229, 604, 204);
+		contentPane.add(scrollPane);
+		CargarTabla();
+		
 	}
 	
 	
-public static void CargarTabla() {
+public void CargarTabla() {
 		
 		tablemodel.setRowCount(0);   /*Copiado de Listar Suministrador ejemplo de profe en clase*/
-		// tablemodel.setColumnIdentifiers(columnNames);
+		tablemodel.setColumnIdentifiers(columnNames);
 		fila = new Object[tablemodel.getColumnCount()];
-	/*	for (Factura c : Empresa.getinstance().getCuentasPorCobrar()) {
-			fila[0] = c.getCode();
-			fila[1] = c.getNombre();
-			fila[2] = c.getCedula();
-			fila[3] = c.getTelefono();
-			fila[4] = c.getDireccion();
-			fila[5] = c.getLimiteCredito();
+	for (Factura c : Empresa.getinstance().getCuentasPorCobrar()) {
+			fila[0] = ((Factura)c).getCode();
+			fila[1] = ((Factura)c).getCliente().getNombre();
+			fila[2] = ((Factura)c).getCliente().getCedula();
+			fila[3] = ((Factura)c).getCliente().getLimiteCredito();
+			fila[4] = ((Factura)c).getPrecioTotal();
 			tablemodel.addRow(fila);
-		}*/
+		}
 	}
 }

@@ -34,9 +34,7 @@ public class Clientes implements Serializable{
 	public String getNombre() {
 		return nombre;
 	}
-	public String getCodigo() {
-		return Codigo;
-	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}

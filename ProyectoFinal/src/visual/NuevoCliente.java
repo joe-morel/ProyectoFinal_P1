@@ -267,7 +267,7 @@ public class NuevoCliente extends JDialog {
 		txt_direccion.setText(cli.getDireccion());
 		txt_nombre.setText(cli.getNombre());
 		txt_telefono.setText(cli.getTelefono());
-		textField.setText(cli.getCodigo());
+		textField.setText(cli.getCode());
 		
 		JButton okButton = new JButton("Guardar");
 		okButton.addActionListener(new ActionListener() {
@@ -281,7 +281,7 @@ public class NuevoCliente extends JDialog {
 					String direccion = txt_direccion.getText();
 					String telefono = txt_telefono.getText();
 					float limiteCredito = (float) sp_limiteCre.getValue();
-					String code = cli.getCodigo();
+					String code = cli.getCode();
 					Clientes c = new Clientes(nombre, cedula, telefono, direccion, code, limiteCredito);
 					Empresa.getinstance().ModificarCliente(cli, pos);
 					JOptionPane.showMessageDialog(null, "Usted a modificado un cliente",code, JOptionPane.INFORMATION_MESSAGE);

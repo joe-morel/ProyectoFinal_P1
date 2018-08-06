@@ -131,6 +131,7 @@ public class AnadirProducto extends JFrame {
 	  panel_9_1.add(label_1);
 	  
 	  JComboBox cbx_Socketmtb = new JComboBox();
+	  cbx_Socketmtb.setModel(new DefaultComboBoxModel(new String[] {"<INTEL>", "LGA 1151", "LGA 1150", "LGA 1155", "LGA 2011", "LGA 1366", "<AMD>", "FM1", "FM2", "FM2+", "AM1", "AM3+", "AM3", "AM4", "TR4"}));
 	  cbx_Socketmtb.setToolTipText("");
 	  cbx_Socketmtb.setBounds(70, 37, 147, 27);
 	  panel_9_1.add(cbx_Socketmtb);
@@ -191,7 +192,7 @@ public class AnadirProducto extends JFrame {
 	  panel_4.add(lblNewLabel_3);
 	  
 	  JComboBox comboBox = new JComboBox();
-	  comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "asdasd"}));
+	  comboBox.setModel(new DefaultComboBoxModel(new String[] {"<INTEL>", "LGA 1151", "LGA 1150", "LGA 1155", "LGA 2011", "LGA 1366", "<AMD>", "FM1", "FM2", "FM2+", "AM1", "AM3+", "AM3", "AM4", "TR4"}));
 	  comboBox.setBounds(87, 36, 147, 27);
 	  panel_4.add(comboBox);
 	  
@@ -200,7 +201,7 @@ public class AnadirProducto extends JFrame {
 	  panel_4.add(lblTipoDeMemoria);
 	  
 	  JSpinner spinner_3 = new JSpinner();
-	  spinner_3.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
+	  spinner_3.setModel(new SpinnerNumberModel(new Float(1000), new Float(1000), null, new Float(10)));
 	  spinner_3.setBounds(413, 36, 130, 26);
 	  panel_4.add(spinner_3);
 	  
@@ -209,7 +210,7 @@ public class AnadirProducto extends JFrame {
 	  panel_4.add(lblVelocidadTurbo);
 	  
 	  JSpinner spinner_5 = new JSpinner();
-	  spinner_5.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
+	  spinner_5.setModel(new SpinnerNumberModel(new Float(3500), new Float(3500), null, new Float(10)));
 	  spinner_5.setBounds(413, 76, 130, 26);
 	  panel_4.add(spinner_5);
 	  
@@ -234,7 +235,7 @@ public class AnadirProducto extends JFrame {
 	  panel_8.add(label_6);
 	  
 	  JComboBox cbx_CapacidadRAM = new JComboBox();
-	  cbx_CapacidadRAM.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "1", "2", "3", "4"}));
+	  cbx_CapacidadRAM.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "1", "2", "4", "8", "16"}));
 	  cbx_CapacidadRAM.setBounds(109, 37, 147, 27);
 	  panel_8.add(cbx_CapacidadRAM);
 	  
@@ -243,7 +244,7 @@ public class AnadirProducto extends JFrame {
 	  panel_8.add(label_7);
 	  
 	  JComboBox cbx_TipoCo = new JComboBox();
-	  cbx_TipoCo.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "ddr3"}));
+	  cbx_TipoCo.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "ddr-1", "dde-2", "ddr-3", "ddr-4"}));
 	  cbx_TipoCo.setBounds(421, 37, 147, 27);
 	  panel_8.add(cbx_TipoCo);
 	  
@@ -252,7 +253,7 @@ public class AnadirProducto extends JFrame {
 	  panel_8.add(lblSpeed);
 	  
 	  JSpinner spn_SpeedRam = new JSpinner();
-	  spn_SpeedRam.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
+	  spn_SpeedRam.setModel(new SpinnerNumberModel(new Float(600), new Float(600), null, new Float(1)));
 	  spn_SpeedRam.setBounds(109, 76, 147, 26);
 	  panel_8.add(spn_SpeedRam);
 		
@@ -268,7 +269,7 @@ public class AnadirProducto extends JFrame {
 	  panel_7.add(lblCapacidad);
 	  
 	  JComboBox cbx_CapacidadDisco = new JComboBox();
-	  cbx_CapacidadDisco.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "180", "250", "500", "1000"}));
+	  cbx_CapacidadDisco.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "180", "250", "500", "1000", "2000"}));
 	  cbx_CapacidadDisco.setBounds(109, 36, 147, 27);
 	  panel_7.add(cbx_CapacidadDisco);
 	  
@@ -277,7 +278,7 @@ public class AnadirProducto extends JFrame {
 	  panel_7.add(lblTipoDeConexin);
 	  
 	  JComboBox cbx_TipoDisco = new JComboBox();
-	  cbx_TipoDisco.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "ALGO"}));
+	  cbx_TipoDisco.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Sata", "IDE"}));
 	  cbx_TipoDisco.setBounds(421, 37, 147, 27);
 	  panel_7.add(cbx_TipoDisco);
 	  
@@ -286,7 +287,7 @@ public class AnadirProducto extends JFrame {
 	  panel_7.add(lblReadSpeed);
 	  
 	  JSpinner spn_ReadSpeed = new JSpinner();
-	  spn_ReadSpeed.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
+	  spn_ReadSpeed.setModel(new SpinnerNumberModel(new Float(100), new Float(100), null, new Float(1)));
 	  spn_ReadSpeed.setBounds(421, 76, 147, 26);
 	  panel_7.add(spn_ReadSpeed);
 	  
@@ -295,7 +296,7 @@ public class AnadirProducto extends JFrame {
 	  panel_7.add(lblVelocidadDeEscritura);
 	  
 	  JSpinner spn_WriteSpeed = new JSpinner();
-	  spn_WriteSpeed.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
+	  spn_WriteSpeed.setModel(new SpinnerNumberModel(new Float(100), new Float(100), null, new Float(1)));
 	  spn_WriteSpeed.setBounds(109, 76, 147, 26);
 	  panel_7.add(spn_WriteSpeed);
 		
@@ -313,6 +314,7 @@ public class AnadirProducto extends JFrame {
 		panel_2.add(lblNewLabel_2);
 		
 		txt_Codigo = new JTextField();
+		txt_Codigo.setEditable(false);
 		txt_Codigo.setBounds(73, 21, 123, 26);
 		panel_2.add(txt_Codigo);
 		txt_Codigo.setColumns(10);
@@ -354,6 +356,7 @@ public class AnadirProducto extends JFrame {
 		panel_2.add(txt_Modelo);
 		
 		JSpinner spn_Cantidad = new JSpinner();
+		spn_Cantidad.setModel(new SpinnerNumberModel(new Integer(50), new Integer(50), null, new Integer(1)));
 		spn_Cantidad.setBounds(273, 105, 113, 26);
 		panel_2.add(spn_Cantidad);
 		

@@ -382,6 +382,8 @@ public class CrearKit extends JFrame {
 					String modelo = textField.getText();
 					kits k = new kits(preciocosto, PrecioVenta, 1, "", "Computer Store", modelo, "Kit", productos, "", PrecioTK);
 					Empresa.getinstance().AddProducto(k);
+					JOptionPane.showMessageDialog(null, "Ha registrado un kit");
+					dispose();
 					}else {
 						JOptionPane.showMessageDialog(null, "Debe ponerle un nombre al Kit.");
 					}

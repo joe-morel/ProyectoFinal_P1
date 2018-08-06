@@ -395,12 +395,11 @@ public class ListaDeProductos extends JFrame {
 				fila[4] = p.getPrecio();
 				fila[5] = p.getPrecioVenta();
 				fila[6] = p.getCant();
-				fila[7] = ((Motherboard) p).getMarcaProcesadores();
-				fila[8] = ((Motherboard) p).getSocketProcesador();
-				fila[9] = ((Motherboard) p).getTipoRam();
-				fila[10] = ((Motherboard) p).getCantSlotsRam();
-				fila[11] = ((Motherboard) p).getCantIDE();
-				fila[12] = ((Motherboard) p).getCantSata();
+				fila[7] = ((Motherboard) p).getSocketProcesador();
+				fila[8] = ((Motherboard) p).getTipoRam();
+				fila[9] = ((Motherboard) p).getCantSlotsRam();
+				fila[10] = ((Motherboard) p).getCantIDE();
+				fila[11] = ((Motherboard) p).getCantSata();
 				tablemodel.addRow(fila);
 
 			}

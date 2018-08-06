@@ -17,7 +17,7 @@ public class Factura implements Serializable{
 	
 	//Inicio del Constructor 
 	
-	public Factura(/*ArrayList<Productos> listaProductosVendidos, Clientes cliente, float precioTotal,*/ String code) {
+	public Factura(ArrayList<Productos> listaProductosVendidos, Clientes cliente, float precioTotal, String code) {
 		super();
 		this.listaProductosVendidos = listaProductosVendidos;
 		this.cliente = cliente;

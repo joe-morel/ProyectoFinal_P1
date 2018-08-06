@@ -13,12 +13,19 @@ import java.awt.Image;
 
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+
+import logical.Clientes;
+import logical.Empresa;
+import logical.Factura;
+
 import javax.swing.border.EtchedBorder;
 import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class CuentasPorCobrar extends JFrame {
 
@@ -28,7 +35,10 @@ public class CuentasPorCobrar extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
-
+	private JTable tableDeudores = new  JTable();
+	private static DefaultTableModel tablemodel = new DefaultTableModel();;
+	String[] columnNames = {"Codigo", "Nombre", "Cedula", "Telefono", "Dirreccion", "LimiteCredito"};
+	private static Object[] fila;
 	/**
 	 * Launch the application.
 	 */
@@ -133,6 +143,9 @@ public class CuentasPorCobrar extends JFrame {
 		scrollPane.setBounds(18, 209, 604, 204);
 		contentPane.add(scrollPane);
 		
+		tableDeudores = new JTable();
+		scrollPane.setViewportView(tableDeudores);
+		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(new Color(51, 153, 204));
 		panel_4.setBounds(56, 423, 174, 77);
@@ -170,5 +183,23 @@ public class CuentasPorCobrar extends JFrame {
 		button.setActionCommand("Cancel");
 		button.setBounds(466, 432, 118, 58);
 		contentPane.add(button);
+	
+	}
+	
+	
+public static void CargarTabla() {
+		
+		tablemodel.setRowCount(0);   /*Copiado de Listar Suministrador ejemplo de profe en clase*/
+		// tablemodel.setColumnIdentifiers(columnNames);
+		fila = new Object[tablemodel.getColumnCount()];
+	/*	for (Factura c : Empresa.getinstance().getCuentasPorCobrar()) {
+			fila[0] = c.getCode();
+			fila[1] = c.getNombre();
+			fila[2] = c.getCedula();
+			fila[3] = c.getTelefono();
+			fila[4] = c.getDireccion();
+			fila[5] = c.getLimiteCredito();
+			tablemodel.addRow(fila);
+		}*/
 	}
 }

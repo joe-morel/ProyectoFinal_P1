@@ -230,7 +230,7 @@ public class CrearKit extends JFrame {
 		
 		//fin de tabla
 		
-		JButton btnAgregar = new JButton("AÃ±adir");
+		JButton btnAgregar = new JButton("Añadir");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Pro

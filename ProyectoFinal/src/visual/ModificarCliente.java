@@ -60,7 +60,6 @@ public class ModificarCliente extends JDialog {
 	 * Create the dialog.
 	 */
 	public ModificarCliente(Clientes c, int index) {
-		setAlwaysOnTop(true);
 		setResizable(false);
 		setBounds(100, 100, 640, 530);
 		getContentPane().setLayout(new BorderLayout());

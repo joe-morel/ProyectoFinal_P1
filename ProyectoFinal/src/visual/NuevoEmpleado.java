@@ -52,7 +52,6 @@ public class NuevoEmpleado extends JDialog {
 	 */
 	public NuevoEmpleado() {
 		setModal(true);
-		setAlwaysOnTop(true);
 		setBounds(100, 100, 640, 530);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(SystemColor.window);

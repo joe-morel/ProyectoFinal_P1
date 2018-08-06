@@ -31,6 +31,8 @@ import logical.Productos;
 import logical.Clientes;
 
 import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ListaDeClientes extends JFrame {
 
@@ -50,7 +52,7 @@ public class ListaDeClientes extends JFrame {
 	//private ModificarCliente MC;
 	private String identificador;
 	private NuevoCliente nuevoCliente;
-	
+
 	/**
 	 * Launch the application.
 	 
@@ -145,22 +147,27 @@ public class ListaDeClientes extends JFrame {
 		
 		tablemodel = new DefaultTableModel();
 		tablemodel.setColumnIdentifiers(columnNames);
-		tbtClientes.setModel(tablemodel);
+		tbtClientes.setEnabled(true);
+		tbtClientes.setFocusable(false);
+		tbtClientes.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+			}
+		));
 		// scrollPane.setViewportView(tbtClientes);
-		tbtClientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tbtClientes.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		tbtClientes.setModel(tablemodel);
 		tbtClientes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		
-		TableColumnModel columnModel = tbtClientes.getColumnModel();
 		columnModel.getColumn(0).setPreferredWidth(60);
 		columnModel.getColumn(1).setPreferredWidth(190);
 		columnModel.getColumn(2).setPreferredWidth(110);
 		columnModel.getColumn(3).setPreferredWidth(110);
 		columnModel.getColumn(4).setPreferredWidth(150);
 		columnModel.getColumn(5).setPreferredWidth(90);
-
+		
+		
 		JTextField txt_codigo = new JTextField();
-		txt_codigo.setEnabled(false);
 		txt_codigo.setColumns(10);
 		txt_codigo.setBounds(76, 180, 98, 26);
 		panel.add(txt_codigo);
@@ -173,7 +180,6 @@ public class ListaDeClientes extends JFrame {
 				//int index = tbtClientes.getSelectedRow();
 				ModificarCliente mc = new ModificarCliente(Empresa.getinstance().BuscarCliente(tbtClientes.getSelectedRow()), tbtClientes.getSelectedRow());
 				mc.show();
-				CargarTabla();
 				//DefaultTableModel model = (DefaultTableModel) tbtClientes.getModel();
 				//model.setRowCount(0);
 			}
@@ -220,6 +226,18 @@ public class ListaDeClientes extends JFrame {
 		contentPane.add(btnEliminar);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		
+		scrollPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				Clientes c = Empresa.getinstance().BuscarCliente(tbtClientes.getSelectedRow());
+				txt_nombre.setText(c.getNombre());
+				txt_cedula.setText(c.getCedula());
+				txt_codigo.setText(Empresa.getinstance().BuscarClienteCodigo(tbtClientes.getSelectedRow()));
+				txt_telefono.setText(c.getTelefono());
+			}
+		});
+		
 		scrollPane.setBounds(18, 229, 604, 204);
 		contentPane.add(scrollPane);
 		CargarTabla();
@@ -236,7 +254,7 @@ public class ListaDeClientes extends JFrame {
 			}
 		));*/
 	}
-	public void CargarTabla() {
+	public static void CargarTabla() {
 		
 		tablemodel.setRowCount(0);   /*Copiado de Listar Suministrador ejemplo de profe en clase*/
 		// tablemodel.setColumnIdentifiers(columnNames);

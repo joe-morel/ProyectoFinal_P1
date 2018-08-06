@@ -1,7 +1,13 @@
 package logical;
 
-public class Productos {
+import java.io.Serializable;
+
+public class Productos implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7231777155883160926L;
 	private float precio;
 	private float PrecioVenta;
 	private int cant;

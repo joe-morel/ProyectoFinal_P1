@@ -1,12 +1,18 @@
 package logical;
 
-public class Empleados {
+import java.io.Serializable;
 
+public class Empleados implements Serializable{
+
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2878890255952289927L;
 	private String nombre;
 	private String cedula;
 	private String telefono;
 	private String direccion;
-	public static int cantEmpleados;
 	private String code;
 	
 	// Inicio de Constructor
@@ -54,13 +60,6 @@ public class Empleados {
 		this.direccion = direccion;
 	}
 
-	public static int getCantEmpleados() {
-		return cantEmpleados;
-	}
-
-	public static void setCantEmpleados(int cantEmpleados) {
-		Empleados.cantEmpleados = cantEmpleados;
-	}
 	public String getCode() {
 		return code;
 	}

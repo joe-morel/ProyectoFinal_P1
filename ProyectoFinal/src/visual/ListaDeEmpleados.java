@@ -27,18 +27,27 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class ListaDeEmpleados extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -566492069437889281L;
 	private JPanel contentPane;
 	private JTextField textField;
 	JScrollPane scrollPane = new JScrollPane();
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTable tbtEmpleados;
+	private static JTable tbtEmpleados;
 	private static DefaultTableModel tablemodel = new DefaultTableModel();;
-	String[] columnNames = {"Codigo", "Nombre", "Cedula", "Telefono", "Dirreccion"};
+	static String[] columnNames = {"Codigo", "Nombre", "Cedula", "Telefono", "Dirreccion"};
 	private static Object[] fila;
 
 	/**
@@ -99,6 +108,7 @@ public class ListaDeEmpleados extends JFrame {
 		panel.add(label_2);
 		
 		textField = new JTextField();
+		textField.setEditable(false);
 		textField.setColumns(10);
 		textField.setBounds(259, 54, 260, 26);
 		panel.add(textField);
@@ -110,6 +120,7 @@ public class ListaDeEmpleados extends JFrame {
 		panel.add(label_3);
 		
 		textField_1 = new JTextField();
+		textField_1.setEditable(false);
 		textField_1.setColumns(10);
 		textField_1.setBounds(259, 92, 216, 26);
 		panel.add(textField_1);
@@ -121,6 +132,7 @@ public class ListaDeEmpleados extends JFrame {
 		panel.add(label_4);
 		
 		textField_2 = new JTextField();
+		textField_2.setEditable(false);
 		textField_2.setColumns(10);
 		textField_2.setBounds(259, 132, 181, 26);
 		panel.add(textField_2);
@@ -131,8 +143,20 @@ public class ListaDeEmpleados extends JFrame {
 		label_5.setBounds(23, 185, 49, 16);
 		panel.add(label_5);
 		
+		tablemodel.setColumnIdentifiers(columnNames);
+		tbtEmpleados = new JTable();
+		tbtEmpleados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tbtEmpleados.setModel(tablemodel);
+		tbtEmpleados.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		TableColumnModel columnModel = tbtEmpleados.getColumnModel();
+		columnModel.getColumn(0).setPreferredWidth(60);
+		columnModel.getColumn(1).setPreferredWidth(171);
+		columnModel.getColumn(2).setPreferredWidth(110);
+		columnModel.getColumn(3).setPreferredWidth(110);
+		columnModel.getColumn(4).setPreferredWidth(150);
+		
 		textField_3 = new JTextField();
-		textField_3.setEnabled(false);
+		textField_3.setEditable(false);
 		textField_3.setColumns(10);
 		textField_3.setBounds(76, 180, 98, 26);
 		panel.add(textField_3);
@@ -152,6 +176,12 @@ public class ListaDeEmpleados extends JFrame {
 		contentPane.add(button);
 		
 		JButton button_1 = new JButton("Eliminar");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Empresa.getinstance().EliminarEmpleados(tbtEmpleados.getSelectedRow());
+				CargarTabla();
+			}
+		});
 		Image img2 = new ImageIcon(this.getClass().getResource("/eliminar-64.png")).getImage();
 		button_1.setIcon(new ImageIcon(img2));
 		button_1.setFont(new Font("Lucida Grande", Font.BOLD, 13));
@@ -175,14 +205,26 @@ public class ListaDeEmpleados extends JFrame {
 		contentPane.add(button_2);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		
+		scrollPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				Empleados em = Empresa.getinstance().BuscarEmpleado(tbtEmpleados.getSelectedRow());
+				textField.setText(em.getNombre());
+				textField_1.setText(em.getCedula());
+				textField_3.setText(Empresa.getinstance().BuscarEmpleadoCodigo(tbtEmpleados.getSelectedRow()));
+				textField_2.setText(em.getTelefono());
+			}
+		});
 		scrollPane.setBounds(10, 229, 604, 204);
 		contentPane.add(scrollPane);
 		CargarTabla();
 		scrollPane.setViewportView(tbtEmpleados);
 		
 	}
-	public void CargarTabla() {
-		tablemodel.setColumnIdentifiers(columnNames);
+	public static void CargarTabla() {
+		tablemodel.setRowCount(0);
+
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Empleados e : Empresa.getinstance().GetEmpleado()) {
 			fila[0] = e.getCode();
@@ -192,16 +234,5 @@ public class ListaDeEmpleados extends JFrame {
 			fila[4] = e.getDireccion();
 			tablemodel.addRow(fila);
 		}
-		tbtEmpleados = new JTable();
-		tbtEmpleados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tbtEmpleados.setModel(tablemodel);
-		tbtEmpleados.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		
-		TableColumnModel columnModel = tbtEmpleados.getColumnModel();
-		columnModel.getColumn(0).setPreferredWidth(60);
-		columnModel.getColumn(1).setPreferredWidth(171);
-		columnModel.getColumn(2).setPreferredWidth(110);
-		columnModel.getColumn(3).setPreferredWidth(110);
-		columnModel.getColumn(4).setPreferredWidth(150);
 	}
 }

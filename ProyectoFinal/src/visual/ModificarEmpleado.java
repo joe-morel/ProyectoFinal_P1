@@ -102,7 +102,7 @@ public class ModificarEmpleado extends JDialog {
 			
 			textField = new JTextField();
 			textField.setEditable(false);
-			textField.setText("EP-"+(Empleados.getCantEmpleados()+1));
+			textField.setText("EP-"+(Empresa.cantEmpleados+1));
 			textField.setBounds(90, 76, 106, 26);
 			panel.add(textField);
 			textField.setText(Empresa.getinstance().BuscarEmpleadoCodigo(aux));
@@ -196,6 +196,7 @@ public class ModificarEmpleado extends JDialog {
 							Empleados e = new Empleados(nombre, cedula, telefono, direccion, code);
 							Empresa.getinstance().ModificarEmpleado(e, aux);
 							JOptionPane.showMessageDialog(null, "Usted a agregado un Empleado",code, JOptionPane.INFORMATION_MESSAGE);
+							ListaDeEmpleados.CargarTabla();
 							dispose();
 							}else{
 								JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos");

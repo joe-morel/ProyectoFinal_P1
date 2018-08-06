@@ -11,7 +11,8 @@ public class Empresa implements Serializable{
 	private static final long serialVersionUID = -6248502753801597548L;
 
 	public static Empresa empresa=null;
-	
+	public static int cantEmpleados;
+	public static int cantClientes;
 	private ArrayList<Clientes> misClientes;
 	private ArrayList<Productos> misProductos;
 	private ArrayList<Factura> misFacturas;
@@ -28,17 +29,19 @@ public class Empresa implements Serializable{
 	public static Empresa getinstance() {
 		if (empresa == null) {
 			empresa = new Empresa();
+			cantEmpleados = 0;
+			cantClientes = 0;
 		}
 		return empresa;
 	}
 	
 	//Inicio de Metodos
 	public void AddCliente(Clientes cli) {
-		Clientes.cantClientes++;
+		cantClientes++;
 		this.misClientes.add(cli);
 	}
 	public void AddProducto(Productos pro) {
-		Empleados.cantEmpleados++;
+		cantEmpleados++;
 		this.misProductos.add(pro);
 	}
 	public void AddFactura(Factura fact) {
@@ -83,7 +86,7 @@ public class Empresa implements Serializable{
 	  Clientes c = this.misClientes.remove(idex);
   }
   public void EliminarEmpleados(int idex){
-	  Empleados c = this.misEmpleados.remove(idex);
+	  Empleados e = this.misEmpleados.remove(idex);
   }
   public void Cobrar(float monto, float deuda, float resto){
 	  
@@ -107,6 +110,22 @@ public class Empresa implements Serializable{
 	  
 	  
   }
+
+public static int getCantEmpleados() {
+	return cantEmpleados;
+}
+
+public static void setCantEmpleados(int cantEmpleados) {
+	Empresa.cantEmpleados = cantEmpleados;
+}
+
+public static int getCantClientes() {
+	return cantClientes;
+}
+
+public static void setCantClientes(int cantClientes) {
+	Empresa.cantClientes = cantClientes;
+}
  
 	
 }

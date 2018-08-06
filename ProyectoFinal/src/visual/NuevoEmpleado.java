@@ -103,7 +103,7 @@ public class NuevoEmpleado extends JDialog {
 			
 			textField = new JTextField();
 			textField.setEditable(false);
-			textField.setText("EP-"+(Empleados.getCantEmpleados()+1));
+			textField.setText("EP-"+(Empresa.cantEmpleados+1));
 			textField.setBounds(90, 76, 106, 26);
 			panel.add(textField);
 			textField.setColumns(10);
@@ -204,7 +204,7 @@ public class NuevoEmpleado extends JDialog {
 							String cedula = txt_cedula.getText();
 							String direccion = txt_direccion.getText();
 							String telefono = txt_telefono.getText();
-							String code = "EP-"+Empleados.cantEmpleados+1;
+							String code = "EP-"+Empresa.cantEmpleados+1;
 							Empleados e = new Empleados(nombre, cedula, telefono, direccion, code);
 							Empresa.getinstance().AddEmpleado(e);
 							JOptionPane.showMessageDialog(null, "Usted a agregado un Empleado",code, JOptionPane.INFORMATION_MESSAGE);
@@ -241,7 +241,7 @@ public class NuevoEmpleado extends JDialog {
 	
 	private void clean() {
 		txt_nombre.setText("");
-		textField.setText("EP-"+(Empleados.getCantEmpleados()+1));
+		textField.setText("EP-"+(Empresa.cantEmpleados+1));
 		txt_direccion.setText("");
 		txt_apellidos.setText("");
 		txt_cedula.setText("");

@@ -8,7 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import logical.Clientes;
 import logical.ControlUser;
+import logical.Empleados;
 import logical.Empresa;
 
 import javax.swing.JMenu;
@@ -104,6 +106,8 @@ public class PanelPrincipal extends JFrame {
 					salvar = new FileInputStream("DatosSistema.dat");
 					salvarRead = new ObjectInputStream(salvar);
 					Empresa.empresa = (Empresa) salvarRead.readObject();
+					Empresa.cantClientes = Empresa.getinstance().Getclientes().size();
+					Empresa.cantEmpleados = Empresa.getinstance().GetEmpleado().size();
 				} catch (Exception e2) {
 					// TODO: handle exception
 				}

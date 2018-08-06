@@ -212,6 +212,8 @@ public class ModificarCliente extends JDialog {
 							Clientes c = new Clientes(nombre, cedula, telefono, direccion, code, limiteCredito);
 							Empresa.getinstance().ModificarCliente(c, index);;
 							JOptionPane.showMessageDialog(null, "Usted a agregado un cliente",code, JOptionPane.INFORMATION_MESSAGE);
+						//	ListaDeClientes.
+							ListaDeClientes.CargarTabla();
 							dispose();
 							}else{
 								JOptionPane.showMessageDialog(null, "Debe de llenar todos los campos");

@@ -12,20 +12,19 @@ public class Clientes implements Serializable{
 	private String cedula;
 	private String telefono;
 	private String direccion;
-	public static int cantClientes=0;
 	private float LimiteCredito;
 	private String code;
 	
 	//Inicio de Construtor 
 	
-	public Clientes(String nombre, String cedula, String telefono, String direccion, String Codigo, float limiteCredito) {
+	public Clientes(String nombre, String cedula, String telefono, String direccion, String Code, float limiteCredito) {
 		super();
 		this.nombre = nombre;
 		this.cedula = cedula;
 		this.telefono = telefono;
 		this.direccion = direccion;
 		this.LimiteCredito = limiteCredito;
-		this.code = code;
+		this.code = Code;
 	}
 	
 	// Fin de Constructor 
@@ -33,9 +32,6 @@ public class Clientes implements Serializable{
 	//Inicio de Getters and Setters
 	public String getNombre() {
 		return nombre;
-	}
-	public String getCodigo() {
-		return Codigo;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -57,13 +53,6 @@ public class Clientes implements Serializable{
 	}
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
-	}
-	public static int getCantClientes() {
-		return cantClientes;
-	}
-
-	public static void setCantSuplidores(int cantClientes) {
-		Clientes.cantClientes = cantClientes;
 	}
 
 	public float getLimiteCredito() {

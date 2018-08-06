@@ -45,7 +45,12 @@ public class ListaDeEmpleados extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private static JTable tbtEmpleados;
+	private static JTable tbtEmpleados = new JTable(){
+	private static final long serialVersionUID = 1L;
+	public boolean isCellEditable(int row, int column) {                
+    	return false;               
+    };
+	};
 	private static DefaultTableModel tablemodel = new DefaultTableModel();;
 	static String[] columnNames = {"Codigo", "Nombre", "Cedula", "Telefono", "Dirreccion"};
 	private static Object[] fila;
@@ -53,19 +58,7 @@ public class ListaDeEmpleados extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ListaDeEmpleados frame = new ListaDeEmpleados();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -145,6 +138,16 @@ public class ListaDeEmpleados extends JFrame {
 		
 		tablemodel.setColumnIdentifiers(columnNames);
 		tbtEmpleados = new JTable();
+		tbtEmpleados.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				Empleados em = Empresa.getinstance().BuscarEmpleado(tbtEmpleados.getSelectedRow());
+				textField.setText(em.getNombre());
+				textField_1.setText(em.getCedula());
+				textField_3.setText(Empresa.getinstance().BuscarEmpleadoCodigo(tbtEmpleados.getSelectedRow()));
+				textField_2.setText(em.getTelefono());
+			}
+		});
 		tbtEmpleados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tbtEmpleados.setModel(tablemodel);
 		tbtEmpleados.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -205,17 +208,8 @@ public class ListaDeEmpleados extends JFrame {
 		contentPane.add(button_2);
 		
 		JScrollPane scrollPane = new JScrollPane();
+	
 		
-		scrollPane.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				Empleados em = Empresa.getinstance().BuscarEmpleado(tbtEmpleados.getSelectedRow());
-				textField.setText(em.getNombre());
-				textField_1.setText(em.getCedula());
-				textField_3.setText(Empresa.getinstance().BuscarEmpleadoCodigo(tbtEmpleados.getSelectedRow()));
-				textField_2.setText(em.getTelefono());
-			}
-		});
 		scrollPane.setBounds(10, 229, 604, 204);
 		contentPane.add(scrollPane);
 		CargarTabla();

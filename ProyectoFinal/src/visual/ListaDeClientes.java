@@ -45,7 +45,12 @@ public class ListaDeClientes extends JFrame {
 	private JTextField txt_nombre;
 	private JTextField txt_cedula;
 	private JTextField txt_telefono;
-	private JTable tbtClientes = new JTable();
+	private JTable tbtClientes = new JTable() {
+    private static final long serialVersionUID = 1L;
+    public boolean isCellEditable(int row, int column) {                
+    	return false;               
+    };
+	};
 	private static DefaultTableModel tablemodel = new DefaultTableModel();;
 	String[] columnNames = {"Codigo", "Nombre", "Cedula", "Telefono", "Dirreccion", "LimiteCredito"};
 	private static Object[] fila;
@@ -148,17 +153,15 @@ public class ListaDeClientes extends JFrame {
 		tablemodel = new DefaultTableModel();
 		tablemodel.setColumnIdentifiers(columnNames);
 		tbtClientes.setEnabled(true);
-		tbtClientes.setFocusable(false);
-		tbtClientes.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-			}
-		));
+		tbtClientes.setRowSelectionAllowed(false);
+		tbtClientes.setCellSelectionEnabled(true);
+		tbtClientes.setModel(tablemodel);
 		// scrollPane.setViewportView(tbtClientes);
 		tbtClientes.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		tbtClientes.setModel(tablemodel);
 		tbtClientes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		
+		TableColumnModel columnModel = tbtClientes.getColumnModel();
 		columnModel.getColumn(0).setPreferredWidth(60);
 		columnModel.getColumn(1).setPreferredWidth(190);
 		columnModel.getColumn(2).setPreferredWidth(110);

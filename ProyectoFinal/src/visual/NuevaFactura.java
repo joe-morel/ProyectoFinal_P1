@@ -9,6 +9,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Color;
@@ -18,7 +20,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+import logical.Clientes;
 import logical.Empresa;
+import logical.Factura;
 import logical.HardDrive;
 import logical.Motherboard;
 import logical.Procesador;
@@ -48,7 +52,6 @@ import javax.swing.JTable;
 public class NuevaFactura extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
@@ -57,16 +60,23 @@ public class NuevaFactura extends JDialog {
 	private JTextField textField_6;
 	private JRadioButton rbtnContado;
 	private JRadioButton rbtnCredito;
-	private JTextField textField_7;
 	private JTextField textField_8;
 	
 	private static DefaultTableModel tablemodel = new DefaultTableModel();;
+	private static DefaultTableModel tablemodel1 = new DefaultTableModel();;
 	private ArrayList<String> columnNames = new ArrayList<String>();
+	private String[] columnNames1 = {"Marca", "Modelo", "Precio venta", "Cantidad"};
+	private ArrayList<Productos> productos = new ArrayList<Productos>();
 	private static Object[] fila;
-	private JTable tbt_productos;
+	private JTable tbt_productos ;
 	JComboBox cbxTipo = new JComboBox();
-	
-	
+	private JTable tableFactura;
+	private static String pp = null;
+	private static String codigo;
+	private static Factura tt = null;
+	private float total = 0;
+	private JComboBox cbxClientes;
+
 
 	/**
 	 * Launch the application.
@@ -106,11 +116,6 @@ public class NuevaFactura extends JDialog {
 				lblNewLabel.setBounds(17, 31, 61, 16);
 				panel_1.add(lblNewLabel);
 			}
-			
-			textField = new JTextField();
-			textField.setBounds(90, 27, 139, 26);
-			panel_1.add(textField);
-			textField.setColumns(10);
 			
 			JLabel lblCdula = new JLabel("Cédula:");
 			lblCdula.setForeground(Color.WHITE);
@@ -204,6 +209,29 @@ public class NuevaFactura extends JDialog {
 			textField_6.setBounds(553, 62, 74, 26);
 			panel_1.add(textField_6);
 			textField_6.setColumns(10);
+			
+			
+			
+			ArrayList<String>seleccione= new ArrayList<String>();
+			for (Clientes c : Empresa.getinstance().Getclientes()) {
+				seleccione.add(c.getNombre());
+			}
+			cbxClientes = new JComboBox();
+			cbxClientes.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					Clientes c = Empresa.getinstance().BuscarCliente(cbxClientes.getSelectedIndex());
+					textField_1.setText(c.getCedula());
+					textField_2.setText(c.getTelefono());
+					
+					
+				}
+			});
+			cbxClientes.setBounds(90, 28, 147, 27);
+			panel_1.add(cbxClientes);
+			cbxClientes.setModel(new DefaultComboBoxModel(seleccione.toArray()));
+			
+			
 		}
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -296,6 +324,62 @@ public class NuevaFactura extends JDialog {
 		
 		
 		JButton button = new JButton("Añadir");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				String modelo = (String)tbt_productos.getValueAt(tbt_productos.getSelectedRow(), tbt_productos.getSelectedColumn());
+				 Productos p2 = Empresa.getinstance().BuscarProductoModelo(modelo);
+				 int cant = p2.getCant();
+					System.out.println(cant);
+					
+					if (p2 != null) {
+						if (p2 instanceof Procesador) {
+							String respuesta = JOptionPane.showInputDialog("Inserte la cantidad de que desea:");
+							Procesador p = new Procesador((((Procesador)p2).getPrecio()), (((Procesador)p2).getPrecioVenta()), (((Procesador)p2).getCant()), (((Procesador)p2).getCodigo()), (((Procesador)p2).getMarca()), (((Procesador)p2).getModelo()), (((Procesador)p2).getTipoProducto()), (((Procesador)p2).getSocket()), (((Procesador)p2).getVelocidadBase()), (((Procesador)p2).getVelocidadTurbo()), (((Procesador)p2).isUnlock()));
+							p.setCant(Integer.valueOf(respuesta));
+							Empresa.getinstance().EditProductos(modelo, cant-1);
+							System.out.println(cant);
+							productos.add(p);
+							CargarTablaProcesador();
+						}else if(p2 instanceof Motherboard) {
+							String respuesta = JOptionPane.showInputDialog("Inserte la cantidad de que desea:");
+							Motherboard m = new Motherboard((((Motherboard)p2).getPrecio()), (((Motherboard)p2).getPrecioVenta()), (((Motherboard)p2).getCant()), (((Motherboard)p2).getCodigo()), (((Motherboard)p2).getMarca()), (((Motherboard)p2).getModelo()), (((Motherboard)p2).getTipoProducto()), (((Motherboard)p2).getMarcaProcesadores()), (((Motherboard)p2).getSocketProcesador()), (((Motherboard)p2).getTipoRam()), (((Motherboard)p2).getCantIDE()), (((Motherboard)p2).getCantM2()) ,(((Motherboard)p2).getCantSata()), (((Motherboard)p2).getCantSlotsRam()), (((Motherboard)p2).isMultiCHSUP()));
+							m.setCant(Integer.valueOf(respuesta));
+							Empresa.getinstance().EditProductos(modelo, cant-1);
+							productos.add(m);
+							CargarTablaMotherboard();
+						}else if(p2 instanceof HardDrive) {
+							String respuesta = JOptionPane.showInputDialog("Inserte la cantidad de que desea:");
+							HardDrive a = new HardDrive((((HardDrive)p2).getPrecio()), (((HardDrive)p2).getPrecioVenta()), (((HardDrive)p2).getCant()), (((HardDrive)p2).getCodigo()), (((HardDrive)p2).getMarca()), (((HardDrive)p2).getModelo()), (((HardDrive)p2).getTipoProducto()), (((HardDrive)p2).getCantGB()), (((HardDrive)p2).getTipoConexion()), (((HardDrive)p2).getWrSpeed()), (((HardDrive)p2).getRdSpeed()));
+							a.setCant(Integer.valueOf(respuesta));
+							Empresa.getinstance().EditProductos(modelo, cant-1);
+							productos.add(a);
+							CargarTablaHardDrive();
+						}else if(p2 instanceof Ram) {
+							String respuesta = JOptionPane.showInputDialog("Inserte la cantidad de que desea:");
+							Ram k = new Ram((((Ram)p2).getPrecio()), (((Ram)p2).getPrecioVenta()), (((Ram)p2).getCant()), (((Ram)p2).getCodigo()), (((Ram)p2).getMarca()), (((Ram)p2).getModelo()), (((Ram)p2).getTipoProducto()), (((Ram)p2).getCantGB()),(((Ram)p2).getTipoDDR()), (((Ram)p2).getSpeed()), (((Ram)p2).isMultiCHSUP() ));
+							k.setCant(Integer.valueOf(respuesta));
+							Empresa.getinstance().EditProductos(modelo, cant-1);
+							productos.add(k);
+							CargarTablaRam();
+						}
+						
+						loadFactura();
+					} else {
+						JOptionPane.showConfirmDialog(null, "debe seleccionar el modelo");
+					}
+					total=0;
+					for (Productos p : productos) {
+					
+					//	total += p.getPrecioVenta();
+						total = total+(p.getCant()*p.getPrecioVenta());
+						
+					}
+			textField_8.setText((String.valueOf(total)));
+					
+			}
+		});
 		Image img1 = new ImageIcon(this.getClass().getResource("/agregar.png")).getImage();
 		button.setIcon(new ImageIcon(img1));
 		button.setFont(new Font("Lucida Grande", Font.BOLD, 13));
@@ -312,6 +396,22 @@ public class NuevaFactura extends JDialog {
 		contentPanel.add(button_1);
 		
 		JButton btnFacturar = new JButton("FACTURAR!");
+		btnFacturar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(rbtnCredito.isSelected()){
+					Clientes cli = Empresa.getinstance().BuscarCliente(cbxClientes.getSelectedIndex());
+					Factura f = new  Factura( productos, cli, total, "222");
+					Empresa.getinstance().setCuentasPorCobrar(f);
+				} else {
+					Clientes cli = Empresa.getinstance().BuscarCliente(cbxClientes.getSelectedIndex());
+					Factura f = new  Factura( productos, cli, total, "222");
+					Empresa.getinstance().AddFactura(f);
+				}
+				JOptionPane.showMessageDialog(null, "Facturacion realizada con exito!","555", JOptionPane.INFORMATION_MESSAGE);
+				dispose();
+			}
+		});
 		Image img3 = new ImageIcon(this.getClass().getResource("/Factura.png")).getImage();
 		btnFacturar.setIcon(new ImageIcon(img3));
 		btnFacturar.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 13));
@@ -326,23 +426,14 @@ public class NuevaFactura extends JDialog {
 		contentPanel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Sub-Total:");
-		lblNewLabel_1.setBounds(31, 11, 72, 16);
-		panel_1.add(lblNewLabel_1);
-		
-		textField_7 = new JTextField();
-		textField_7.setBounds(111, 6, 130, 26);
-		panel_1.add(textField_7);
-		textField_7.setColumns(10);
-		
 		JLabel lblTotal = new JLabel("TOTAL:");
 		lblTotal.setForeground(new Color(255, 0, 0));
 		lblTotal.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 17));
-		lblTotal.setBounds(31, 39, 72, 16);
+		lblTotal.setBounds(27, 24, 72, 16);
 		panel_1.add(lblTotal);
 		
 		textField_8 = new JTextField();
-		textField_8.setBounds(111, 34, 130, 26);
+		textField_8.setBounds(111, 21, 130, 26);
 		panel_1.add(textField_8);
 		textField_8.setColumns(10);
 		
@@ -357,9 +448,15 @@ public class NuevaFactura extends JDialog {
 		lblNewLabel_2.setBounds(81, 221, 147, 16);
 		contentPanel.add(lblNewLabel_2);
 		
-		JScrollPane list_1 = new JScrollPane();
-		list_1.setBounds(452, 249, 440, 262);
-		contentPanel.add(list_1);
+		JScrollPane scrollPane1 = new JScrollPane();
+		scrollPane1.setBounds(452, 249, 440, 262);
+		contentPanel.add(scrollPane1);
+		
+		tableFactura = new JTable();
+		
+		
+		
+		scrollPane1.setViewportView(tableFactura);
 		
 		JLabel lblCarrito = new JLabel("Carrito");
 		lblCarrito.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
@@ -368,6 +465,7 @@ public class NuevaFactura extends JDialog {
 	}
 	
 	public void CargarTablaProcesador() {
+		tablemodel.setRowCount(0);
 		tablemodel.setColumnIdentifiers(columnNames.toArray());
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Productos p : Empresa.getinstance().GetProducto()) {
@@ -411,6 +509,7 @@ public class NuevaFactura extends JDialog {
 	}
 	
 	public void CargarTablaRam() {
+		tablemodel.setRowCount(0);
 		tablemodel.setColumnIdentifiers(columnNames.toArray());
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Productos p : Empresa.getinstance().GetProducto()) {
@@ -436,6 +535,7 @@ public class NuevaFactura extends JDialog {
 			}
 	
 	public void CargarTablaHardDrive() {
+		tablemodel.setRowCount(0);
 		tablemodel.setColumnIdentifiers(columnNames.toArray());
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Productos p : Empresa.getinstance().GetProducto()) {
@@ -472,6 +572,7 @@ public class NuevaFactura extends JDialog {
 		
 	}
 	public void CargarTablaMotherboard() {
+		tablemodel.setRowCount(0);
 		tablemodel.setColumnIdentifiers(columnNames.toArray());
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Productos p : Empresa.getinstance().GetProducto()) {
@@ -506,6 +607,7 @@ public class NuevaFactura extends JDialog {
 	
 	
 	public void CargarTablaKits() {
+		tablemodel.setRowCount(0);
 		tablemodel.setColumnIdentifiers(columnNames.toArray());
 		fila = new Object[tablemodel.getColumnCount()];
 		for (Productos p : Empresa.getinstance().GetProducto()) {
@@ -538,7 +640,57 @@ public class NuevaFactura extends JDialog {
 		
 	}
 	
+	public void loadFactura(){
+		tablemodel1.setRowCount(0);
+		tablemodel1.setColumnIdentifiers(columnNames1);
+		fila = new Object[tablemodel1.getColumnCount()];
+		
+		for (Productos p : productos) {
+			if(p instanceof Procesador) {
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				tablemodel1.addRow(fila);
+			}
+			
+			if(p instanceof Motherboard) {
+				
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				tablemodel1.addRow(fila);
+
+			}
+			if(p instanceof HardDrive) {
+				
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				tablemodel1.addRow(fila);
+
+			}
+			if(p instanceof Ram) {
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				tablemodel1.addRow(fila);
+			}
+			
+		
+		}
+		
+		tableFactura.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tableFactura.setModel(tablemodel1);
+		tableFactura.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		TableColumnModel columnModel = tableFactura.getColumnModel();
 	
+	
+		
+	}
 	
 	
 	

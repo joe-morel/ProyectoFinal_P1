@@ -3,6 +3,8 @@ package logical;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
+
 public class Empresa implements Serializable{
 	
 	/**
@@ -17,6 +19,7 @@ public class Empresa implements Serializable{
 	private ArrayList<Productos> misProductos;
 	private ArrayList<Factura> misFacturas;
 	private ArrayList<Empleados> misEmpleados;
+	private ArrayList<Factura> cuentasPorCobrar = new ArrayList<Factura>();
 	
 	public Empresa() {
 		super();
@@ -24,6 +27,7 @@ public class Empresa implements Serializable{
 		this.misProductos = new ArrayList<Productos>();
 		this.misFacturas = new ArrayList<Factura>();
 		this.misEmpleados = new ArrayList<Empleados>();
+		this.cuentasPorCobrar=new ArrayList<Factura>();
 	}
 	
 	public static Empresa getinstance() {
@@ -149,6 +153,16 @@ public static int getCantClientes() {
 public static void setCantClientes(int cantClientes) {
 	Empresa.cantClientes = cantClientes;
 }
+
+public ArrayList<Factura> getCuentasPorCobrar() {
+	return cuentasPorCobrar;
+}
+
+public void setCuentasPorCobrar(Factura cuentasPorCobrar) {
+	this.cuentasPorCobrar.add(cuentasPorCobrar);
+}
+
+
  
 	
 }

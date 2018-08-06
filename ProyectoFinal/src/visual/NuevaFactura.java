@@ -18,7 +18,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+
 import logical.Empresa;
+import logical.Factura;
 import logical.HardDrive;
 import logical.Motherboard;
 import logical.Procesador;
@@ -61,11 +63,17 @@ public class NuevaFactura extends JDialog {
 	private JTextField textField_8;
 	
 	private static DefaultTableModel tablemodel = new DefaultTableModel();;
+	private static DefaultTableModel tablemodel1 = new DefaultTableModel();;
 	private ArrayList<String> columnNames = new ArrayList<String>();
+	private ArrayList<String> columnNames1 = new ArrayList<String>();
+	private ArrayList<Productos> productos = new ArrayList<Productos>();
 	private static Object[] fila;
 	private JTable tbt_productos;
 	JComboBox cbxTipo = new JComboBox();
-	
+	private JTable tableFactura;
+	private static String pp = null;
+	private static String codigo;
+	private static Factura tt = null;
 	
 
 	/**
@@ -305,6 +313,23 @@ public class NuevaFactura extends JDialog {
 		
 		
 		JButton button = new JButton("Añadir");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				String modelo = (String)tbt_productos.getValueAt(tbt_productos.getSelectedRow(), tbt_productos.getSelectedColumn());
+				// Productos p2 = Empresa.getinstance().BuscarProductoModelo(modelo);
+			
+				
+
+				
+				
+				
+				
+				
+				
+			}
+		});
 		Image img1 = new ImageIcon(this.getClass().getResource("/agregar.png")).getImage();
 		button.setIcon(new ImageIcon(img1));
 		button.setFont(new Font("Lucida Grande", Font.BOLD, 13));
@@ -366,9 +391,16 @@ public class NuevaFactura extends JDialog {
 		lblNewLabel_2.setBounds(81, 221, 147, 16);
 		contentPanel.add(lblNewLabel_2);
 		
-		JScrollPane list_1 = new JScrollPane();
-		list_1.setBounds(452, 249, 440, 262);
-		contentPanel.add(list_1);
+		JScrollPane scrollPane1 = new JScrollPane();
+		scrollPane1.setBounds(452, 249, 440, 262);
+		contentPanel.add(scrollPane1);
+		
+		tableFactura = new JTable();
+		String[] columnNames = {"Codigo", "Tipo","$"};
+		tablemodel.setColumnIdentifiers(columnNames);
+		
+		
+		scrollPane1.setViewportView(tableFactura);
 		
 		JLabel lblCarrito = new JLabel("Carrito");
 		lblCarrito.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
@@ -547,7 +579,57 @@ public class NuevaFactura extends JDialog {
 		
 	}
 	
+	public void loadFactura(){
+		tablemodel1.setRowCount(0);
+		tablemodel1.setColumnIdentifiers(columnNames1.toArray());
+		fila = new Object[tablemodel1.getColumnCount()];
+		
+		for (Productos p : productos) {
+			if(p instanceof Procesador) {
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				tablemodel1.addRow(fila);
+			}
+			
+			if(p instanceof Motherboard) {
+				
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				tablemodel1.addRow(fila);
+
+			}
+			if(p instanceof HardDrive) {
+				
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				tablemodel1.addRow(fila);
+
+			}
+			if(p instanceof Ram) {
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				tablemodel1.addRow(fila);
+			}
+			
+		
+		}
+		
+		tableFactura.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tableFactura.setModel(tablemodel1);
+		tableFactura.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		TableColumnModel columnModel = tableFactura.getColumnModel();
 	
+		
+		
+	}
 	
 	
 	

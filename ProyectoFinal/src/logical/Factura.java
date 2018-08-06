@@ -13,15 +13,17 @@ public class Factura implements Serializable{
 	private Clientes cliente;
 	private float PrecioTotal;
 	private String code;
+	private Productos tuProducto;
 	
 	//Inicio del Constructor 
 	
-	public Factura(ArrayList<Productos> listaProductosVendidos, Clientes cliente, float precioTotal, String code) {
+	public Factura(/*ArrayList<Productos> listaProductosVendidos, Clientes cliente, float precioTotal,*/ String code) {
 		super();
 		this.listaProductosVendidos = listaProductosVendidos;
 		this.cliente = cliente;
-		PrecioTotal = precioTotal;
+	//	PrecioTotal = precioTotal;
 		this.code = code;
+		this.tuProducto = tuProducto;
 	}
 	
 	//Fin del Constructor
@@ -65,5 +67,13 @@ public class Factura implements Serializable{
 	
 	public void AddProducto(Productos pro) {
 		this.listaProductosVendidos.add(pro);
+	}
+
+	public Productos getTuProducto() {
+		return tuProducto;
+	}
+
+	public void setTuProducto(Productos tuProducto) {
+		this.tuProducto = tuProducto;
 	}
 }

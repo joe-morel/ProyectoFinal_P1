@@ -3,6 +3,8 @@ package logical;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
+
 public class Empresa implements Serializable{
 	
 	/**
@@ -17,6 +19,7 @@ public class Empresa implements Serializable{
 	private ArrayList<Productos> misProductos;
 	private ArrayList<Factura> misFacturas;
 	private ArrayList<Empleados> misEmpleados;
+	
 	
 	public Empresa() {
 		super();
@@ -126,6 +129,8 @@ public static int getCantClientes() {
 public static void setCantClientes(int cantClientes) {
 	Empresa.cantClientes = cantClientes;
 }
+
+
  
 	
 }

@@ -15,6 +15,7 @@ public class Productos implements Serializable{
 	private String marca;
 	private String modelo;
 	private String TipoProducto;
+	private float PrecioT;
 	
 	//Inicio de Constructor
 	public Productos(float precio,float PrecioVenta, int cant, String Codigo, String marca, String modelo, String TipoProducto) {
@@ -26,6 +27,7 @@ public class Productos implements Serializable{
 		this.modelo = modelo;
 		this.PrecioVenta = PrecioVenta;
 		this.TipoProducto = TipoProducto;
+		this.PrecioT= PrecioT;
 	}
 	// Fin de Constructor
 	//*******************************
@@ -73,6 +75,12 @@ public class Productos implements Serializable{
 	}
 	public void setPrecioVenta(float precioVenta) {
 		PrecioVenta = precioVenta;
+	}
+	public float getPrecioT() {
+		return PrecioT;
+	}
+	public void setPrecioT(float precioT) {
+		PrecioT = precioT;
 	}
 	
 }

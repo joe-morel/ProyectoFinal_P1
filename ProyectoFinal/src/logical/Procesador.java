@@ -1,8 +1,15 @@
 package logical;
 
-public class Procesador extends Productos {
+import java.io.Serializable;
+
+public class Procesador extends Productos implements Serializable {
 
 	
+	/**
+	 * 
+	 */
+	
+	private static final long serialVersionUID = -6586247900881548151L;
 	private String Socket;
 	private float velocidadBase;
 	private float velocidadTurbo;

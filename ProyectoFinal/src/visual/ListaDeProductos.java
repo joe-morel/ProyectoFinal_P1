@@ -149,6 +149,7 @@ public class ListaDeProductos extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(18, 221, 604, 204);
 		contentPane.add(scrollPane);
+		
 		//tabla//
 		scrollPane.setViewportView(tbt_productos);
 		
@@ -183,6 +184,8 @@ public class ListaDeProductos extends JFrame {
 		button_2.setActionCommand("Cancel");
 		button_2.setBounds(453, 437, 118, 58);
 		contentPane.add(button_2);
+		
+		
 		cbxTipo.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if ((cbxTipo.getSelectedItem().toString() == "Procesador")) {

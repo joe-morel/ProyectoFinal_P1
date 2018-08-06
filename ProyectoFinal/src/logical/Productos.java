@@ -27,6 +27,9 @@ public class Productos implements Serializable{
 		this.PrecioVenta = PrecioVenta;
 		this.TipoProducto = TipoProducto;
 	}
+	public Productos() {
+		super();
+	}
 	// Fin de Constructor
 	//*******************************
 	// Inicio de Getters and Setter 

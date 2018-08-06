@@ -64,19 +64,7 @@ public class AnadirProducto extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AnadirProducto frame = new AnadirProducto();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -511,10 +499,11 @@ public class AnadirProducto extends JFrame {
 						}
 					}
 					if(rdbtnMemoriaRam.isSelected() == true) {
-						if((cbx_CapacidadDisco.getSelectedIndex() != 0) && (cbx_TipoDisco.getSelectedIndex() != 0) && (spn_ReadSpeed.getValue() != "0") && (spn_WriteSpeed.getValue() != "0")) {
+						System.out.println("agregando RAM");
+						if((cbx_CapacidadRAM.getSelectedIndex() != 0) && (cbx_TipoCo.getSelectedIndex() != 0) && (spn_SpeedRam.getValue() != "0") ) {
 							float Speed = (float) spn_SpeedRam.getValue();
-							String tipoConexion = (String) cbx_TipoDisco.getSelectedItem();
-							float cantGB = Float.valueOf(cbx_CapacidadDisco.getSelectedItem().toString());
+							String tipoConexion = (String) cbx_TipoCo.getSelectedItem();
+							float cantGB = Float.valueOf(cbx_CapacidadRAM.getSelectedItem().toString());
 							String TipoProducto = "Memoria Ram";
 							boolean aux = false;
 							Ram r = new Ram(precio, PrecioVenta, cantidad, codigo, marca, modelo, TipoProducto, cantGB, tipoConexion, Speed, aux);

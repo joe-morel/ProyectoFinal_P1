@@ -12,16 +12,34 @@ import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.border.SoftBevelBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+
+import logical.Empresa;
+import logical.Factura;
+import logical.HardDrive;
+import logical.Motherboard;
+import logical.Procesador;
+import logical.Productos;
+import logical.Ram;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.CompoundBorder;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class CrearKit extends JFrame {
 
@@ -29,7 +47,11 @@ public class CrearKit extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JButton button_2;
-
+	private JComboBox cbxTipo =  new JComboBox();
+	private JTable tbt_productos;
+	private static DefaultTableModel tablemodel = new DefaultTableModel();;
+	private ArrayList<String> columnNames = new ArrayList<String>();
+	private static Object[] fila;
 	/**
 	 * Launch the application.
 	 */
@@ -112,7 +134,7 @@ public class CrearKit extends JFrame {
 		JLabel lblTotal = new JLabel("Total:");
 		lblTotal.setForeground(new Color(220, 20, 60));
 		lblTotal.setFont(new Font("Lucida Grande", Font.BOLD, 24));
-		lblTotal.setBounds(16, 20, 74, 36);
+		lblTotal.setBounds(16, 19, 74, 36);
 		panel_3.add(lblTotal);
 		
 		JPanel panel_2 = new JPanel();
@@ -129,7 +151,108 @@ public class CrearKit extends JFrame {
 		scrollPane.setBounds(12, 220, 302, 204);
 		contentPane.add(scrollPane);
 		
+		tbt_productos = new JTable();
+		scrollPane.setViewportView(tbt_productos);
+		//tabla//
+		
+		cbxTipo.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if ((cbxTipo.getSelectedItem().toString() == "Procesador")) {
+					DefaultTableModel model = (DefaultTableModel) tbt_productos.getModel();
+					model.setColumnCount(0);
+					model.setRowCount(0);
+					columnNames.clear();
+					
+					columnNames.add("Marca");
+					columnNames.add("Modelo");
+					
+					columnNames.add("Precio de Venta");
+					columnNames.add("Cantidad");
+					columnNames.add("Soket");
+					columnNames.add("velocidadBase");
+					columnNames.add("velocidadTurbo");
+					columnNames.add("Unlock");
+					CargarTablaProcesador();
+					
+				} else if ((cbxTipo.getSelectedItem().toString()) == "RAM" ) {
+					DefaultTableModel model = (DefaultTableModel) tbt_productos.getModel();
+					model.setColumnCount(0);
+					model.setRowCount(0);
+					columnNames.clear();
+					
+					
+					columnNames.add("Marca");
+					columnNames.add("Modelo");
+					
+					columnNames.add("Precio de Venta");
+					columnNames.add("Cantidad");
+					columnNames.add("Cantidad de GB");
+					columnNames.add("Tipo");
+					columnNames.add("speed");
+					CargarTablaRam();
+				}else if ((cbxTipo.getSelectedItem().toString()) == "HardDrive") {
+					DefaultTableModel model = (DefaultTableModel) tbt_productos.getModel();
+					model.setColumnCount(0);
+					model.setRowCount(0);
+					columnNames.clear();
+					
+					columnNames.add("Marca");
+					columnNames.add("Modelo");
+					
+					columnNames.add("Precio de Venta");
+					columnNames.add("Cantidad");
+					columnNames.add("Cantidad de GB");
+					columnNames.add("Tipo de conexcion");
+					columnNames.add("write Speed");
+					columnNames.add("Read Speed");
+					CargarTablaHardDrive();
+				}else if ((cbxTipo.getSelectedItem().toString()) == "Motherboard") {
+					DefaultTableModel model = (DefaultTableModel) tbt_productos.getModel();
+					model.setColumnCount(0);
+					model.setRowCount(0);
+					columnNames.clear();
+					
+					columnNames.add("Marca");
+					columnNames.add("Modelo");
+					
+					columnNames.add("Precio de Venta");
+					columnNames.add("Cantidad");
+					columnNames.add("Socket");
+					columnNames.add("Tipo RAM");
+					columnNames.add("Cantidad Slots RAM");
+					columnNames.add("Cantidad IDE");
+					columnNames.add("Cantidad Sata");
+					CargarTablaMotherboard();
+				}
+			}
+		});
+		cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"<Seleccionar>", "Procesador", "RAM", "HardDrive", "Motherboard"}));
+		cbxTipo.setBounds(84, 198, 146, 22);		
+		contentPane.add(cbxTipo);
+		
+		
+		
+		
+		//fin de tabla
+		
 		JButton btnAgregar = new JButton("Añadir");
+		btnAgregar.setEnabled(false);
+		btnAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+			
+				
+			}
+		});
 		Image img1 = new ImageIcon(this.getClass().getResource("/Anadir-48.png")).getImage();
 		btnAgregar.setIcon(new ImageIcon(img1));
 		btnAgregar.setFont(new Font("Lucida Grande", Font.BOLD, 13));
@@ -171,4 +294,155 @@ public class CrearKit extends JFrame {
 		scrollPane_1.setBounds(326, 220, 302, 204);
 		contentPane.add(scrollPane_1);
 	}
-}
+	
+	public void CargarTablaProcesador() {
+		tablemodel.setColumnIdentifiers(columnNames.toArray());
+		fila = new Object[tablemodel.getColumnCount()];
+		for (Productos p : Empresa.getinstance().GetProducto()) {
+			if(p instanceof Procesador) {
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				fila[4] = ((Procesador) p).getSocket();
+				fila[5] = ((Procesador) p).getVelocidadBase();
+				fila[6] = ((Procesador) p).getVelocidadTurbo();
+				if (((Procesador) p).isUnlock() == false) {
+					fila[7] = "No";
+				}else if(((Procesador) p).isUnlock() == true) {
+					fila[7] = "Si";	
+				}
+				tablemodel.addRow(fila);
+
+			}
+		}
+	
+		// tbt_productos = new JTable();
+		tbt_productos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tbt_productos.setModel(tablemodel);
+		tbt_productos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		TableColumnModel columnModel = tbt_productos.getColumnModel();
+		/*columnModel.getColumn(0).setPreferredWidth(50);
+		columnModel.getColumn(1).setPreferredWidth(171);
+		columnModel.getColumn(2).setPreferredWidth(110);
+		columnModel.getColumn(3).setPreferredWidth(110);
+		columnModel.getColumn(4).setPreferredWidth(150);
+		columnModel.getColumn(5).setPreferredWidth(60);
+		columnModel.getColumn(6).setPreferredWidth(171);
+		columnModel.getColumn(7).setPreferredWidth(110);
+		columnModel.getColumn(8).setPreferredWidth(110);
+		columnModel.getColumn(9).setPreferredWidth(150);
+		columnModel.getColumn(10).setPreferredWidth(60);*/
+	}
+	
+	public void CargarTablaRam() {
+		tablemodel.setColumnIdentifiers(columnNames.toArray());
+		fila = new Object[tablemodel.getColumnCount()];
+		for (Productos p : Empresa.getinstance().GetProducto()) {
+			if(p instanceof Ram) {
+				
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				fila[4] = ((Ram) p).getCantGB();
+				fila[5] = ((Ram) p).getTipoDDR();
+				fila[6] = ((Ram) p).getSpeed();
+				tablemodel.addRow(fila);
+			}
+
+				// tablemodel.addRow(fila);
+		}
+	
+		// tbt_productos = new JTable();
+		tbt_productos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tbt_productos.setModel(tablemodel);
+		tbt_productos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		TableColumnModel columnModel = tbt_productos.getColumnModel();
+	}
+	
+	
+	public void CargarTablaHardDrive() {
+		tablemodel.setColumnIdentifiers(columnNames.toArray());
+		fila = new Object[tablemodel.getColumnCount()];
+		for (Productos p : Empresa.getinstance().GetProducto()) {
+			if(p instanceof HardDrive) {
+			
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				fila[4] = ((HardDrive) p).getCantGB();
+				fila[5] = ((HardDrive) p).getWrSpeed();
+				fila[6] = ((HardDrive) p).getRdSpeed();
+				tablemodel.addRow(fila);
+
+			}
+				// tablemodel.addRow(fila);
+		}
+	
+		// tbt_productos = new JTable();
+		tbt_productos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tbt_productos.setModel(tablemodel);
+		tbt_productos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		TableColumnModel columnModel = tbt_productos.getColumnModel();
+		/*columnModel.getColumn(0).setPreferredWidth(50);
+		columnModel.getColumn(1).setPreferredWidth(171);
+		columnModel.getColumn(2).setPreferredWidth(110);
+		columnModel.getColumn(3).setPreferredWidth(110);
+		columnModel.getColumn(4).setPreferredWidth(150);
+		columnModel.getColumn(5).setPreferredWidth(60);
+		columnModel.getColumn(6).setPreferredWidth(171);
+		columnModel.getColumn(7).setPreferredWidth(110);
+		columnModel.getColumn(8).setPreferredWidth(110);
+		columnModel.getColumn(9).setPreferredWidth(150);
+		columnModel.getColumn(10).setPreferredWidth(60);*/	
+	}
+	
+	
+	
+	public void CargarTablaMotherboard() {
+		tablemodel.setColumnIdentifiers(columnNames.toArray());
+		fila = new Object[tablemodel.getColumnCount()];
+		for (Productos p : Empresa.getinstance().GetProducto()) {
+		if(p instanceof Motherboard) {
+				
+				fila[0] = p.getMarca();
+				fila[1] = p.getModelo();
+				fila[2] = p.getPrecioVenta();
+				fila[3] = p.getCant();
+				fila[4] = ((Motherboard) p).getMarcaProcesadores();
+				fila[5] = ((Motherboard) p).getSocketProcesador();
+				fila[6] = ((Motherboard) p).getTipoRam();
+				fila[7] = ((Motherboard) p).getCantSlotsRam();
+				fila[8] = ((Motherboard) p).getCantIDE();
+				fila[9] = ((Motherboard) p).getCantSata();
+				tablemodel.addRow(fila);
+
+			}
+		}
+	
+		//tbt_productos = new JTable();
+		tbt_productos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tbt_productos.setModel(tablemodel);
+		tbt_productos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		TableColumnModel columnModel = tbt_productos.getColumnModel();
+		columnModel.getColumn(0).setPreferredWidth(50);
+		columnModel.getColumn(1).setPreferredWidth(171);
+		columnModel.getColumn(2).setPreferredWidth(110);
+		columnModel.getColumn(3).setPreferredWidth(110);
+		
+	}
+	
+	
+		
+		
+		
+		
+		
+	}
+	
+	
+	

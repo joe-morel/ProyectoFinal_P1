@@ -331,7 +331,7 @@ public class AnadirProducto extends JFrame {
 		panel_2.add(lblPrecioC);
 		
 		JSpinner spn_PCosto = new JSpinner();
-		spn_PCosto.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
+		spn_PCosto.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 		spn_PCosto.setBounds(73, 63, 123, 26);
 		panel_2.add(spn_PCosto);
 		
@@ -340,7 +340,7 @@ public class AnadirProducto extends JFrame {
 		panel_2.add(lblPventa);
 		
 		JSpinner spn_PVenta = new JSpinner();
-		spn_PVenta.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
+		spn_PVenta.setModel(new SpinnerNumberModel(new Float(0), new Float(0), null, new Float(1)));
 		spn_PVenta.setBounds(73, 105, 123, 26);
 		panel_2.add(spn_PVenta);
 		

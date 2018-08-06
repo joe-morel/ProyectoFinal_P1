@@ -112,6 +112,9 @@ public class Empresa implements Serializable{
   public void EliminarEmpleados(int idex){
 	  Empleados e = this.misEmpleados.remove(idex);
   }
+  public void EliminarProducto(int idex){
+	  Productos p = this.misProductos.remove(idex);
+  }
   public void Cobrar(float monto, float deuda, float resto){
 	  
 	  float aux;
